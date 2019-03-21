@@ -1,0 +1,508 @@
+{
+    "campaigns": {
+        "4497": {
+            "language": "ENGLISH",
+            "campaignId": 4497,
+            "campaignSize": 15762,
+            "experienceType": "OFFER",
+            "files": {
+                "https://s3rewards-staging-ppe.s3.amazonaws.com/1024.png": {
+                    "lastSavedTime": "1418990802"
+                },
+                "https://s3rewards-staging-ppe.s3.amazonaws.com/1269.png": {
+                    "lastSavedTime": "1420728985"
+                }
+            },
+            "version": "1",
+            "aspectRatio": 1.6,
+            "offer": {
+                "logoImagePath": "https://s3rewards-staging-ppe.s3.amazonaws.com/offers_img_coupon_ui_2x/14391.jpeg",
+                "logoImageWPx": {
+                    "path": "https://s3rewards-staging-ppe.s3.amazonaws.com/1024.png",
+                    "width": 0.4546875,
+                    "height": 0.1703125
+                },
+                "logoImageHPx": {
+                    "path": "https://s3rewards-staging-ppe.s3.amazonaws.com/1269.png",
+                    "width": 0.0796875,
+                    "height": 0.0765625
+                },
+                "headline": "Sainsbury's sale",
+                "subheadline": "Sainsbury's sale",
+                "promoExpiryBackgroundColor": "#AA0000",
+                "isTermsAgreementRequired": true,
+                "isTrackerOnly": false,
+                "tags": [
+                    "Supermarket"
+                ],
+                "promoPopup": {
+                    "id": 139040,
+                    "elements": [
+                        {
+                            "id": 15166,
+                            "type": "NUMBER_INPUT",
+                            "required": true,
+                            "inputObscured": false
+                        }
+                    ],
+                    "isForCoupon": true,
+                    "imagesToPrintUponSubmission": [
+                        
+                    ]
+                },
+                "termsAndConditions": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. \n\nNunc fermentum ex ac dui posuere faucibus. \n\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. \n\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. \n\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "termsAndConditionsForHtml": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. <br />\n<br />\nNunc fermentum ex ac dui posuere faucibus. <br />\n<br />\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. <br />\n<br />\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. <br />\n<br />\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "couponDailyLimit": 0,
+                "couponLimitIsDailyNotTotal": false,
+                "couponDailyLimitAppliesPerLocation": false,
+                "couponId": 216,
+                "mapsLink": null,
+                "hasHitRedeemedLimit": false,
+                "itemResultsPage": {
+                    "id": 1059,
+                    "titleText": "Recommendations",
+                    "titleTextSize": 0.0453,
+                    "subtitleTextSize": 0.0226,
+                    "itemResultTitleTextSize": 0.02603,
+                    "resultsGridConfig": "GRID_OF_3_LANDSCAPE",
+                    "dividerLineColor": "#CCCCCC",
+                    "itemsCarousel": {
+                        "showItemNameAboveDescription": false,
+                        "id": 139041,
+                        "type": "ITEMS_CAROUSEL",
+                        "items": [
+                            
+                        ],
+                        "itemsHeaderElements": [
+                            
+                        ]
+                    }
+                },
+                "fontPaths": [
+                    
+                ],
+                "deviceUid": "5c0f9a4443e23",
+                "clientCouponHash": "60b924",
+                "deliveredToAppTimestampSeconds": 1549620231,
+                "couponLink": "https://app-stg.zappitrewards.com/c/v/60b924",
+                "usesCustomCouponURL": false,
+                "scheduleId": 5139,
+                "localTimezone": "Europe/London",
+                "locationId": 13608,
+                "customCompanyName": null,
+                "clientCompanyName": "zRewards",
+                "zcmBaseAddress": "https://zcm-stg.zappitrewards.com",
+                "error": null,
+                "errorMessageHtml": null,
+                "hasRedemptionLimit": false,
+                "hasRevealingRedemptionButton": false,
+                "hidesWebPageCodeContentForPrintButton": false,
+                "customCouponUrl": null,
+                "couponExpires": true,
+                "countdownToExpiryDurationMsOrNull": 86400000,
+                "scheduleEndTimestampMs": 1550879700000,
+                "scheduleEndDateString": "22nd February 2019 @ 23:55",
+                "couponTimeLeftSeconds": null,
+                "multipleStoreLogos": [
+                    
+                ],
+                "multipleStoreLogosHeading": null,
+                "mapsLinkButtonText": null,
+                "offerRedemptionMethod": "qr",
+                "barcodeFormat": null,
+                "codeToUse": "gozpt|216|6|5c5d88c5b2a04",
+                "humanTypableCode": "ZWZXH8",
+                "showPrintAtHomeButton": false,
+                "hasSaveToMobileWalletButton": false,
+                "saveToMobileWallet": false,
+                "googlePayJwtOrEmpty": "",
+                "customLinkOnCouponButtonText": null,
+                "allowsSharing": false,
+                "shareLink": "https://app-stg.zappitrewards.com/c/s/60b924",
+                "brandName": "Sainsbury's",
+                "showExpireOfferButton": false,
+                "printedCouponExpiryMessage": "Ends 22/02/2019 @ 23:55",
+                "couponRedeemLink": "https://app-stg.zappitrewards.com/c/r/60b924",
+                "campaignId": 4497,
+                "couponExpiresUponScheduleEnd": false
+            }
+        },
+        "4498": {
+            "language": "ENGLISH",
+            "campaignId": 4498,
+            "campaignSize": 386718,
+            "experienceType": "OFFER",
+            "files": {
+                "https://s3rewards-staging-ppe.s3.amazonaws.com/1280.jpeg": {
+                    "lastSavedTime": "1420818631"
+                },
+                "https://s3rewards-staging-ppe.s3.amazonaws.com/773.jpeg": {
+                    "lastSavedTime": "1414603986"
+                }
+            },
+            "version": "1",
+            "aspectRatio": 1.6,
+            "offer": {
+                "logoImagePath": "https://s3rewards-staging-ppe.s3.amazonaws.com/offers_img_coupon_ui_2x/14382.png",
+                "logoImageWPx": {
+                    "path": "https://s3rewards-staging-ppe.s3.amazonaws.com/1280.jpeg",
+                    "width": 1,
+                    "height": 0.625
+                },
+                "logoImageHPx": {
+                    "path": "https://s3rewards-staging-ppe.s3.amazonaws.com/773.jpeg",
+                    "width": 0.359375,
+                    "height": 0.5390625
+                },
+                "headline": "Tesco sale",
+                "subheadline": "Tesco sale",
+                "promoExpiryBackgroundColor": "#AA0000",
+                "isTermsAgreementRequired": true,
+                "isTrackerOnly": false,
+                "tags": [
+                    "Supermarket"
+                ],
+                "promoPopup": {
+                    "id": 139043,
+                    "elements": [
+                        {
+                            "id": 15168,
+                            "type": "NUMBER_INPUT",
+                            "required": true,
+                            "inputObscured": false
+                        }
+                    ],
+                    "isForCoupon": true,
+                    "imagesToPrintUponSubmission": [
+                        
+                    ]
+                },
+                "termsAndConditions": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. \n\nNunc fermentum ex ac dui posuere faucibus. \n\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. \n\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. \n\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "termsAndConditionsForHtml": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. <br />\n<br />\nNunc fermentum ex ac dui posuere faucibus. <br />\n<br />\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. <br />\n<br />\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. <br />\n<br />\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "couponDailyLimit": 0,
+                "couponLimitIsDailyNotTotal": false,
+                "couponDailyLimitAppliesPerLocation": false,
+                "couponId": 217,
+                "mapsLink": null,
+                "hasHitRedeemedLimit": false,
+                "itemResultsPage": {
+                    "id": 1060,
+                    "titleText": "Recommendations",
+                    "titleTextSize": 0.0453,
+                    "subtitleTextSize": 0.0226,
+                    "itemResultTitleTextSize": 0.02603,
+                    "resultsGridConfig": "GRID_OF_3_LANDSCAPE",
+                    "dividerLineColor": "#CCCCCC",
+                    "itemsCarousel": {
+                        "showItemNameAboveDescription": false,
+                        "id": 139044,
+                        "type": "ITEMS_CAROUSEL",
+                        "items": [
+                            
+                        ],
+                        "itemsHeaderElements": [
+                            
+                        ]
+                    }
+                },
+                "fontPaths": [
+                    
+                ],
+                "deviceUid": "5c0f9a4443e23",
+                "clientCouponHash": "f7f294",
+                "deliveredToAppTimestampSeconds": 1549628421,
+                "couponLink": "https://app-stg.zappitrewards.com/c/v/f7f294",
+                "usesCustomCouponURL": false,
+                "isRedeemed": true,
+                "couponExpiryTimestampMs": 1549642052000,
+                "couponTimeLeftSeconds": null,
+                "scheduleId": 5140,
+                "localTimezone": "Europe/London",
+                "locationId": 13608,
+                "customCompanyName": null,
+                "clientCompanyName": "zRewards",
+                "zcmBaseAddress": "https://zcm-stg.zappitrewards.com",
+                "error": null,
+                "errorMessageHtml": null,
+                "hasRedemptionLimit": false,
+                "hasRevealingRedemptionButton": false,
+                "hidesWebPageCodeContentForPrintButton": false,
+                "customCouponUrl": null,
+                "couponExpires": false,
+                "countdownToExpiryDurationMsOrNull": 0,
+                "scheduleEndTimestampMs": 1550879700000,
+                "scheduleEndDateString": "22nd February 2019 @ 23:55",
+                "multipleStoreLogos": [
+                    
+                ],
+                "multipleStoreLogosHeading": null,
+                "mapsLinkButtonText": null,
+                "offerRedemptionMethod": "qr",
+                "barcodeFormat": null,
+                "codeToUse": "gozpt|217|0|5c5d73ec34286",
+                "humanTypableCode": "GVDFB9",
+                "showPrintAtHomeButton": false,
+                "hasSaveToMobileWalletButton": false,
+                "saveToMobileWallet": false,
+                "googlePayJwtOrEmpty": "",
+                "customLinkOnCouponButtonText": null,
+                "allowsSharing": false,
+                "shareLink": "https://app-stg.zappitrewards.com/c/s/f7f294",
+                "brandName": "Tesco",
+                "showExpireOfferButton": false,
+                "printedCouponExpiryMessage": "Ends 22/02/2019 @ 23:55",
+                "couponRedeemLink": "https://app-stg.zappitrewards.com/c/r/f7f294",
+                "campaignId": 4498,
+                "couponExpiresUponScheduleEnd": false
+            }
+        },
+        "4499": {
+            "language": "ENGLISH",
+            "campaignId": 4499,
+            "campaignSize": 0,
+            "experienceType": "OFFER",
+            "files": {
+                
+            },
+            "version": "1",
+            "aspectRatio": 1.6,
+            "offer": {
+                "logoImagePath": "https://s3rewards-staging-ppe.s3.amazonaws.com/offers_img_coupon_ui_2x/14410.jpeg",
+                "logoImageWPx": {
+                    "path": "https://s3rewards-staging-ppe.s3.amazonaws.com/1024.png",
+                    "width": 0.4546875,
+                    "height": 0.1703125
+                },
+                "logoImageHPx": {
+                    "path": "https://s3rewards-staging-ppe.s3.amazonaws.com/1269.png",
+                    "width": 0.0796875,
+                    "height": 0.0765625
+                },
+                "headline": "Everything free",
+                "subheadline": "Everything free",
+                "promoExpiryBackgroundColor": "#AA0000",
+                "isTermsAgreementRequired": true,
+                "isTrackerOnly": false,
+                "tags": [
+                    "Dining"
+                ],
+                "promoPopup": {
+                    "id": 139046,
+                    "elements": [
+                        {
+                            "id": 15170,
+                            "type": "NUMBER_INPUT",
+                            "required": true,
+                            "inputObscured": false
+                        }
+                    ],
+                    "isForCoupon": true,
+                    "imagesToPrintUponSubmission": [
+                        
+                    ]
+                },
+                "termsAndConditions": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. \n\nNunc fermentum ex ac dui posuere faucibus. \n\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. \n\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. \n\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "termsAndConditionsForHtml": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. <br />\n<br />\nNunc fermentum ex ac dui posuere faucibus. <br />\n<br />\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. <br />\n<br />\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. <br />\n<br />\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "couponDailyLimit": 0,
+                "couponLimitIsDailyNotTotal": false,
+                "couponDailyLimitAppliesPerLocation": false,
+                "couponId": 218,
+                "mapsLink": null,
+                "hasHitRedeemedLimit": false,
+                "itemResultsPage": {
+                    "id": 1061,
+                    "titleText": "Recommendations",
+                    "titleTextSize": 0.0453,
+                    "subtitleTextSize": 0.0226,
+                    "itemResultTitleTextSize": 0.02603,
+                    "resultsGridConfig": "GRID_OF_3_LANDSCAPE",
+                    "dividerLineColor": "#CCCCCC",
+                    "itemsCarousel": {
+                        "showItemNameAboveDescription": false,
+                        "id": 139047,
+                        "type": "ITEMS_CAROUSEL",
+                        "items": [
+                            
+                        ],
+                        "itemsHeaderElements": [
+                            
+                        ]
+                    }
+                },
+                "fontPaths": [
+                    
+                ],
+                "deviceUid": "5c0f9a4443e23",
+                "clientCouponHash": "36b58b",
+                "deliveredToAppTimestampSeconds": 1549879371,
+                "couponLink": "https://app-stg.zappitrewards.com/c/v/36b58b",
+                "usesCustomCouponURL": false,
+                "scheduleId": 5141,
+                "localTimezone": "Europe/London",
+                "locationId": 13608,
+                "customCompanyName": null,
+                "clientCompanyName": "zRewards",
+                "zcmBaseAddress": "https://zcm-stg.zappitrewards.com",
+                "error": null,
+                "errorMessageHtml": null,
+                "hasRedemptionLimit": false,
+                "hasRevealingRedemptionButton": false,
+                "hidesWebPageCodeContentForPrintButton": false,
+                "customCouponUrl": null,
+                "couponExpires": true,
+                "countdownToExpiryDurationMsOrNull": 3600000,
+                "scheduleEndTimestampMs": 1551398100000,
+                "scheduleEndDateString": "28th February 2019 @ 23:55",
+                "couponTimeLeftSeconds": null,
+                "multipleStoreLogos": [
+                    
+                ],
+                "multipleStoreLogosHeading": null,
+                "mapsLinkButtonText": null,
+                "offerRedemptionMethod": "qr",
+                "barcodeFormat": null,
+                "codeToUse": "gozpt|218|0|5c614828f394f",
+                "humanTypableCode": "3XPBQC",
+                "showPrintAtHomeButton": false,
+                "hasSaveToMobileWalletButton": false,
+                "saveToMobileWallet": false,
+                "googlePayJwtOrEmpty": "",
+                "customLinkOnCouponButtonText": null,
+                "allowsSharing": false,
+                "shareLink": "https://app-stg.zappitrewards.com/c/s/36b58b",
+                "brandName": "McDonald's",
+                "showExpireOfferButton": false,
+                "printedCouponExpiryMessage": "Ends 28/02/2019 @ 23:55",
+                "couponRedeemLink": "https://app-stg.zappitrewards.com/c/r/36b58b",
+                "campaignId": 4499,
+                "couponExpiresUponScheduleEnd": false
+            }
+        },
+        "4486": {
+            "language": "ENGLISH",
+            "campaignId": 4486,
+            "campaignSize": 0,
+            "experienceType": "OFFER",
+            "files": {
+                
+            },
+            "version": "1",
+            "aspectRatio": 1.6,
+            "offer": {
+                "logoImagePath": "https://s3rewards-staging-ppe.s3.amazonaws.com/offers_img_coupon_ui_2x/14403.png",
+                "logoImageWPx": {
+                    "path": "https://s3rewards-staging-ppe.s3.amazonaws.com/1024.png",
+                    "width": 0.4546875,
+                    "height": 0.1703125
+                },
+                "logoImageHPx": {
+                    "path": "https://s3rewards-staging-ppe.s3.amazonaws.com/1269.png",
+                    "width": 0.0796875,
+                    "height": 0.0765625
+                },
+                "headline": "All locations offer",
+                "subheadline": "for everyone",
+                "promoExpiryBackgroundColor": "#AA0000",
+                "isTermsAgreementRequired": true,
+                "isTrackerOnly": false,
+                "tags": [
+                    "Fashion"
+                ],
+                "promoPopup": {
+                    "id": 138995,
+                    "elements": [
+                        {
+                            "id": 15132,
+                            "type": "NUMBER_INPUT",
+                            "required": true,
+                            "inputObscured": false
+                        }
+                    ],
+                    "isForCoupon": true,
+                    "imagesToPrintUponSubmission": [
+                        
+                    ]
+                },
+                "termsAndConditions": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. \n\nNunc fermentum ex ac dui posuere faucibus. \n\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. \n\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. \n\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "termsAndConditionsForHtml": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. <br />\n<br />\nNunc fermentum ex ac dui posuere faucibus. <br />\n<br />\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. <br />\n<br />\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. <br />\n<br />\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "couponDailyLimit": 0,
+                "couponLimitIsDailyNotTotal": false,
+                "couponDailyLimitAppliesPerLocation": false,
+                "couponId": 205,
+                "mapsLink": null,
+                "hasHitRedeemedLimit": false,
+                "itemResultsPage": {
+                    "id": 1048,
+                    "titleText": "Recommendations",
+                    "titleTextSize": 0.0453,
+                    "subtitleTextSize": 0.0226,
+                    "itemResultTitleTextSize": 0.02603,
+                    "resultsGridConfig": "GRID_OF_3_LANDSCAPE",
+                    "dividerLineColor": "#CCCCCC",
+                    "itemsCarousel": {
+                        "showItemNameAboveDescription": false,
+                        "id": 138996,
+                        "type": "ITEMS_CAROUSEL",
+                        "items": [
+                            
+                        ],
+                        "itemsHeaderElements": [
+                            
+                        ]
+                    }
+                },
+                "fontPaths": [
+                    
+                ],
+                "deviceUid": "5c0f9a4443e23",
+                "clientCouponHash": "fc472e",
+                "deliveredToAppTimestampSeconds": 1546853325,
+                "couponLink": "https://app-stg.zappitrewards.com/c/v/fc472e",
+                "usesCustomCouponURL": false,
+                "scheduleId": 5129,
+                "localTimezone": "Europe/London",
+                "locationId": 13608,
+                "customCompanyName": null,
+                "clientCompanyName": "zRewards",
+                "zcmBaseAddress": "https://zcm-stg.zappitrewards.com",
+                "error": null,
+                "errorMessageHtml": null,
+                "hasRedemptionLimit": false,
+                "hasRevealingRedemptionButton": false,
+                "hidesWebPageCodeContentForPrintButton": false,
+                "customCouponUrl": null,
+                "couponExpires": false,
+                "countdownToExpiryDurationMsOrNull": 0,
+                "scheduleEndTimestampMs": 1567814100000,
+                "scheduleEndDateString": "6th September 2019 @ 23:55",
+                "couponTimeLeftSeconds": null,
+                "multipleStoreLogos": [
+                    
+                ],
+                "multipleStoreLogosHeading": null,
+                "mapsLinkButtonText": null,
+                "offerRedemptionMethod": "qr",
+                "barcodeFormat": null,
+                "codeToUse": "gozpt|205|0|5c331bd6c4a0a",
+                "humanTypableCode": "VKTK5L",
+                "showPrintAtHomeButton": false,
+                "hasSaveToMobileWalletButton": false,
+                "saveToMobileWallet": false,
+                "googlePayJwtOrEmpty": "",
+                "customLinkOnCouponButtonText": null,
+                "allowsSharing": false,
+                "shareLink": "https://app-stg.zappitrewards.com/c/s/fc472e",
+                "brandName": "JD",
+                "showExpireOfferButton": false,
+                "printedCouponExpiryMessage": "Ends 06/09/2019 @ 23:55",
+                "couponRedeemLink": "https://app-stg.zappitrewards.com/c/r/fc472e",
+                "campaignId": 4486,
+                "couponExpiresUponScheduleEnd": false
+            }
+        }
+    },
+    "clientId": 40,
+    "catchmentRadiusKmAroundDeviceLocationSent": 1,
+    "offersNetworkCampaignId": 4354,
+    "timezone": null,
+}

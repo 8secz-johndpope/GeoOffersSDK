@@ -106,7 +106,7 @@ Pod::Spec.new do |s|
 
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"
-  s.resources = “GeoOffersSDK/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
+  s.resources = "GeoOffersSDK/**/*.{png,jpeg,jpg,svg,storyboard,html,json,css,js,xib,xcassets,geoconfig}"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
@@ -117,7 +117,7 @@ Pod::Spec.new do |s|
   #  the lib prefix of their name.
   #
 
-  s.framework  = "Foundation", "CoreLocation", "UserNotifications"
+  s.framework  = "UIKit", "CoreLocation", "UserNotifications", "WebKit", "AdSupport"
   # s.frameworks = "SomeFramework", "AnotherFramework"
 
   # s.library   = "iconv"
@@ -134,6 +134,10 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
+
+  s.static_framework = true
+  s.dependency 'Firebase/Core'
+  s.dependency 'Firebase/Messaging'
 
   s.swift_version = "4.2"
 

@@ -1,0 +1,16 @@
+{
+    "type": "WEEKLY",
+    "start":
+    {
+        "dayOfWeek": 1,
+        "hour": 10,
+        "minute": 0
+    }
+    ,
+    "end":
+    {
+        "dayOfWeek": 1,
+        "hour": 14,
+        "minute": 0
+    }
+}

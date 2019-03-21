@@ -1,0 +1,11 @@
+{
+    "campaigns": {},
+    "matchingDeviceUids": [],
+    "clientId": 40,
+    "catchmentRadiusKmAroundDeviceLocationSent": 1,
+    "offersNetworkCampaignId": 4354,
+    "timezone": null,
+    "geofencesByRewardScheduleId": {},
+    "scheduleIdAndDeviceUidCombinationsAlreadyDelivered": [],
+    "offerRuns": []
+}

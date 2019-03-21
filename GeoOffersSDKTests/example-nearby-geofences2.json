@@ -1,0 +1,938 @@
+{
+    "campaigns": {
+        "4502": {
+            "language": "ENGLISH",
+            "campaignId": 4502,
+            "campaignSize": 0,
+            "experienceType": "OFFER",
+            "files": [
+                
+            ],
+            "version": "0",
+            "aspectRatio": 1.6,
+            "offer": {
+                "headline": null,
+                "subheadline": null,
+                "promoExpiryBackgroundColor": "#",
+                "isTermsAgreementRequired": true,
+                "isTrackerOnly": true,
+                "itemResultsPage": {
+                    "id": 1064,
+                    "titleText": "Recommendations",
+                    "titleTextSize": 0.0453,
+                    "subtitleTextSize": 0.0226,
+                    "itemResultTitleTextSize": 0.02603,
+                    "resultsGridConfig": "GRID_OF_3_LANDSCAPE",
+                    "dividerLineColor": "#CCCCCC",
+                    "itemsCarousel": {
+                        "showItemNameAboveDescription": false,
+                        "id": 139074,
+                        "type": "ITEMS_CAROUSEL",
+                        "items": [
+                            
+                        ],
+                        "itemsHeaderElements": [
+                            
+                        ]
+                    }
+                },
+                "fontPaths": [
+                    
+                ]
+            }
+        },
+        "4501": {
+            "language": "ENGLISH",
+            "campaignId": 4501,
+            "campaignSize": 0,
+            "experienceType": "OFFER",
+            "files": [
+                
+            ],
+            "version": "0",
+            "aspectRatio": 1.6,
+            "offer": {
+                "logoImagePath": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_coupon_ui_2x\\/14415.png",
+                "logoImageWPx": 280,
+                "logoImageHPx": 280,
+                "headline": "Fri Test 1",
+                "subheadline": "Fri Test 1",
+                "promoExpiryBackgroundColor": "#AA0000",
+                "isTermsAgreementRequired": true,
+                "isTrackerOnly": false,
+                "tags": [
+                    "Dining"
+                ],
+                "promoPopup": {
+                    "id": 139070,
+                    "elements": [
+                        {
+                            "id": 15192,
+                            "type": "NUMBER_INPUT",
+                            "required": true,
+                            "inputObscured": false
+                        }
+                    ],
+                    "isForCoupon": true,
+                    "imagesToPrintUponSubmission": [
+                        
+                    ]
+                },
+                "termsAndConditions": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. \\n\\nNunc fermentum ex ac dui posuere faucibus. \\n\\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. \\n\\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. \\n\\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "termsAndConditionsForHtml": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. \\u003Cbr \\/\\u003E\\n\\u003Cbr \\/\\u003E\\nNunc fermentum ex ac dui posuere faucibus. \\u003Cbr \\/\\u003E\\n\\u003Cbr \\/\\u003E\\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. \\u003Cbr \\/\\u003E\\n\\u003Cbr \\/\\u003E\\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. \\u003Cbr \\/\\u003E\\n\\u003Cbr \\/\\u003E\\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "couponDailyLimit": 1000,
+                "couponLimitIsDailyNotTotal": false,
+                "couponDailyLimitAppliesPerLocation": false,
+                "couponId": 220,
+                "mapsLink": null,
+                "hasHitRedeemedLimit": false,
+                "itemResultsPage": {
+                    "id": 1063,
+                    "titleText": "Recommendations",
+                    "titleTextSize": 0.0453,
+                    "subtitleTextSize": 0.0226,
+                    "itemResultTitleTextSize": 0.02603,
+                    "resultsGridConfig": "GRID_OF_3_LANDSCAPE",
+                    "dividerLineColor": "#CCCCCC",
+                    "itemsCarousel": {
+                        "showItemNameAboveDescription": false,
+                        "id": 139071,
+                        "type": "ITEMS_CAROUSEL",
+                        "items": [
+                            
+                        ],
+                        "itemsHeaderElements": [
+                            
+                        ]
+                    }
+                },
+                "fontPaths": [
+                    
+                ],
+                "deviceUid": "ClientCode-535987-OffersAppGooglePlaceIdChIJQTC2xEo9dkgRHf5kgZdl9lc",
+                "clientCouponHash": "0413e0",
+                "couponLink": "https:\\/\\/app-stg.zappitrewards.com\\/c\\/v\\/0413e0",
+                "usesCustomCouponURL": false,
+                "scheduleId": 5143,
+                "localTimezone": "Europe\\/London",
+                "locationId": 13615,
+                "customCompanyName": null,
+                "clientCompanyName": "zRewards",
+                "zcmBaseAddress": "https:\\/\\/zcm-stg.zappitrewards.com",
+                "error": null,
+                "errorMessageHtml": null,
+                "hasRedemptionLimit": false,
+                "hasRevealingRedemptionButton": false,
+                "hidesWebPageCodeContentForPrintButton": false,
+                "customCouponUrl": null,
+                "couponExpires": true,
+                "countdownToExpiryDurationMsOrNull": 3600000,
+                "scheduleEndTimestampMs": 1559346900000,
+                "scheduleEndDateString": "31st May 2019 @ 23:55",
+                "couponTimeLeftSeconds": null,
+                "multipleStoreLogos": [
+                    
+                ],
+                "multipleStoreLogosHeading": null,
+                "mapsLinkButtonText": null,
+                "offerRedemptionMethod": "qr",
+                "barcodeFormat": null,
+                "codeToUse": "gozpt|220|5|5c66f152a7fd6",
+                "humanTypableCode": "X9H466",
+                "showPrintAtHomeButton": false,
+                "hasSaveToMobileWalletButton": false,
+                "saveToMobileWallet": false,
+                "googlePayJwtOrEmpty": "",
+                "customLinkOnCouponButtonText": null,
+                "allowsSharing": false,
+                "shareLink": "https:\\/\\/app-stg.zappitrewards.com\\/c\\/s\\/0413e0",
+                "brandName": "Fri Test 1",
+                "showExpireOfferButton": false,
+                "printedCouponExpiryMessage": "Ends 31\\/05\\/2019 @ 23:55",
+                "couponRedeemLink": "https:\\/\\/app-stg.zappitrewards.com\\/c\\/r\\/0413e0",
+                "campaignId": 4501,
+                "couponExpiresUponScheduleEnd": false,
+                "limitedCouponCountForToday": 6
+            }
+        },
+        "4500": {
+            "language": "ENGLISH",
+            "campaignId": 4500,
+            "campaignSize": 0,
+            "experienceType": "OFFER",
+            "files": [
+                
+            ],
+            "version": "1",
+            "aspectRatio": 1.6,
+            "offer": {
+                "headline": null,
+                "subheadline": null,
+                "promoExpiryBackgroundColor": "#",
+                "isTermsAgreementRequired": true,
+                "isTrackerOnly": true,
+                "itemResultsPage": {
+                    "id": 1062,
+                    "titleText": "Recommendations",
+                    "titleTextSize": 0.0453,
+                    "subtitleTextSize": 0.0226,
+                    "itemResultTitleTextSize": 0.02603,
+                    "resultsGridConfig": "GRID_OF_3_LANDSCAPE",
+                    "dividerLineColor": "#CCCCCC",
+                    "itemsCarousel": {
+                        "showItemNameAboveDescription": false,
+                        "id": 139050,
+                        "type": "ITEMS_CAROUSEL",
+                        "items": [
+                            
+                        ],
+                        "itemsHeaderElements": [
+                            
+                        ]
+                    }
+                },
+                "fontPaths": [
+                    
+                ]
+            }
+        },
+        "4486": {
+            "language": "ENGLISH",
+            "campaignId": 4486,
+            "campaignSize": 0,
+            "experienceType": "OFFER",
+            "files": [
+                
+            ],
+            "version": "1",
+            "aspectRatio": 1.6,
+            "offer": {
+                "logoImagePath": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_coupon_ui_2x\\/14403.png",
+                "logoImageWPx": 195,
+                "logoImageHPx": 195,
+                "headline": "All locations offer",
+                "subheadline": "for everyone",
+                "promoExpiryBackgroundColor": "#AA0000",
+                "isTermsAgreementRequired": true,
+                "isTrackerOnly": false,
+                "tags": [
+                    "Fashion"
+                ],
+                "promoPopup": {
+                    "id": 138995,
+                    "elements": [
+                        {
+                            "id": 15132,
+                            "type": "NUMBER_INPUT",
+                            "required": true,
+                            "inputObscured": false
+                        }
+                    ],
+                    "isForCoupon": true,
+                    "imagesToPrintUponSubmission": [
+                        
+                    ]
+                },
+                "termsAndConditions": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. \\n\\nNunc fermentum ex ac dui posuere faucibus. \\n\\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. \\n\\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. \\n\\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "termsAndConditionsForHtml": "Curabitur ut metus magna. Duis ornare tempor est, in venenatis ex. Nam et dolor eu lacus aliquet consequat id a nisl. \\u003Cbr \\/\\u003E\\n\\u003Cbr \\/\\u003E\\nNunc fermentum ex ac dui posuere faucibus. \\u003Cbr \\/\\u003E\\n\\u003Cbr \\/\\u003E\\nPraesent eu arcu eleifend, congue velit vitae, maximus risus. \\u003Cbr \\/\\u003E\\n\\u003Cbr \\/\\u003E\\nVivamus dictum lacus at eros eleifend tempus. Maecenas consectetur nibh laoreet vehicula imperdiet. Etiam at dui viverra augue laoreet dapibus. \\u003Cbr \\/\\u003E\\n\\u003Cbr \\/\\u003E\\nInteger convallis velit vel nibh sagittis rhoncus. Proin sed sapien vitae sem dapibus cursus. Nam at fermentum nibh.",
+                "couponDailyLimit": 0,
+                "couponLimitIsDailyNotTotal": false,
+                "couponDailyLimitAppliesPerLocation": false,
+                "couponId": 205,
+                "mapsLink": null,
+                "hasHitRedeemedLimit": false,
+                "itemResultsPage": {
+                    "id": 1048,
+                    "titleText": "Recommendations",
+                    "titleTextSize": 0.0453,
+                    "subtitleTextSize": 0.0226,
+                    "itemResultTitleTextSize": 0.02603,
+                    "resultsGridConfig": "GRID_OF_3_LANDSCAPE",
+                    "dividerLineColor": "#CCCCCC",
+                    "itemsCarousel": {
+                        "showItemNameAboveDescription": false,
+                        "id": 138996,
+                        "type": "ITEMS_CAROUSEL",
+                        "items": [
+                            
+                        ],
+                        "itemsHeaderElements": [
+                            
+                        ]
+                    }
+                },
+                "fontPaths": [
+                    
+                ],
+                "deviceUid": "5c06836c55949",
+                "clientCouponHash": "93cadd",
+                "couponLink": "https:\\/\\/app-stg.zappitrewards.com\\/c\\/v\\/93cadd",
+                "usesCustomCouponURL": false,
+                "scheduleId": 5129,
+                "localTimezone": "Europe\\/London",
+                "locationId": 2941,
+                "customCompanyName": null,
+                "clientCompanyName": "zRewards",
+                "zcmBaseAddress": "https:\\/\\/zcm-stg.zappitrewards.com",
+                "error": null,
+                "errorMessageHtml": null,
+                "hasRedemptionLimit": false,
+                "hasRevealingRedemptionButton": false,
+                "hidesWebPageCodeContentForPrintButton": false,
+                "customCouponUrl": null,
+                "couponExpires": false,
+                "countdownToExpiryDurationMsOrNull": 0,
+                "scheduleEndTimestampMs": 1567814100000,
+                "scheduleEndDateString": "6th September 2019 @ 23:55",
+                "couponTimeLeftSeconds": null,
+                "multipleStoreLogos": [
+                    
+                ],
+                "multipleStoreLogosHeading": null,
+                "mapsLinkButtonText": null,
+                "offerRedemptionMethod": "qr",
+                "barcodeFormat": null,
+                "codeToUse": "gozpt|205|8|5c66f1531e2c3",
+                "humanTypableCode": "F6DM3Y",
+                "showPrintAtHomeButton": false,
+                "hasSaveToMobileWalletButton": false,
+                "saveToMobileWallet": false,
+                "googlePayJwtOrEmpty": "",
+                "customLinkOnCouponButtonText": null,
+                "allowsSharing": false,
+                "shareLink": "https:\\/\\/app-stg.zappitrewards.com\\/c\\/s\\/93cadd",
+                "brandName": "JD",
+                "showExpireOfferButton": false,
+                "printedCouponExpiryMessage": "Ends 06\\/09\\/2019 @ 23:55",
+                "couponRedeemLink": "https:\\/\\/app-stg.zappitrewards.com\\/c\\/r\\/93cadd",
+                "campaignId": 4486,
+                "couponExpiresUponScheduleEnd": false
+            }
+        }
+    },
+    "matchingDeviceUids": [
+        "ClientCode-535987-OffersAppGooglePlaceIdChIJQTC2xEo9dkgRHf5kgZdl9lc",
+        "5c06836c55949",
+        "5c06869819eb2",
+        "5c0681cfbc686",
+        "5c068d03b5a54",
+        "5c06836cb13ba",
+        "5c068c2bdbc2a",
+        "5c06869637d19",
+        "5c068da45f4fa",
+        "5c068b1e21e52",
+        "5c0689567bd92",
+        "5c0680ac0d4d7",
+        "5c068c2b68bf5",
+        "5c068ee7374c8",
+        "5c06817bbf634",
+        "5c068696a8787",
+        "5c068c282beb8",
+        "5c0688105920f",
+        "5c06963016171",
+        "5c06937297b5a"
+    ],
+    "clientId": 40,
+    "catchmentRadiusKmAroundDeviceLocationSent": 4,
+    "offersNetworkCampaignId": 4354,
+    "timezone": null,
+    "geofencesByRewardScheduleId": {
+        "5144": [
+            {
+                "customEntryNotificationTitle": "",
+                "logoImageUrl": "",
+                "deliveryDelayMs": "",
+                "deviceUid": "ClientCode-535987-OffersAppGooglePlaceIdChIJQTC2xEo9dkgRHf5kgZdl9lc",
+                "notifiesSilently": false,
+                "scheduleId": "5144",
+                "customEntryNotificationMessage": "",
+                "radiusKm": "50000",
+                "loiteringDelayMs": "",
+                "lng": "-0.19154809999998",
+                "doesNotNotify": true,
+                "lat": "51.7034864"
+            }
+        ],
+        "5142": [
+            {
+                "lat": "51.11575194",
+                "lng": "-0.184477868",
+                "radiusKm": "0.1",
+                "deviceUid": "5c06836c55949",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.1050073",
+                "lng": "-0.198450038",
+                "radiusKm": "0.1",
+                "deviceUid": "5c06869819eb2",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.08335667",
+                "lng": "-0.199920191",
+                "radiusKm": "0.1",
+                "deviceUid": "5c0681cfbc686",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.11589688",
+                "lng": "-0.147168415",
+                "radiusKm": "0.1",
+                "deviceUid": "5c068d03b5a54",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.12298518",
+                "lng": "-0.193482285",
+                "radiusKm": "0.1",
+                "deviceUid": "5c06836cb13ba",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.10194502",
+                "lng": "-0.18132931",
+                "radiusKm": "0.1",
+                "deviceUid": "5c068c2bdbc2a",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.11395603",
+                "lng": "-0.17556268",
+                "radiusKm": "0.1",
+                "deviceUid": "5c06869637d19",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.11701883",
+                "lng": "-0.190379979",
+                "radiusKm": "0.1",
+                "deviceUid": "5c068da45f4fa",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.10739856",
+                "lng": "-0.153228769",
+                "radiusKm": "0.1",
+                "deviceUid": "5c068b1e21e52",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.11844663",
+                "lng": "-0.162625828",
+                "radiusKm": "0.1",
+                "deviceUid": "5c0689567bd92",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.11336115",
+                "lng": "-0.191824851",
+                "radiusKm": "0.1",
+                "deviceUid": "5c0680ac0d4d7",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.1284226",
+                "lng": "-0.198042539",
+                "radiusKm": "0.1",
+                "deviceUid": "5c068c2b68bf5",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.09713767",
+                "lng": "-0.205113739",
+                "radiusKm": "0.1",
+                "deviceUid": "5c068ee7374c8",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.11592387",
+                "lng": "-0.18515995",
+                "radiusKm": "0.1",
+                "deviceUid": "5c06817bbf634",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.12736541",
+                "lng": "-0.155311395",
+                "radiusKm": "0.1",
+                "deviceUid": "5c068696a8787",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.11777591",
+                "lng": "-0.15376557",
+                "radiusKm": "0.1",
+                "deviceUid": "5c068c282beb8",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.12362864",
+                "lng": "-0.163332802",
+                "radiusKm": "0.1",
+                "deviceUid": "5c0688105920f",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.13413929",
+                "lng": "-0.186796029",
+                "radiusKm": "0.1",
+                "deviceUid": "5c06963016171",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            },
+            {
+                "lat": "51.11835994",
+                "lng": "-0.162648414",
+                "radiusKm": "0.1",
+                "deviceUid": "5c06937297b5a",
+                "scheduleId": "5142",
+                "loiteringDelayMs": "",
+                "deliveryDelayMs": "",
+                "doesNotNotify": true,
+                "notifiesSilently": false,
+                "logoImageUrl": "",
+                "customEntryNotificationTitle": "",
+                "customEntryNotificationMessage": ""
+            }
+        ],
+        "5143": [
+            {
+                "customEntryNotificationTitle": "Fri Test 1",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14415.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "ClientCode-535987-OffersAppGooglePlaceIdChIJQTC2xEo9dkgRHf5kgZdl9lc",
+                "notifiesSilently": false,
+                "scheduleId": "5143",
+                "customEntryNotificationMessage": "Fri Test 1",
+                "radiusKm": "50000",
+                "loiteringDelayMs": "",
+                "lng": "-0.19154809999998",
+                "doesNotNotify": false,
+                "lat": "51.7034864"
+            }
+        ],
+        "5129": [
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c06963016171",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.186796029",
+                "doesNotNotify": false,
+                "lat": "51.13413929"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c0680ac0d4d7",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.191824851",
+                "doesNotNotify": false,
+                "lat": "51.11336115"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c068ee7374c8",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.205113739",
+                "doesNotNotify": false,
+                "lat": "51.09713767"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c0688105920f",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.163332802",
+                "doesNotNotify": false,
+                "lat": "51.12362864"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c068b1e21e52",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.153228769",
+                "doesNotNotify": false,
+                "lat": "51.10739856"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c0689567bd92",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.162625828",
+                "doesNotNotify": false,
+                "lat": "51.11844663"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c068d03b5a54",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.147168415",
+                "doesNotNotify": false,
+                "lat": "51.11589688"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c068c2bdbc2a",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.18132931",
+                "doesNotNotify": false,
+                "lat": "51.10194502"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c0681cfbc686",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.199920191",
+                "doesNotNotify": false,
+                "lat": "51.08335667"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c06817bbf634",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.18515995",
+                "doesNotNotify": false,
+                "lat": "51.11592387"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c06836c55949",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.184477868",
+                "doesNotNotify": false,
+                "lat": "51.11575194"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c068c2b68bf5",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.198042539",
+                "doesNotNotify": false,
+                "lat": "51.1284226"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c068c282beb8",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.15376557",
+                "doesNotNotify": false,
+                "lat": "51.11777591"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c06869819eb2",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.198450038",
+                "doesNotNotify": false,
+                "lat": "51.1050073"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c068696a8787",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.155311395",
+                "doesNotNotify": false,
+                "lat": "51.12736541"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c06836cb13ba",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.193482285",
+                "doesNotNotify": false,
+                "lat": "51.12298518"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c068da45f4fa",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.190379979",
+                "doesNotNotify": false,
+                "lat": "51.11701883"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c06937297b5a",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.162648414",
+                "doesNotNotify": false,
+                "lat": "51.11835994"
+            },
+            {
+                "customEntryNotificationTitle": "All locations offer",
+                "logoImageUrl": "https:\\/\\/s3rewards-staging-ppe.s3.amazonaws.com\\/offers_img_small\\/14403.png",
+                "deliveryDelayMs": "",
+                "deviceUid": "5c06869637d19",
+                "notifiesSilently": false,
+                "scheduleId": "5129",
+                "customEntryNotificationMessage": "for everyone",
+                "radiusKm": "0.1",
+                "loiteringDelayMs": "",
+                "lng": "-0.17556268",
+                "doesNotNotify": false,
+                "lat": "51.11395603"
+            }
+        ]
+    },
+    "scheduleIdAndDeviceUidCombinationsAlreadyDelivered": [
+        
+    ],
+    "offerRuns": [
+        {
+            "scheduleId": 5144,
+            "campaignId": 4502,
+            "startDate": "2019-02-15 16:40:00",
+            "endDate": "2019-02-15 23:55:00"
+        },
+        {
+            "scheduleId": 5143,
+            "campaignId": 4501,
+            "startDate": "2019-02-15 16:25:00",
+            "endDate": "2019-05-31 23:55:00"
+        },
+        {
+            "scheduleId": 5142,
+            "campaignId": 4500,
+            "startDate": "2019-02-12 11:45:00",
+            "endDate": "2019-04-30 23:55:00"
+        },
+        {
+            "scheduleId": 5129,
+            "campaignId": 4486,
+            "startDate": "2019-01-07 08:20:00",
+            "endDate": "2019-09-06 23:55:00"
+        }
+    ]
+}

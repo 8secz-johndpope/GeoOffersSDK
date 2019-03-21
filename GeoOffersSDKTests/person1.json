@@ -1,0 +1,10 @@
+{
+    "name": "Bob",
+    "likes": ["computers", "programming"],
+    "hobbies": {
+        "social": [
+            "drinking",
+            "chatting"
+        ]
+    }
+}

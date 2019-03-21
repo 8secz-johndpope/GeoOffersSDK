@@ -1,0 +1,9 @@
+{
+    "type": "GeofenceEntry",
+    "timestampMs": 10000123456,
+    "deviceUid": "5c06971bc93f6",
+    "rewardScheduleId": 5129,
+    "userLatitude": 51.5060112,
+    "userLongitude": -0.4633194
+}
+
