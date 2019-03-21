@@ -8,6 +8,8 @@ protocol GeoOffersViewControllerDelegate: class {
 }
 
 class GeoOffersViewController: UIViewController {
+    @IBOutlet private var loadingOverlay: UIView!
+    
     private var webView: WKWebView!
     private(set) var pageLoaded = false
     private(set) var pendingURL: URL?
@@ -62,8 +64,13 @@ class GeoOffersViewController: UIViewController {
     @IBAction private func close() {
         dismiss(animated: true, completion: nil)
     }
+    
+    func noOffers() {
+        loadingOverlay.isHidden = false
+    }
 
     func loadRequest(url: URL, javascript: String?, querystring: String?) {
+        loadingOverlay.isHidden = true
         pendingQuerystring = querystring
         var script: WKUserScript?
         if let javascript = javascript {
