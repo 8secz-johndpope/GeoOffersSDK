@@ -224,7 +224,7 @@ public class GeoOffersSDKServiceDefault: GeoOffersSDKService {
         else {
             return true
         }
-        let minimumWaitTimePassed = abs(Date(timeIntervalSinceReferenceDate: lastRefreshTimeInterval).timeIntervalSinceNow) > configuration.minimumRefreshWaitTime
+        let minimumWaitTimePassed = abs(Date(timeIntervalSince1970: lastRefreshTimeInterval).timeIntervalSinceNow) > configuration.minimumRefreshWaitTime
         let currentLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
         let refreshLocation = CLLocation(latitude: lastRefreshLocation.latitude, longitude: lastRefreshLocation.longitude)
         let movedMinimumDistance = currentLocation.distance(from: refreshLocation) >= configuration.minimumRefreshDistance
@@ -232,7 +232,7 @@ public class GeoOffersSDKServiceDefault: GeoOffersSDKService {
     }
 
     private func updateLastRefreshTime(location: CLLocationCoordinate2D) {
-        GeoOffersSDKUserDefaults.shared.lastRefreshTimeInterval = Date().timeIntervalSinceReferenceDate
+        GeoOffersSDKUserDefaults.shared.lastRefreshTimeInterval = Date().timeIntervalSince1970
         GeoOffersSDKUserDefaults.shared.lastRefreshLocation = location
     }
 
@@ -325,10 +325,8 @@ extension GeoOffersSDKServiceDefault: GeoOffersLocationServiceDelegate {
         if !region.doesNotNotify {
             let identifier = GeoOffersPendingOffer.generateKey(scheduleID: region.scheduleID, scheduleDeviceID: region.scheduleDeviceID)
             notificationService.sendNotification(title: region.notificationTitle, subtitle: region.notificationMessage, delayMs: region.notificationDwellDelayMs, identifier: identifier, isSilent: region.notifiesSilently)
-            cacheService.addPendingOffer(scheduleID: region.scheduleID, scheduleDeviceID: region.scheduleDeviceID, notificationDwellDelayMs: region.notificationDwellDelayMs)
-        } else {
-            cacheService.addPendingOffer(scheduleID: region.scheduleID, scheduleDeviceID: region.scheduleDeviceID, notificationDwellDelayMs: region.notificationDwellDelayMs)
         }
+        cacheService.addPendingOffer(scheduleID: region.scheduleID, scheduleDeviceID: region.scheduleDeviceID, notificationDwellDelayMs: region.notificationDwellDelayMs)
         let event = GeoOffersTrackingEvent.event(with: .geoFenceEntry, region: region)
         apiService.track(event: event)
     }

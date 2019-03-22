@@ -161,7 +161,7 @@ class GeoOffersCacheServiceDefault: GeoOffersCacheService {
     func buildListingRequestJson() -> String {
         guard var listing = cacheData.listing else { return "{}" }
         let campaigns = listing.campaigns
-        let timestamp = Date().timeIntervalSinceReferenceDate * 1000
+        let timestamp = Date().timeIntervalSince1970 * 1000
         var needsUpdate = false
         for campaign in campaigns.values {
             if campaign.offer.countdownToExpiryStartedTimestampMsOrNull == nil {
