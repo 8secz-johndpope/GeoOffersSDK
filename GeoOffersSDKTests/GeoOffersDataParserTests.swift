@@ -4,45 +4,6 @@ import CoreLocation
 @testable import GeoOffersSDK
 import XCTest
 
-class MockGeoOffersCacheServiceDefault: GeoOffersCacheServiceDefault {
-    private var mockCacheData = GeoOffersCacheData()
-    private(set) var removePendingOfferCalled = false
-    private(set) var regionWithIdentifierCalled = false
-    private(set) var addPendingOfferCalled = false
-
-    func replaceOffers(offers: [GeoOffersPendingOffer]) {
-        var newOffers = [String: GeoOffersPendingOffer]()
-        for offer in offers {
-            let key = GeoOffersPendingOffer.generateKey(scheduleID: offer.scheduleID, scheduleDeviceID: offer.scheduleDeviceID)
-            newOffers[key] = offer
-        }
-        mockCacheData.offers = newOffers
-    }
-
-    override func offers() -> [GeoOffersPendingOffer] {
-        return mockCacheData.offers.compactMap { $0.value }
-    }
-
-    override func hasPendingOffers() -> Bool {
-        return !mockCacheData.offers.isEmpty
-    }
-
-    override func removePendingOffer(identifier: String) {
-        removePendingOfferCalled = true
-        super.removePendingOffer(identifier: identifier)
-    }
-
-    override func region(with identifier: String) -> [GeoOffersGeoFence] {
-        regionWithIdentifierCalled = true
-        return super.region(with: identifier)
-    }
-
-    override func addPendingOffer(scheduleID: Int, scheduleDeviceID: String, notificationDwellDelayMs: Double) {
-        addPendingOfferCalled = true
-        super.addPendingOffer(scheduleID: scheduleID, scheduleDeviceID: scheduleDeviceID, notificationDwellDelayMs: notificationDwellDelayMs)
-    }
-}
-
 class GeoOffersDataParserTests: XCTestCase {
     private let parser = GeoOffersDataParser()
     private var locationService: GeoOffersLocationService!

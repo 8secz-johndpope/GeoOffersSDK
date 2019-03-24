@@ -26,12 +26,11 @@ class GeoOffersPushDataTests: XCTestCase {
     private var mockAPIService = MockGeoOffersAPIService()
     private var presentationService: GeoOffersPresenter!
     private var session = MockURLSession()
-    private lazy var cacheService: GeoOffersCacheServiceDefault = {
-        GeoOffersCacheServiceDefault(apiService: mockAPIService)
-    }()
+    private var cache: TestCacheHelper!
 
     private var service: GeoOffersSDKService!
     private var firebaseWrapper = MockGeoOffersFirebaseWrapper()
+    private var dataProcessor: GeoOffersDataProcessor!
 
     fileprivate var delegateHasAvailableOffersCalled = false
 
@@ -45,9 +44,20 @@ class GeoOffersPushDataTests: XCTestCase {
         notificationService = MockGeoOffersNotificationService(notificationCenter: notificationCenter)
 
         apiService = GeoOffersAPIServiceDefault(configuration: configuration, session: session)
+        cache = TestCacheHelper(apiService: mockAPIService)
         session.testDelegate = apiService as? URLSessionDelegate
         let dataParser = GeoOffersDataParser()
-        presentationService = GeoOffersPresenterDefault(configuration: configuration, locationService: locationService, cacheService: cacheService, dataParser: dataParser)
+        presentationService = GeoOffersPresenterDefault(
+            configuration: configuration,
+            locationService: locationService,
+            cacheService: cache.webViewCache,
+            dataParser: dataParser)
+        
+        dataProcessor = GeoOffersDataProcessor(
+            offersCache: cache.offersCache,
+            listingCache: cache.listingCache,
+            notificationService: notificationService,
+            apiService: apiService)
 
         service = GeoOffersSDKServiceDefault(
             configuration: configuration,
@@ -56,8 +66,12 @@ class GeoOffersPushDataTests: XCTestCase {
             apiService: apiService,
             presentationService: presentationService,
             dataParser: dataParser,
-            cacheService: cacheService,
-            firebaseWrapper: firebaseWrapper
+            firebaseWrapper: firebaseWrapper,
+            fencesCache: cache.fencesCache,
+            offersCache: cache.offersCache,
+            notificationCache: cache.notificationCache,
+            listingCache: cache.listingCache,
+            dataProcessor: dataProcessor
         )
 
         service.delegate = self
@@ -124,7 +138,7 @@ class GeoOffersPushDataTests: XCTestCase {
             return
         }
 
-        cacheService.replaceCache(fenceData)
+        cache.listingCache.replaceCache(fenceData)
 
         guard
             let data1 = FileLoader.loadTestData(filename: "part_1_of_split_message"),
@@ -134,8 +148,8 @@ class GeoOffersPushDataTests: XCTestCase {
             return
         }
 
-        XCTAssertEqual(cacheService.regions().count, 13)
-        XCTAssertEqual(cacheService.schedules().count, 4)
+        XCTAssertEqual(cache.fencesCache.regions().count, 13)
+        XCTAssertEqual(cache.listingCache.schedules().count, 4)
 
         do {
             let pushData = try JSONSerialization.jsonObject(with: data2, options: .allowFragments) as! [String: AnyObject]
@@ -149,8 +163,8 @@ class GeoOffersPushDataTests: XCTestCase {
             XCTFail("\(error)")
         }
 
-        XCTAssertEqual(cacheService.regions().count, 14)
-        XCTAssertEqual(cacheService.schedules().count, 5)
+        XCTAssertEqual(cache.fencesCache.regions().count, 14)
+        XCTAssertEqual(cache.listingCache.schedules().count, 5)
     }
 
     func test_decoding_GeoOffersPushNotificationDataUpdate() {
@@ -164,7 +178,7 @@ class GeoOffersPushDataTests: XCTestCase {
             return
         }
 
-        cacheService.replaceCache(fenceData)
+        cache.listingCache.replaceCache(fenceData)
 
         guard let data = FileLoader.loadTestData(filename: "push_notification_final_message_data") else {
             XCTFail("Where is the test data")
@@ -185,8 +199,8 @@ class GeoOffersPushDataTests: XCTestCase {
     }
 
     func test_geoOffersPushData_isOutOfDate() {
-        let validOffer = GeoOffersPushData(message: "", totalParts: 1, scheduleID: 1234, messageIndex: 0, messageID: "messageid1234", timestamp: Date().timeIntervalSinceReferenceDate * 1000)
-        let outOfDateOffer = GeoOffersPushData(message: "", totalParts: 1, scheduleID: 1234, messageIndex: 0, messageID: "messageid1234", timestamp: Date().addingTimeInterval(-(Double.oneDaySeconds * 2)).timeIntervalSinceReferenceDate * 1000)
+        let validOffer = GeoOffersPushData(message: "", totalParts: 1, scheduleID: 1234, messageIndex: 0, messageID: "messageid1234", timestamp: Date().timeIntervalSince1970 * 1000)
+        let outOfDateOffer = GeoOffersPushData(message: "", totalParts: 1, scheduleID: 1234, messageIndex: 0, messageID: "messageid1234", timestamp: Date().addingTimeInterval(-(Double.oneDaySeconds * 2)).timeIntervalSince1970 * 1000)
 
         XCTAssertFalse(validOffer.isOutOfDate)
         XCTAssertTrue(outOfDateOffer.isOutOfDate)

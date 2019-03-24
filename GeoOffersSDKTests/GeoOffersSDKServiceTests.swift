@@ -6,81 +6,9 @@ import UIKit
 import UserNotifications
 import XCTest
 
-class MockGeoOffersNotificationService: GeoOffersNotificationServiceDefault {
-    private(set) var removeNotificationCalled = false
-    private(set) var sendNotificationCalled = false
-
-    override func removeNotification(with identifier: String) {
-        removeNotificationCalled = true
-        super.removeNotification(with: identifier)
-    }
-
-    override func sendNotification(title: String, subtitle: String, delayMs: Double, identifier: String, isSilent: Bool) {
-        sendNotificationCalled = true
-        super.sendNotification(title: title, subtitle: subtitle, delayMs: delayMs, identifier: identifier, isSilent: isSilent)
-    }
-}
-
-class MockGeoOffersAPIService: GeoOffersAPIService {
-    var backgroundSessionCompletionHandler: (() -> Void)?
-    private(set) var pollForNearbyOffersCalled: Bool = false
-    private(set) var registerCalled: Bool = false
-    private(set) var updateCalled: Bool = false
-    private(set) var deleteCalled: Bool = false
-    private(set) var trackCalled: Bool = false
-    private(set) var trackEventsCalled: Bool = false
-    private(set) var countdownsStarted: Bool = false
-
-    var nearbyData: Data?
-    var responseError: Error?
-
-    func countdownsStarted(hashes _: [String], completionHandler: GeoOffersNetworkResponse?) {
-        countdownsStarted = true
-    }
-
-    func pollForNearbyOffers(latitude _: Double, longitude _: Double, completionHandler: @escaping GeoOffersNetworkResponse) {
-        pollForNearbyOffersCalled = true
-        if let error = responseError {
-            completionHandler(.failure(error))
-        } else {
-            completionHandler(.dataTask(nearbyData))
-        }
-    }
-
-    func register(pushToken _: String, latitude _: Double, longitude _: Double, clientID: Int, completionHandler: GeoOffersNetworkResponse?) {
-        registerCalled = true
-        if let error = responseError {
-            completionHandler?(.failure(error))
-        } else {
-            completionHandler?(.success)
-        }
-    }
-
-    func update(pushToken _: String, with _: String, completionHandler: GeoOffersNetworkResponse?) {
-        updateCalled = true
-        if let error = responseError {
-            completionHandler?(.failure(error))
-        } else {
-            completionHandler?(.success)
-        }
-    }
-
-    func delete(scheduleID _: Int) {
-        deleteCalled = true
-    }
-
-    func track(event _: GeoOffersTrackingEvent) {
-        trackCalled = true
-    }
-
-    func track(events _: [GeoOffersTrackingEvent]) {
-        trackEventsCalled = true
-    }
-}
-
 class GeoOffersSDKServiceTests: XCTestCase {
     private let locationManager = MockLocationManager()
-    private let testLocation = CLLocationCoordinate2D(latitude: 52.4, longitude: -0.25)
+    private let testLocation = CLLocationCoordinate2D(latitude: 51.506012, longitude: -0.463213)
     private let testRadius: Double = 1000
     private let testIdentifier = "Test region 1"
     private let testPushToken = "a4ae72cf7f10b4819b1d0a2196ae4013ff55bd7f95b323c6986e1c1523905b17"
@@ -97,13 +25,9 @@ class GeoOffersSDKServiceTests: XCTestCase {
     private var mockAPIService = MockGeoOffersAPIService()
     private var presentationService: GeoOffersPresenter!
     private var session = MockURLSession()
-    private lazy var cacheService: GeoOffersCacheServiceDefault = {
-        GeoOffersCacheServiceDefault(apiService: mockAPIService)
-    }()
+    private var cache: TestCacheHelper!
+    private var dataProcessor: GeoOffersDataProcessor!
 
-    private lazy var mockCacheService: MockGeoOffersCacheServiceDefault = {
-        MockGeoOffersCacheServiceDefault(apiService: mockAPIService)
-    }()
 
     private var service: GeoOffersSDKService!
     private var serviceWithMockAPI: GeoOffersSDKService!
@@ -119,11 +43,17 @@ class GeoOffersSDKServiceTests: XCTestCase {
         locationService = GeoOffersLocationService(latestLocation: nil, locationManager: locationManager)
 
         notificationService = MockGeoOffersNotificationService(notificationCenter: notificationCenter)
-
+        cache = TestCacheHelper(apiService: mockAPIService)
         apiService = GeoOffersAPIServiceDefault(configuration: configuration, session: session)
         session.testDelegate = apiService as? URLSessionDelegate
         let dataParser = GeoOffersDataParser()
-        presentationService = GeoOffersPresenterDefault(configuration: configuration, locationService: locationService, cacheService: cacheService, dataParser: dataParser)
+        presentationService = GeoOffersPresenterDefault(configuration: configuration, locationService: locationService, cacheService: cache.webViewCache, dataParser: dataParser)
+        
+        dataProcessor = GeoOffersDataProcessor(
+            offersCache: cache.offersCache,
+            listingCache: cache.listingCache,
+            notificationService: notificationService,
+            apiService: mockAPIService)
 
         service = GeoOffersSDKServiceDefault(
             configuration: configuration,
@@ -132,8 +62,12 @@ class GeoOffersSDKServiceTests: XCTestCase {
             apiService: apiService,
             presentationService: presentationService,
             dataParser: dataParser,
-            cacheService: cacheService,
-            firebaseWrapper: firebaseWrapper
+            firebaseWrapper: firebaseWrapper,
+            fencesCache: cache.fencesCache,
+            offersCache: cache.offersCache,
+            notificationCache: cache.notificationCache,
+            listingCache: cache.listingCache,
+            dataProcessor: dataProcessor
         )
 
         serviceWithMockAPI = GeoOffersSDKServiceDefault(
@@ -143,8 +77,12 @@ class GeoOffersSDKServiceTests: XCTestCase {
             apiService: mockAPIService,
             presentationService: presentationService,
             dataParser: dataParser,
-            cacheService: mockCacheService,
-            firebaseWrapper: firebaseWrapper
+            firebaseWrapper: firebaseWrapper,
+            fencesCache: cache.fencesCache,
+            offersCache: cache.offersCache,
+            notificationCache: cache.notificationCache,
+            listingCache: cache.listingCache,
+            dataProcessor: dataProcessor
         )
 
         service.delegate = self
@@ -231,7 +169,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
         XCTAssert(notificationCenter.removeAllPendingNotificationRequestsCalled, "Didn't call method")
         XCTAssert(notificationCenter.removeAllDeliveredNotificationsCalled, "Didn't call method")
 
-        let schedules = cacheService.schedules(for: 5129, scheduleDeviceID: "Testing")
+        let schedules = cache.listingCache.schedules(for: 5129, scheduleDeviceID: "Testing")
         XCTAssertEqual(schedules.count, 1)
     }
 
@@ -251,19 +189,19 @@ class GeoOffersSDKServiceTests: XCTestCase {
         initialiseLastLocation()
         locationService.delegate?.didExitRegion(testIdentifier)
         XCTAssertTrue(notificationService.removeNotificationCalled)
-        XCTAssertTrue(mockCacheService.removePendingOfferCalled)
+        XCTAssertTrue(cache.offersCache.removePendingOfferCalled)
     }
 
     func test_locationDelegate_didEnterRegion() {
         initialiseLastLocation()
         locationService.delegate?.didEnterRegion(testIdentifier)
         XCTAssertTrue(mockAPIService.pollForNearbyOffersCalled)
-        XCTAssertTrue(notificationService.removeNotificationCalled)
-        XCTAssertTrue(mockCacheService.removePendingOfferCalled)
-        XCTAssertTrue(mockCacheService.regionWithIdentifierCalled)
+        XCTAssertFalse(notificationService.removeNotificationCalled)
+        XCTAssertFalse(cache.offersCache.removePendingOfferCalled)
+        XCTAssertTrue(cache.fencesCache.regionWithIdentifierCalled)
 
         XCTAssertFalse(notificationService.sendNotificationCalled)
-        XCTAssertFalse(mockCacheService.addPendingOfferCalled)
+        XCTAssertFalse(cache.offersCache.addPendingOfferCalled)
         XCTAssertFalse(mockAPIService.trackCalled)
     }
 
@@ -271,12 +209,12 @@ class GeoOffersSDKServiceTests: XCTestCase {
         initialiseLastLocation()
         locationService.delegate?.didEnterRegion(testIdentifier)
         XCTAssertTrue(mockAPIService.pollForNearbyOffersCalled)
-        XCTAssertTrue(notificationService.removeNotificationCalled)
-        XCTAssertTrue(mockCacheService.removePendingOfferCalled)
-        XCTAssertTrue(mockCacheService.regionWithIdentifierCalled)
+        XCTAssertFalse(notificationService.removeNotificationCalled)
+        XCTAssertFalse(cache.offersCache.removePendingOfferCalled)
+        XCTAssertTrue(cache.fencesCache.regionWithIdentifierCalled)
 
         XCTAssertFalse(notificationService.sendNotificationCalled)
-        XCTAssertFalse(mockCacheService.addPendingOfferCalled)
+        XCTAssertFalse(cache.offersCache.addPendingOfferCalled)
         XCTAssertFalse(mockAPIService.trackCalled)
     }
 
@@ -292,7 +230,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
             return
         }
 
-        mockCacheService.replaceCache(fenceData)
+        cache.listingCache.replaceCache(fenceData)
     }
 
     func test_findValidRegion_with_region_valid_schedule() {
@@ -300,27 +238,13 @@ class GeoOffersSDKServiceTests: XCTestCase {
         loadNearbyRegionsIntoMockCacheService()
         locationService.delegate?.didEnterRegion("5c06971bc93f6")
         XCTAssertTrue(mockAPIService.pollForNearbyOffersCalled)
-        XCTAssertTrue(notificationService.removeNotificationCalled)
-        XCTAssertTrue(mockCacheService.removePendingOfferCalled)
-        XCTAssertTrue(mockCacheService.regionWithIdentifierCalled)
+        XCTAssertFalse(notificationService.removeNotificationCalled)
+        XCTAssertFalse(cache.offersCache.removePendingOfferCalled)
+        XCTAssertTrue(cache.fencesCache.regionWithIdentifierCalled)
 
         XCTAssertTrue(notificationService.sendNotificationCalled)
-        XCTAssertTrue(mockCacheService.addPendingOfferCalled)
+        XCTAssertTrue(cache.offersCache.addPendingOfferCalled)
         XCTAssertTrue(mockAPIService.trackCalled)
-    }
-
-    func test_findValidRegion_with_region_invalid_schedule() {
-        initialiseLastLocation()
-        loadNearbyRegionsIntoMockCacheService()
-        locationService.delegate?.didEnterRegion("5c0f9a4443e23")
-        XCTAssertTrue(mockAPIService.pollForNearbyOffersCalled)
-        XCTAssertTrue(notificationService.removeNotificationCalled)
-        XCTAssertTrue(mockCacheService.removePendingOfferCalled)
-        XCTAssertTrue(mockCacheService.regionWithIdentifierCalled)
-
-        XCTAssertFalse(notificationService.sendNotificationCalled)
-        XCTAssertFalse(mockCacheService.addPendingOfferCalled)
-        XCTAssertFalse(mockAPIService.trackCalled)
     }
 
     func test_didRegisterForRemoteNotificationsWithDeviceToken_for_already_submitted_token() {
@@ -370,20 +294,22 @@ class GeoOffersSDKServiceTests: XCTestCase {
     }
 
     func test_notifyOfPendingOffers_pending_offers() {
-        let mockCache = mockCacheService
         initialiseLastLocation()
         mockAPIService.nearbyData = FileLoader.loadTestData(filename: "example-nearby-geofences")
         serviceWithMockAPI.applicationDidBecomeActive(UIApplication.shared)
-        var offers = [GeoOffersPendingOffer]()
-        for schedule in mockCache.deliveredSchedules() {
-            let offer = GeoOffersPendingOffer(scheduleID: schedule.scheduleID, scheduleDeviceID: schedule.scheduleDeviceID, notificationDwellDelay: 0, createdDate: Date())
-            offers.append(offer)
+        let deliveredSchedules = cache.listingCache.deliveredSchedules()
+        let expectedOfferCount = deliveredSchedules.count
+        for schedule in deliveredSchedules {
+            cache.offersCache.addPendingOffer(
+                scheduleID: schedule.scheduleID,
+                scheduleDeviceID: schedule.scheduleDeviceID, latitude: 1, longitude: 1,
+                notificationDwellDelayMs: 0
+            )
         }
-        mockCache.replaceOffers(offers: offers)
 
         serviceWithMockAPI.applicationDidBecomeActive(UIApplication.shared)
         XCTAssertTrue(delegateHasAvailableOffersCalled)
-        XCTAssertEqual(offers.count, mockCache.offers().count)
+        XCTAssertEqual(expectedOfferCount, cache.offersCache.offers().count)
     }
 
     private func initialiseLastLocation() {

@@ -3,24 +3,6 @@
 @testable import GeoOffersSDK
 import XCTest
 
-class MockConfiguration: GeoOffersSDKConfiguration {
-    func refresh() {}
-
-    var mainAppUsesFirebase: Bool = false
-    let registrationCode: String = "123456"
-    let authToken: String = UUID().uuidString
-    let deviceID: String = GeoOffersSDKUserDefaults.shared.deviceID
-    var selectedCategoryTabBackgroundColor: String = "FF0000"
-    var timezone: String = TimeZone.current.identifier
-    var apiURL: String = ""
-    var offerDetailsURL: String = "https://localhost"
-    var clientID: Int?
-    var pushToken: String?
-    var pendingPushTokenRegistration: String?
-    public let minimumRefreshWaitTime: Double = 0
-    public let minimumRefreshDistance: Double = 0
-}
-
 class GeoOffersAPIServiceTests: XCTestCase {
     private let testRegistrationCode = "123456"
     private let testAuthToken = UUID().uuidString
@@ -298,7 +280,7 @@ class GeoOffersAPIServiceTests: XCTestCase {
     }
 
     func test_tracking() {
-        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().timeIntervalSinceReferenceDate * 1000, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude)
+        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().timeIntervalSince1970 * 1000, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude)
 
         let expectation = self.expectation(description: "Wait for response")
         session.testExpectation = expectation
@@ -313,7 +295,7 @@ class GeoOffersAPIServiceTests: XCTestCase {
     }
 
     func test_tracking_invalid_url() {
-        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().timeIntervalSinceReferenceDate * 1000, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude)
+        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().timeIntervalSince1970 * 1000, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude)
 
         serviceWithMockConfig.track(event: trackingEvent)
         XCTAssertFalse(session.taskComplete)
@@ -321,7 +303,7 @@ class GeoOffersAPIServiceTests: XCTestCase {
 
     func test_tracking_with_error() {
         session.responseError = TestErrors.trackEventFailed
-        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().timeIntervalSinceReferenceDate * 1000, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude)
+        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().timeIntervalSince1970 * 1000, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude)
 
         let expectation = self.expectation(description: "Wait for response")
         session.testExpectation = expectation
