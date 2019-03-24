@@ -17,7 +17,7 @@ class TestCacheHelper {
         offersCache = MockGeoOffersOffersCache(cache: cache, fencesCache: fencesCache, apiService: apiService)
         notificationCache = MockGeoOffersNotificationCache(cache: cache)
         listingCache = MockGeoOffersListingCache(cache: cache)
-        webViewCache = MockGeoOffersWebViewCache(cache: cache, listingCache: listingCache)
+        webViewCache = MockGeoOffersWebViewCache(cache: cache, listingCache: listingCache, offersCache: offersCache)
     }
 }
 

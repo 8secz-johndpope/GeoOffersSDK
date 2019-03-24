@@ -3,12 +3,14 @@
 import Foundation
 
 class GeoOffersWebViewCache {
-    private var cache: GeoOffersCache
-    private var listingCache: GeoOffersListingCache
+    private let cache: GeoOffersCache
+    private let listingCache: GeoOffersListingCache
+    private let offersCache: GeoOffersOffersCache
     
-    init(cache: GeoOffersCache, listingCache: GeoOffersListingCache) {
+    init(cache: GeoOffersCache, listingCache: GeoOffersListingCache, offersCache: GeoOffersOffersCache) {
         self.cache = cache
         self.listingCache = listingCache
+        self.offersCache = offersCache
     }
     
     func buildCouponRequestJson(scheduleID: Int) -> String {
@@ -71,9 +73,17 @@ class GeoOffersWebViewCache {
     
     func buildAlreadyDeliveredOfferJson() -> String {
         let schedules = listingCache.deliveredSchedules()
+        let offers = offersCache.offers()
+        var scheduleIds: Set<Int> = []
         var items = [String]()
         for schedule in schedules {
-            items.append("\"\(schedule.scheduleID)\":true")
+            scheduleIds.insert(schedule.scheduleID)
+        }
+        for offer in offers {
+            scheduleIds.insert(offer.scheduleID)
+        }
+        for id in scheduleIds {
+            items.append("\"\(id)\":true")
         }
         let itemsString = items.joined(separator: ", ")
         return itemsString

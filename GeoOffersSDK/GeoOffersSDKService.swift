@@ -59,7 +59,7 @@ public class GeoOffersSDKServiceDefault: GeoOffersSDKService {
         listingCache = GeoOffersListingCache(cache: cache)
 
         dataParser = GeoOffersDataParser()
-        presentationService = GeoOffersPresenterDefault(configuration: self.configuration, locationService: locationService, cacheService: GeoOffersWebViewCache(cache: cache, listingCache: listingCache), dataParser: dataParser)
+        presentationService = GeoOffersPresenterDefault(configuration: self.configuration, locationService: locationService, cacheService: GeoOffersWebViewCache(cache: cache, listingCache: listingCache, offersCache: offersCache), dataParser: dataParser)
         firebaseWrapper = isRunningTests ? GeoOffersFirebaseWrapperEmpty() : GeoOffersFirebaseWrapper(configuration: self.configuration)
         dataProcessor = GeoOffersDataProcessor(
             offersCache: offersCache,

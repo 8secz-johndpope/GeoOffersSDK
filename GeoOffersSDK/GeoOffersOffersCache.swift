@@ -74,9 +74,7 @@ class GeoOffersOffersCache {
     }
     
     private func buildOfferDeliveredEvent(_ offer: GeoOffersPendingOffer) -> GeoOffersTrackingEvent? {
-        let regions = fencesCache.region(with: offer.scheduleDeviceID)
-        guard let region = regions.first else { return nil }
-        let event = GeoOffersTrackingEvent.event(with: .offerDelivered, region: region)
+        let event = GeoOffersTrackingEvent.event(with: .offerDelivered, scheduleID: offer.scheduleID, scheduleDeviceID: offer.scheduleDeviceID, latitude: offer.latitude, longitude: offer.longitude)
         return event
     }
     

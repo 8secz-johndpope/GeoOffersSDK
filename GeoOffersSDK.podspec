@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GeoOffersSDK"
-  s.version      = "0.0.7"
+  s.version      = "0.0.8"
   s.summary      = "The GeoOffersSDK connects to the GeoOffers API and allows your app to receive location based offers from the GeoOffers services."
 
   # This description is used to generate tags and improve search results.
