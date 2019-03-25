@@ -21,16 +21,16 @@ class GeoOffersSDKServiceTests: XCTestCase {
     private var configuration: GeoOffersSDKConfiguration!
     private var notificationService: MockGeoOffersNotificationService!
     private var locationService: GeoOffersLocationService!
-    private var apiService: GeoOffersAPIService!
+    private var apiService: GeoOffersAPIServiceProtocol!
     private var mockAPIService = MockGeoOffersAPIService()
-    private var presentationService: GeoOffersPresenter!
+    private var presentationService: GeoOffersPresenterProtocol!
     private var session = MockURLSession()
     private var cache: TestCacheHelper!
     private var dataProcessor: GeoOffersDataProcessor!
 
 
-    private var service: GeoOffersSDKService!
-    private var serviceWithMockAPI: GeoOffersSDKService!
+    private var service: GeoOffersSDKServiceProtocol!
+    private var serviceWithMockAPI: GeoOffersSDKServiceProtocol!
     private var firebaseWrapper = MockGeoOffersFirebaseWrapper()
 
     fileprivate var delegateHasAvailableOffersCalled = false
@@ -44,10 +44,10 @@ class GeoOffersSDKServiceTests: XCTestCase {
 
         notificationService = MockGeoOffersNotificationService(notificationCenter: notificationCenter)
         cache = TestCacheHelper(apiService: mockAPIService)
-        apiService = GeoOffersAPIServiceDefault(configuration: configuration, session: session)
+        apiService = GeoOffersAPIService(configuration: configuration, session: session)
         session.testDelegate = apiService as? URLSessionDelegate
         let dataParser = GeoOffersDataParser()
-        presentationService = GeoOffersPresenterDefault(configuration: configuration, locationService: locationService, cacheService: cache.webViewCache, dataParser: dataParser)
+        presentationService = GeoOffersPresenter(configuration: configuration, locationService: locationService, cacheService: cache.webViewCache, dataParser: dataParser)
         
         dataProcessor = GeoOffersDataProcessor(
             offersCache: cache.offersCache,
@@ -55,7 +55,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
             notificationService: notificationService,
             apiService: mockAPIService)
 
-        service = GeoOffersSDKServiceDefault(
+        service = GeoOffersSDKService(
             configuration: configuration,
             notificationService: notificationService,
             locationService: locationService,
@@ -70,7 +70,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
             dataProcessor: dataProcessor
         )
 
-        serviceWithMockAPI = GeoOffersSDKServiceDefault(
+        serviceWithMockAPI = GeoOffersSDKService(
             configuration: configuration,
             notificationService: notificationService,
             locationService: locationService,
@@ -107,7 +107,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
 
     func test_default_initialiser() {
         let notificationCenter = MockUNUserNotificationCenter()
-        let service = GeoOffersSDKServiceDefault(configuration: configuration, userNotificationCenter: notificationCenter)
+        let service = GeoOffersSDKService(configuration: configuration, userNotificationCenter: notificationCenter)
         XCTAssertNotNil(service)
     }
 

@@ -3,7 +3,7 @@
 import Foundation
 @testable import GeoOffersSDK
 
-class MockGeoOffersNotificationService: GeoOffersNotificationServiceDefault {
+class MockGeoOffersNotificationService: GeoOffersNotificationService {
     private(set) var removeNotificationCalled = false
     private(set) var sendNotificationCalled = false
     

@@ -3,7 +3,7 @@
 import Foundation
 @testable import GeoOffersSDK
 
-class MockGeoOffersAPIService: GeoOffersAPIService {
+class MockGeoOffersAPIService: GeoOffersAPIServiceProtocol {
     var backgroundSessionCompletionHandler: (() -> Void)?
     private(set) var pollForNearbyOffersCalled: Bool = false
     private(set) var registerCalled: Bool = false

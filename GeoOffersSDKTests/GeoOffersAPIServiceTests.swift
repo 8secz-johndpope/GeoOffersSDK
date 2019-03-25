@@ -10,18 +10,18 @@ class GeoOffersAPIServiceTests: XCTestCase {
     private let longitude: Double = -0.25
     private let clientID = 40
 
-    private var service: GeoOffersAPIService!
+    private var service: GeoOffersAPIServiceProtocol!
     private var session = MockURLSession()
     private var session2 = MockURLSession()
 
     private let mockConfig = MockConfiguration()
-    private var serviceWithMockConfig: GeoOffersAPIService!
+    private var serviceWithMockConfig: GeoOffersAPIServiceProtocol!
 
     override func setUp() {
         let configuration = GeoOffersConfigurationDefault(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
-        service = GeoOffersAPIServiceDefault(configuration: configuration, session: session)
+        service = GeoOffersAPIService(configuration: configuration, session: session)
         session.testDelegate = service as? URLSessionDelegate
-        serviceWithMockConfig = GeoOffersAPIServiceDefault(configuration: mockConfig, session: session2)
+        serviceWithMockConfig = GeoOffersAPIService(configuration: mockConfig, session: session2)
         session2.testDelegate = serviceWithMockConfig as? URLSessionDelegate
     }
 

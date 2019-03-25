@@ -22,13 +22,13 @@ class GeoOffersPushDataTests: XCTestCase {
     private var configuration: GeoOffersSDKConfiguration!
     private var notificationService: MockGeoOffersNotificationService!
     private var locationService: GeoOffersLocationService!
-    private var apiService: GeoOffersAPIService!
+    private var apiService: GeoOffersAPIServiceProtocol!
     private var mockAPIService = MockGeoOffersAPIService()
-    private var presentationService: GeoOffersPresenter!
+    private var presentationService: GeoOffersPresenterProtocol!
     private var session = MockURLSession()
     private var cache: TestCacheHelper!
 
-    private var service: GeoOffersSDKService!
+    private var service: GeoOffersSDKServiceProtocol!
     private var firebaseWrapper = MockGeoOffersFirebaseWrapper()
     private var dataProcessor: GeoOffersDataProcessor!
 
@@ -43,11 +43,11 @@ class GeoOffersPushDataTests: XCTestCase {
 
         notificationService = MockGeoOffersNotificationService(notificationCenter: notificationCenter)
 
-        apiService = GeoOffersAPIServiceDefault(configuration: configuration, session: session)
+        apiService = GeoOffersAPIService(configuration: configuration, session: session)
         cache = TestCacheHelper(apiService: mockAPIService)
         session.testDelegate = apiService as? URLSessionDelegate
         let dataParser = GeoOffersDataParser()
-        presentationService = GeoOffersPresenterDefault(
+        presentationService = GeoOffersPresenter(
             configuration: configuration,
             locationService: locationService,
             cacheService: cache.webViewCache,
@@ -59,7 +59,7 @@ class GeoOffersPushDataTests: XCTestCase {
             notificationService: notificationService,
             apiService: apiService)
 
-        service = GeoOffersSDKServiceDefault(
+        service = GeoOffersSDKService(
             configuration: configuration,
             notificationService: notificationService,
             locationService: locationService,

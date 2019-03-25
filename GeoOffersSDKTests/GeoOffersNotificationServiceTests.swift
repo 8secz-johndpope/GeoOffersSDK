@@ -6,10 +6,10 @@ import XCTest
 
 class GeoOffersNotificationServiceTests: XCTestCase {
     private var notificationCenter = MockUNUserNotificationCenter()
-    private var service: GeoOffersNotificationService!
+    private var service: GeoOffersNotificationServiceProtocol!
 
     override func setUp() {
-        service = GeoOffersNotificationServiceDefault(notificationCenter: notificationCenter)
+        service = GeoOffersNotificationService(notificationCenter: notificationCenter)
     }
 
     override func tearDown() {

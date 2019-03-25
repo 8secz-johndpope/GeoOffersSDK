@@ -11,7 +11,7 @@ class TestCacheHelper {
     let listingCache: MockGeoOffersListingCache
     let webViewCache: MockGeoOffersWebViewCache
     
-    init(apiService: GeoOffersAPIService) {
+    init(apiService: GeoOffersAPIServiceProtocol) {
         cache = GeoOffersCache.init(shouldCacheToDisk: false)
         fencesCache = MockGeoOffersGeoFencesCache(cache: cache)
         offersCache = MockGeoOffersOffersCache(cache: cache, fencesCache: fencesCache, apiService: apiService)

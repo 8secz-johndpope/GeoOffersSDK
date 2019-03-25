@@ -57,4 +57,137 @@ You should also enable _Push Notifications_ and provide the platform with a _Pus
 
 ### SDK Configuration
 
-You should receive a **_registrationCode_** and **_authenticationToken_** from the platform.
+You should receive a **_registrationCode_** and **_authenticationToken_** from the platform team, you will need to configure the SDK with these values in order for it to successfully communicate with the platform.
+
+#### GeoOffersConfiguration
+
+You will need to create a _GeoOffersConfiguration_ object to pass to the _GeoOffersSDKService_ class.  Here is a definition of the configuration properties:
+
+| Key | Type | Description | DefaultValue |
+| :--- | :--- | :--- | :--- |
+| registrationCode | String | Provide the value from the platform team | |
+| authToken | String | Provide the value from the platform team | |
+| testing | Bool | Points the SDK to Production or Staging | false |
+| selectedCategoryTabBackgroundColor | String | The highlight colour for the buttons in the offers list view header | #FF0000 |
+| minimumRefreshWaitTime | Double | Ideally we do not want to waste the users bandwidth so configure a sensible refresh period in **seconds** | 10 minutes |
+| minimumDistance | Double | The minimum distance that a user should move before the SDK checks for offer updates **in meters** | 500 meters |
+| mainAppUsesFirebase | Bool | The SDK uses Firebase for some of it's messaging functionality. If your app uses Firebase then set this flag to stop conflicts. The app will fail at launch if you use Firebase and don't set this option. | false |
+
+#### GeoOffersSDKService
+
+You should only create a single instance of this class and share it throughout your app. We strongly suggest creating a Singleton wrapper class where you can initialise this with the above _GeoOffersConfiguration_ once. See the _SampleApp_ for an example idea.
+
+```
+class GeoOffersWrapper {
+   static let shared = GeoOffersWrapper()
+   
+   var geoOffers: GeoOffersSDKService = {
+      let registrationCode = <registrationCode>
+      let authToken = <authenticationToken>
+      let configuration = GeoOffersConfigurationDefault(registrationCode: registrationCode, authToken: authToken, testing: true)
+      let geoOffers = GeoOffersSDKServiceDefault(configuration: configuration)
+      return geoOffers
+   }()
+}
+```
+
+### Integration
+
+#### AppDelegate
+
+The SDK requires the main app to forward certain **_AppDelegate_** method calls to the SDK to allow it to function correctly. Please implement the following functionality inside your **_AppDelegate_**.
+
+##### didFinishLaunchingWithOptions
+
+Initialise the GeoOffersSDK, we suggest using a singleton for simplification, but use your own preferred dependency injection pattern
+
+Call the matching method on the GeoOffersSDK instance
+
+```
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        GeoOffersWrapper.shared.geoOffers.application(application, didFinishLaunchingWithOptions: launchOptions)
+
+        return true
+    }
+```
+
+##### applicationDidBecomeActive
+
+Call the matching method on the GeoOffersSDK instance
+
+```
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        GeoOffersWrapper.shared.geoOffers.applicationDidBecomeActive(application)
+    }
+```
+
+##### performFetchWithCompletionHandler
+
+If you want to handle the "completionHandler" then pass nil to the geoOffers function completionHandler
+
+```
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        GeoOffersWrapper.shared.geoOffers.application(application, performFetchWithCompletionHandler: completionHandler)
+    }
+```
+
+##### handleEventsForBackgroundURLSession
+
+Call the matching method on the GeoOffersSDK instance
+
+```
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        GeoOffersWrapper.shared.geoOffers.application(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
+    }
+```
+
+##### didRegisterForRemoteNotificationsWithDeviceToken
+
+Call the matching method on the GeoOffersSDK instance
+
+```
+    // Required if implementing Remote notifications
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        GeoOffersWrapper.shared.geoOffers.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    }
+```
+
+##### didReceiveRemoteNotification
+
+Call the matching methods on the GeoOffersSDK instance
+
+```
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        GeoOffersWrapper.shared.geoOffers.application(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: nil)
+    }
+```
+
+##### didReceiveRemoteNotification:completionHandler:
+
+If you want to handle the "completionHandler" then pass nil to the geoOffers function completionHandler
+
+Call the matching method on the GeoOffersSDK instance
+
+```
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        GeoOffersWrapper.shared.geoOffers.application(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
+    }
+```
+
+#### Offers List ViewController
+
+The SDK will provide you with a UIViewController that will render the list of current offers to the user. You should call the following to get the UIViewController. Please put this into a UINavigationController and present it within your own app. We have done this so that you can push or present it from an existing view controller, or place it inside it's own tab depending on the style of your app.
+
+```
+GeoOffersWrapper.shared.geoOffers.buildOfferListViewController()
+```
+
+#### Permissions
+
+The SDK will not function correctly until the app has the required permissions. We require **_Location_** and **_Push Notification_** permissions. We have added methods to the SDK that you can call to simplify calling the required code. You should choose when and where in your app to call these methods to increase the chance that the user will accept the permissions.
+
+```
+GeoOffersWrapper.shared.geoOffers.requestPushNotificationPermissions()
+
+GeoOffersWrapper.shared.geoOffers.requestLocationPermissions()
+```
