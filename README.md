@@ -31,7 +31,8 @@ This section describes how to configure the iOS SDK for use in your app.
 
 ### App info.plist
 Make sure that the following entries are in your info.plist
-| Key | Type | |
+
+| Key | Type | Detail |
 | --- | --- | --- |
 | NSLocationAlwaysUsageDescription   | String  | We will use your location to provide relevant location based offers for you.|
 | NSLocationAlwaysAndWhenInUseUsageDescription   | String  | We will use your location to provide relevant location based offers for you.|
