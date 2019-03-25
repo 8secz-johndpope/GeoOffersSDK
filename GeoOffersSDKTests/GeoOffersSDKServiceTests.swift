@@ -36,7 +36,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
     fileprivate var delegateHasAvailableOffersCalled = false
 
     override func setUp() {
-        configuration = GeoOffersConfigurationDefault(registrationCode: "TestID", authToken: UUID().uuidString, testing: true, minimumRefreshWaitTime: 0, minimumDistance: 0)
+        configuration = GeoOffersConfiguration(registrationCode: "TestID", authToken: UUID().uuidString, testing: true, minimumRefreshWaitTime: 0, minimumDistance: 0)
 
         locationManager.canMonitorForRegions = true
         locationManager.hasLocationPermission = true

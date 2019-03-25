@@ -47,7 +47,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
     public weak var offersUpdatedDelegate: GeoOffersOffersCacheDelegate?
 
     public init(
-        configuration: GeoOffersConfiguration,
+        configuration: GeoOffersConfigurationProtocol,
         userNotificationCenter: GeoOffersUserNotificationCenter = UNUserNotificationCenter.current()
     ) {
         let lastKnownLocation = GeoOffersSDKUserDefaults.shared.lastKnownLocation

@@ -12,11 +12,11 @@ class GeoOffersDataParserTests: XCTestCase {
     private let testRegistrationCode = "123456"
     private let testAuthToken = UUID().uuidString
     private let testClientID = 100
-    private var configuration: GeoOffersConfigurationDefault!
+    private var configuration: GeoOffersConfiguration!
 
     override func setUp() {
         locationService = GeoOffersLocationService(latestLocation: nil, locationManager: locationManager)
-        let configuration = GeoOffersConfigurationDefault(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
         configuration.clientID = nil
         self.configuration = configuration
     }

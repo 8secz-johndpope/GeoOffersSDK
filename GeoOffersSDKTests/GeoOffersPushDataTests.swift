@@ -35,7 +35,7 @@ class GeoOffersPushDataTests: XCTestCase {
     fileprivate var delegateHasAvailableOffersCalled = false
 
     override func setUp() {
-        configuration = GeoOffersConfigurationDefault(registrationCode: "TestID", authToken: UUID().uuidString, testing: true)
+        configuration = GeoOffersConfiguration(registrationCode: "TestID", authToken: UUID().uuidString, testing: true)
 
         locationManager.canMonitorForRegions = true
         locationManager.hasLocationPermission = true

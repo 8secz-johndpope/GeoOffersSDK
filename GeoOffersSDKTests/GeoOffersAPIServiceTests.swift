@@ -18,7 +18,7 @@ class GeoOffersAPIServiceTests: XCTestCase {
     private var serviceWithMockConfig: GeoOffersAPIServiceProtocol!
 
     override func setUp() {
-        let configuration = GeoOffersConfigurationDefault(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
         service = GeoOffersAPIService(configuration: configuration, session: session)
         session.testDelegate = service as? URLSessionDelegate
         serviceWithMockConfig = GeoOffersAPIService(configuration: mockConfig, session: session2)

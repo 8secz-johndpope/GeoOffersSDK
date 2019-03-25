@@ -32,7 +32,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
     }
 
     func test_encodeFunction() {
-        let configuration = GeoOffersConfigurationDefault(registrationCode: "", authToken: "", testing: true)
+        let configuration = GeoOffersConfiguration(registrationCode: "", authToken: "", testing: true)
         let timezone = configuration.timezone
         let encodedTimezone = timezone.urlEncode()
         XCTAssertNotNil(encodedTimezone)
