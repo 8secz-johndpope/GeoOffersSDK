@@ -31,8 +31,8 @@ This section describes how to configure the iOS SDK for use in your app.
 
 ### App info.plist
 Make sure that the following entries are in your info.plist
-|Key                                                         |Type     |                                       |
-| -------------------------------------------- |:-------:| --------------------------: |
+| Key | Type | |
+| --- | --- | --- |
 | NSLocationAlwaysUsageDescription   | String  | We will use your location to provide relevant location based offers for you.|
 | NSLocationAlwaysAndWhenInUseUsageDescription   | String  | We will use your location to provide relevant location based offers for you.|
 | NSLocationWhenInUseUsageDescription   | String  | We will use your location to provide relevant location based offers for you.|
@@ -48,11 +48,11 @@ Within the _Background Modes_ section, ensure the following entitlements are ena
 • Remote Notifications
 • Location updates
 
-![background modes](https://github.com/pjcook/GeoOffersSDK/Capabilities-Background-Modes.png "Background Modes")
+![background modes](Capabilities-Background-Modes.png "Background Modes")
 
 You should also enable _Push Notifications_ and provide the platform with a _Push Notification AppKey_ or _Push Notification Certificates_
 
-![push notificaions](https://github.com/pjcook/GeoOffersSDK/Capabilities-Push-Notifications.png "Push Notifications")
+![push notificaions](Capabilities-Push-Notifications.png "Push Notifications")
 
 ### SDK Configuration
 
