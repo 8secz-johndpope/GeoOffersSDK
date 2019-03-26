@@ -141,7 +141,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
 
     private func shouldProcessRemoteNotification(_ notification: [String: AnyObject]) -> Bool {
         let aps = notification["aps"] as? [String: AnyObject] ?? [:]
-        return aps["content-available"] as? Int == 1
+        return aps["content-available"] as? String == "1"
     }
 
     private func handleNotification(_ notification: [String: AnyObject]) -> Bool {
