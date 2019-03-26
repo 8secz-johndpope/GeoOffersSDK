@@ -146,18 +146,20 @@ class GeoOffersDataParserTests: XCTestCase {
     }
 
     func test_buildJavascriptForWebView() {
-        let value = parser.buildJavascriptForWebView(listingData: "<listingData_test>", couponData: "<couponData_test>", authToken: "<authToken_test>", tabBackgroundColor: "<tabBackgroundColor_test>", alreadyDeliveredOfferData: "<AlreadyDeliveredOfferData_test>")
+        let value = parser.buildJavascriptForWebView(listingData: "<listingData_test>", couponData: "<couponData_test>", authToken: "<authToken_test>", tabBackgroundColor: "<tabBackgroundColor_test>", alreadyDeliveredOfferData: "<AlreadyDeliveredOfferData_test>", deliveredIdsAndTimestamps: "<deliveredIdsAndTimestamps_test>")
 
         XCTAssertTrue(value.contains("<listingData_test>"))
         XCTAssertTrue(value.contains("<couponData_test>"))
         XCTAssertTrue(value.contains("<authToken_test>"))
         XCTAssertTrue(value.contains("<tabBackgroundColor_test>"))
         XCTAssertTrue(value.contains("<AlreadyDeliveredOfferData_test>"))
+        XCTAssertTrue(value.contains("<deliveredIdsAndTimestamps_test>"))
         XCTAssertFalse(value.contains("<listingData>"))
         XCTAssertFalse(value.contains("<couponData>"))
         XCTAssertFalse(value.contains("<authToken>"))
         XCTAssertFalse(value.contains("<tabBackgroundColor>"))
         XCTAssertFalse(value.contains("<AlreadyDeliveredOfferData>"))
+        XCTAssertFalse(value.contains("<deliveredIdsAndTimestamps>"))
     }
 
     func test_loadNearbyDataWithMissingProperties() {

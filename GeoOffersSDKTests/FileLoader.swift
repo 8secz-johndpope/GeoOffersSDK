@@ -14,8 +14,6 @@ class FileLoader {
         } catch {
             fatalError("Failed to load file: \(filename).\(withExtension)")
         }
-
-        return nil
     }
 
     static func loadTestRegions(filename: String = "example-geofences") -> [GeoOffersGeoFence] {
@@ -30,7 +28,5 @@ class FileLoader {
         } catch {
             fatalError("Failed to load file: \(filename).json")
         }
-
-        return []
     }
 }
