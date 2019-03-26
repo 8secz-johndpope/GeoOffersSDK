@@ -190,6 +190,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         notificationCache.updateCache(pushData: message)
         notificationCache.remove(messageID)
         processListingData()
+        offersUpdatedDelegate?.offersUpdated()
         return true
     }
 
