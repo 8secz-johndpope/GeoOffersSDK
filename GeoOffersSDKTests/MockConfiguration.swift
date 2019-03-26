@@ -5,7 +5,7 @@ import Foundation
 
 class MockConfiguration: GeoOffersSDKConfiguration {
     func refresh() {}
-    
+
     var mainAppUsesFirebase: Bool = false
     let registrationCode: String = "123456"
     let authToken: String = UUID().uuidString

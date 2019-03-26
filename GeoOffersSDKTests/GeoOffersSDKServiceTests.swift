@@ -28,7 +28,6 @@ class GeoOffersSDKServiceTests: XCTestCase {
     private var cache: TestCacheHelper!
     private var dataProcessor: GeoOffersDataProcessor!
 
-
     private var service: GeoOffersSDKServiceProtocol!
     private var serviceWithMockAPI: GeoOffersSDKServiceProtocol!
     private var firebaseWrapper = MockGeoOffersFirebaseWrapper()
@@ -48,12 +47,13 @@ class GeoOffersSDKServiceTests: XCTestCase {
         session.testDelegate = apiService as? URLSessionDelegate
         let dataParser = GeoOffersDataParser()
         presentationService = GeoOffersPresenter(configuration: configuration, locationService: locationService, cacheService: cache.webViewCache, dataParser: dataParser)
-        
+
         dataProcessor = GeoOffersDataProcessor(
             offersCache: cache.offersCache,
             listingCache: cache.listingCache,
             notificationService: notificationService,
-            apiService: mockAPIService)
+            apiService: mockAPIService
+        )
 
         service = GeoOffersSDKService(
             configuration: configuration,

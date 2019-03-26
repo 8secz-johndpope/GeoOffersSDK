@@ -239,7 +239,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
     public func buildOfferListViewController() -> UIViewController {
         return presentationService.buildOfferListViewController(service: self)
     }
-    
+
     public func refreshOfferListViewController(_ viewController: UIViewController) {
         guard let vc = viewController as? GeoOffersViewController else { return }
         presentationService.refreshOfferListViewController(vc)
@@ -327,7 +327,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
 
         return nil
     }
-    
+
     private func processListingData() {
         if let location = locationService.latestLocation {
             let regionsToBeMonitored = dataProcessor.processListing(at: location)

@@ -51,13 +51,15 @@ class GeoOffersPushDataTests: XCTestCase {
             configuration: configuration,
             locationService: locationService,
             cacheService: cache.webViewCache,
-            dataParser: dataParser)
-        
+            dataParser: dataParser
+        )
+
         dataProcessor = GeoOffersDataProcessor(
             offersCache: cache.offersCache,
             listingCache: cache.listingCache,
             notificationService: notificationService,
-            apiService: apiService)
+            apiService: apiService
+        )
 
         service = GeoOffersSDKService(
             configuration: configuration,

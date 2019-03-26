@@ -12,14 +12,14 @@ class MockGeoOffersAPIService: GeoOffersAPIServiceProtocol {
     private(set) var trackCalled: Bool = false
     private(set) var trackEventsCalled: Bool = false
     private(set) var countdownsStarted: Bool = false
-    
+
     var nearbyData: Data?
     var responseError: Error?
-    
+
     func countdownsStarted(hashes _: [String], completionHandler: GeoOffersNetworkResponse?) {
         countdownsStarted = true
     }
-    
+
     func pollForNearbyOffers(latitude _: Double, longitude _: Double, completionHandler: @escaping GeoOffersNetworkResponse) {
         pollForNearbyOffersCalled = true
         if let error = responseError {
@@ -28,7 +28,7 @@ class MockGeoOffersAPIService: GeoOffersAPIServiceProtocol {
             completionHandler(.dataTask(nearbyData))
         }
     }
-    
+
     func register(pushToken _: String, latitude _: Double, longitude _: Double, clientID: Int, completionHandler: GeoOffersNetworkResponse?) {
         registerCalled = true
         if let error = responseError {
@@ -37,7 +37,7 @@ class MockGeoOffersAPIService: GeoOffersAPIServiceProtocol {
             completionHandler?(.success)
         }
     }
-    
+
     func update(pushToken _: String, with _: String, completionHandler: GeoOffersNetworkResponse?) {
         updateCalled = true
         if let error = responseError {
@@ -46,15 +46,15 @@ class MockGeoOffersAPIService: GeoOffersAPIServiceProtocol {
             completionHandler?(.success)
         }
     }
-    
+
     func delete(scheduleID _: Int) {
         deleteCalled = true
     }
-    
+
     func track(event _: GeoOffersTrackingEvent) {
         trackCalled = true
     }
-    
+
     func track(events _: [GeoOffersTrackingEvent]) {
         trackEventsCalled = true
     }

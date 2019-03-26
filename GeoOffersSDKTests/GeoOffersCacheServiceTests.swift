@@ -1,7 +1,7 @@
 //  Copyright © 2019 Zappit. All rights reserved.
 
-@testable import GeoOffersSDK
 import CoreLocation
+@testable import GeoOffersSDK
 import XCTest
 
 class GeoOffersCacheServiceTests: XCTestCase {
@@ -506,28 +506,28 @@ class GeoOffersCacheServiceTests: XCTestCase {
         XCTAssert(!json.contains(authToken))
         XCTAssert(!json.contains(registrationCode))
     }
-    
+
 //    func test_bigdata() {
 //        guard let data = FileLoader.loadTestData(filename: "example-nearby-geofences-large") else {
 //            XCTFail("Where's my test data?")
 //            return
 //        }
-//        
+//
 //        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
 //            XCTFail("Where's my test data?")
 //            return
 //        }
-//        
+//
 //        XCTAssertEqual(10, fenceData.campaigns.count)
-//        
+//
 //        let regions = fenceData.regions.reduce([]) { $0 + $1.value }
 //        XCTAssertEqual(42, regions.count)
-//        
+//
 //        let currentCoordinates = CLLocationCoordinate2D(latitude: 51.1070157, longitude: -0.181549)
-////        let currentLocation = CLLocation(latitude: currentCoordinates.latitude, longitude: currentCoordinates.longitude)
-////        let sorted = regions.sorted { (f1, f2) -> Bool in
-////            f1.location.distance(from: currentLocation) < f2.location.distance(from: currentLocation)
-////        }
+    ////        let currentLocation = CLLocation(latitude: currentCoordinates.latitude, longitude: currentCoordinates.longitude)
+    ////        let sorted = regions.sorted { (f1, f2) -> Bool in
+    ////            f1.location.distance(from: currentLocation) < f2.location.distance(from: currentLocation)
+    ////        }
 //
 //        let now = Date()
 //        for campaign in fenceData.campaigns {
@@ -536,7 +536,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
 //            let deviceUid = campaign.value.offer.deviceUid
 //            let scheduleIdstring = scheduleId != nil ? String(scheduleId!) : ""
 //            print("Campaign:\(campaignId), \(scheduleId), \(deviceUid)")
-//            
+//
 //            // Region start
 //            var region: GeoOffersGeoFence?
 //            for r in fenceData.regions[scheduleIdstring] ?? [] {
@@ -551,7 +551,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
 //                print("  Region not found")
 //            }
 //            // Region end
-//            
+//
 //            // Schedule start
 //            var schedule: GeoOffersSchedule?
 //            for s in fenceData.schedules {
@@ -566,7 +566,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
 //                print("  Schedule not found")
 //            }
 //            // Schedule end
-//            
+//
 //            // Delivered schedule start
 //            var deliveredSchedule: GeoOffersDeliveredSchedule?
 //            for d in fenceData.deliveredSchedules {
@@ -581,7 +581,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
 //                print("  Delivered schedule not found")
 //            }
 //            // Delivered schedule end
-//            
+//
 //            print("\n\n")
 //        }
 //
@@ -590,17 +590,17 @@ class GeoOffersCacheServiceTests: XCTestCase {
 //         • Campaign.campaignId
 //         • Campaign.offer.scheduleId
 //         • Campaign.offer.deviceUid
-//         
+//
 //         Regions (geofencesByRewardScheduleId)
 //         • Region.scheduleId
 //         • Region.deviceUid
 //         • Region.latitude
 //         • Region.longitude
-//         
+//
 //         Schedules (offerRuns)
 //         • Schedule.scheduleId
 //         • Schedule.campaignId
-//         
+//
 //         DeliveredSchedules
 //         • DeliveredSchedule.scheduleId
 //         • DeliveredSchedule.deviceUid
