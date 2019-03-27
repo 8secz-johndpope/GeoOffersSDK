@@ -93,7 +93,6 @@ class GeoOffersDataProcessor {
     }
 
     private func findRegions(in listing: GeoOffersListing, by scheduleId: String, and deviceUid: String?) -> [GeoOffersGeoFence] {
-        guard let regions = listing.regions[scheduleId] else { return [] }
-        return regions.compactMap { $0.scheduleDeviceID == deviceUid ? $0 : nil }
+        return listing.regions[scheduleId] ?? []
     }
 }
