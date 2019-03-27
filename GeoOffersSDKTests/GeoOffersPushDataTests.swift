@@ -43,8 +43,8 @@ class GeoOffersPushDataTests: XCTestCase {
 
         notificationService = MockGeoOffersNotificationService(notificationCenter: notificationCenter)
 
-        apiService = GeoOffersAPIService(configuration: configuration, session: session)
-        cache = TestCacheHelper(apiService: mockAPIService)
+        cache = TestCacheHelper()
+        apiService = GeoOffersAPIService(configuration: configuration, session: session, trackingCache: cache.trackingCache)
         session.testDelegate = apiService as? URLSessionDelegate
         let dataParser = GeoOffersDataParser()
         presentationService = GeoOffersPresenter(

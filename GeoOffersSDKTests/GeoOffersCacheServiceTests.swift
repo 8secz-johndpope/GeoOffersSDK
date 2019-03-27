@@ -19,7 +19,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
         schedules = regions.map { GeoOffersSchedule(scheduleID: $0.scheduleID, campaignID: 1234, startDate: Date(), endDate: Date().addingTimeInterval(3600), repeatingSchedule: nil) }
         let data = FileLoader.loadTestData(filename: "example-nearby-geofences")!
         fenceData = parser.parseNearbyFences(jsonData: data)!
-        cache = TestCacheHelper(apiService: apiService)
+        cache = TestCacheHelper()
     }
 
     override func tearDown() {

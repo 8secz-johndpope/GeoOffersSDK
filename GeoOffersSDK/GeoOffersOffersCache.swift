@@ -9,7 +9,7 @@ public protocol GeoOffersOffersCacheDelegate: class {
 class GeoOffersOffersCache {
     private var pendingOffersTimer: Timer?
     private var cache: GeoOffersCache
-    private let apiService: GeoOffersAPIServiceProtocol
+    private let trackingCache: GeoOffersTrackingCache
     private var fencesCache: GeoOffersGeoFencesCache
 
     weak var delegate: GeoOffersOffersCacheDelegate?
@@ -17,11 +17,11 @@ class GeoOffersOffersCache {
     init(
         cache: GeoOffersCache,
         fencesCache: GeoOffersGeoFencesCache,
-        apiService: GeoOffersAPIServiceProtocol
+        trackingCache: GeoOffersTrackingCache
     ) {
         self.cache = cache
         self.fencesCache = fencesCache
-        self.apiService = apiService
+        self.trackingCache = trackingCache
     }
 
     deinit {
@@ -48,7 +48,7 @@ class GeoOffersOffersCache {
         if notificationDwellDelayMs <= 0 {
             cache.cacheData.offers[key] = offer
             if let event = buildOfferDeliveredEvent(offer) {
-                apiService.track(events: [event])
+                trackingCache.add([event])
             }
             delegate?.offersUpdated()
         } else {
@@ -126,7 +126,7 @@ class GeoOffersOffersCache {
             }
         }
         if !events.isEmpty {
-            apiService.track(events: events)
+            trackingCache.add(events)
             cache.cacheUpdated()
             delegate?.offersUpdated()
         }

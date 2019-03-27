@@ -7,6 +7,7 @@ class GeoOffersCacheData: Codable {
     var pendingOffers: [String: GeoOffersPendingOffer] = [:]
     var offers: [String: GeoOffersPendingOffer] = [:]
     var dataUpdateMessages: [GeoOffersPushData] = []
+    var trackingEvents: [GeoOffersTrackingEvent] = []
 }
 
 private let geoOffersCacheSaveQueue = DispatchQueue(label: "GeoOffersCacheServiceDefault.Queue")

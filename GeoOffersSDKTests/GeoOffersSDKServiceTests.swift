@@ -42,8 +42,8 @@ class GeoOffersSDKServiceTests: XCTestCase {
         locationService = GeoOffersLocationService(latestLocation: nil, locationManager: locationManager)
 
         notificationService = MockGeoOffersNotificationService(notificationCenter: notificationCenter)
-        cache = TestCacheHelper(apiService: mockAPIService)
-        apiService = GeoOffersAPIService(configuration: configuration, session: session)
+        cache = TestCacheHelper()
+        apiService = GeoOffersAPIService(configuration: configuration, session: session, trackingCache: cache.trackingCache)
         session.testDelegate = apiService as? URLSessionDelegate
         let dataParser = GeoOffersDataParser()
         presentationService = GeoOffersPresenter(configuration: configuration, locationService: locationService, cacheService: cache.webViewCache, dataParser: dataParser)

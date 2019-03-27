@@ -59,10 +59,12 @@ class GeoOffersAPIService: NSObject, GeoOffersAPIServiceProtocol {
     private var activeTasks: [Int: GeoOffersNetworkTask] = [:]
     private let configuration: GeoOffersSDKConfiguration
     private var session: URLSession?
+    private var trackingCache: GeoOffersTrackingCache
 
     var backgroundSessionCompletionHandler: (() -> Void)?
 
-    init(configuration: GeoOffersSDKConfiguration, session: URLSession? = nil) {
+    init(configuration: GeoOffersSDKConfiguration, session: URLSession? = nil, trackingCache: GeoOffersTrackingCache) {
+        self.trackingCache = trackingCache
         self.configuration = configuration
         super.init()
         if let session = session {
@@ -197,8 +199,24 @@ class GeoOffersAPIService: NSObject, GeoOffersAPIServiceProtocol {
         request.httpBody = jsonData
 
         guard let dataTask = session?.dataTask(with: request) else { return }
-        let task = GeoOffersNetworkTask(id: dataTask.taskIdentifier, task: dataTask, isDataTask: true, completionHandler: nil)
+        let task = GeoOffersNetworkTask(id: dataTask.taskIdentifier, task: dataTask, isDataTask: true) { response in
+            switch response {
+            case .failure:
+                self.trackingCache.add(events)
+            default:
+                DispatchQueue.main.async {
+                    self.checkForPendingTrackingEvents()
+                }
+            }
+        }
         startTask(task: task)
+    }
+    
+    private func checkForPendingTrackingEvents() {
+        guard trackingCache.hasCachedEvents() else { return }
+        let pendingEvents = trackingCache.popCachedEvents()
+        guard !pendingEvents.isEmpty else { return }
+        track(events: pendingEvents)
     }
 
     private func encode<T>(_ object: T) -> Data? where T: Encodable {

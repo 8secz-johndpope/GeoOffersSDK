@@ -39,19 +39,6 @@ class GeoOffersNotificationService: GeoOffersNotificationServiceProtocol {
         }
     }
 
-    private func registerForPushNotifications() {
-        DispatchQueue.main.async {
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-    }
-
-    private func registerOnLaunch() {
-        notificationCenter.getNotificationSettings { settings in
-            guard settings.authorizationStatus == .authorized else { return }
-            self.registerForPushNotifications()
-        }
-    }
-
     func applicationDidBecomeActive(_: UIApplication) {
         notificationCenter.removeAllPendingNotificationRequests()
         notificationCenter.removeAllDeliveredNotifications()
@@ -71,7 +58,10 @@ class GeoOffersNotificationService: GeoOffersNotificationServiceProtocol {
                 }
                 return
             }
-            guard UIApplication.shared.applicationState != .active else { return }
+            guard UIApplication.shared.applicationState != .active else {
+                presentToast(title: title, subtitle: subtitle, delay: delayMs / 1000)
+                return
+        }
         #endif
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = title
@@ -88,5 +78,29 @@ class GeoOffersNotificationService: GeoOffersNotificationServiceProtocol {
 
     func removeNotification(with identifier: String) {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
+}
+
+extension GeoOffersNotificationService {
+    private func presentToast(title: String, subtitle: String, delay: TimeInterval) {
+        guard let window = UIApplication.shared.keyWindow else { return }
+
+        let view = GeoOffersNotificationToast()
+        view.xibSetup()
+        let viewData = GeoOffersNotificationToastViewData(title: title, message: subtitle)
+        view.configure(viewData: viewData)
+        view.present(in: window, delay: delay)
+    }
+    private func registerForPushNotifications() {
+        DispatchQueue.main.async {
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
+    
+    private func registerOnLaunch() {
+        notificationCenter.getNotificationSettings { settings in
+            guard settings.authorizationStatus == .authorized else { return }
+            self.registerForPushNotifications()
+        }
     }
 }

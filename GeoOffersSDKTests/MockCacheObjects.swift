@@ -10,11 +10,13 @@ class TestCacheHelper {
     let fencesCache: MockGeoOffersGeoFencesCache
     let listingCache: MockGeoOffersListingCache
     let webViewCache: MockGeoOffersWebViewCache
+    let trackingCache: MockGeoOffersTrackingCache
 
-    init(apiService: GeoOffersAPIServiceProtocol) {
+    init() {
         cache = GeoOffersCache(shouldCacheToDisk: false)
+        trackingCache = MockGeoOffersTrackingCache(cache: cache)
         fencesCache = MockGeoOffersGeoFencesCache(cache: cache)
-        offersCache = MockGeoOffersOffersCache(cache: cache, fencesCache: fencesCache, apiService: apiService)
+        offersCache = MockGeoOffersOffersCache(cache: cache, fencesCache: fencesCache, trackingCache: trackingCache)
         notificationCache = MockGeoOffersNotificationCache(cache: cache)
         listingCache = MockGeoOffersListingCache(cache: cache)
         webViewCache = MockGeoOffersWebViewCache(cache: cache, listingCache: listingCache, offersCache: offersCache)
@@ -78,6 +80,27 @@ class MockGeoOffersWebViewCache: GeoOffersWebViewCache {
     override func buildAlreadyDeliveredOfferJson() -> String {
         buildAlreadyDeliveredOfferJsonCalled = true
         return super.buildAlreadyDeliveredOfferJson()
+    }
+}
+
+class MockGeoOffersTrackingCache: GeoOffersTrackingCache {
+    var addCalled = false
+    var hasCachedEventsCalled = false
+    var popCachedEventsCalled = false
+    
+    override func add(_ events: [GeoOffersTrackingEvent]) {
+        addCalled = true
+        super.add(events)
+    }
+    
+    override func hasCachedEvents() -> Bool {
+        hasCachedEventsCalled = true
+        return super.hasCachedEvents()
+    }
+    
+    override func popCachedEvents(n: Int = 50) -> [GeoOffersTrackingEvent] {
+        popCachedEventsCalled = true
+        return super.popCachedEvents(n: n)
     }
 }
 
