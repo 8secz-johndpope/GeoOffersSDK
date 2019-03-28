@@ -39,7 +39,7 @@ class GeoOffersPushDataTests: XCTestCase {
 
         locationManager.canMonitorForRegions = true
         locationManager.hasLocationPermission = true
-        locationService = GeoOffersLocationService(latestLocation: nil, locationManager: locationManager)
+        locationService = GeoOffersLocationService(latestLocation: nil, locationManager: locationManager, configuration: configuration)
 
         notificationService = MockGeoOffersNotificationService(notificationCenter: notificationCenter)
 

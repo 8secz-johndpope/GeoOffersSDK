@@ -39,14 +39,13 @@ class GeoOffersDataProcessor {
             let campaignId = campaign.value.campaignId
             guard
                 let scheduleId = campaign.value.offer.scheduleId,
-                let deviceUid = campaign.value.offer.deviceUid,
-                !isAlreadyDelivered(in: listing, by: scheduleId, and: deviceUid),
+                !isAlreadyDelivered(in: listing, by: scheduleId),
                 let schedule = findSchedule(in: listing, by: scheduleId, and: campaignId),
                 schedule.isValid(for: now)
             else { continue }
-            let regions = findRegions(in: listing, by: String(scheduleId), and: deviceUid)
+            let regions = findRegions(in: listing, by: String(scheduleId))
             for region in regions {
-                guard process(region: region, at: coordinates) else { continue }
+                guard process(campaign: campaign.value, region: region, at: coordinates) else { continue }
                 regionsToReturn.append(region)
             }
         }
@@ -55,7 +54,7 @@ class GeoOffersDataProcessor {
     }
 
     // return whether to monitor or not
-    private func process(region: GeoOffersGeoFence, at coordinates: CLLocationCoordinate2D) -> Bool {
+    private func process(campaign: GeoOffersCampaign, region: GeoOffersGeoFence, at coordinates: CLLocationCoordinate2D) -> Bool {
         let circularRegion = CLCircularRegion(center: region.coordinate, radius: region.radiusKm * 1000, identifier: region.scheduleDeviceID)
         let isInRegion = circularRegion.contains(coordinates)
         guard isInRegion else { return true }
@@ -82,17 +81,17 @@ class GeoOffersDataProcessor {
         notificationService.sendNotification(title: region.notificationTitle, subtitle: region.notificationMessage, delayMs: region.notificationDwellDelayMs, identifier: identifier, isSilent: region.notifiesSilently)
     }
 
-    private func isAlreadyDelivered(in listing: GeoOffersListing, by scheduleId: Int, and deviceUid: String) -> Bool {
-        let alreadyDelivered = listing.deliveredSchedules.contains { $0.scheduleID == scheduleId && $0.scheduleDeviceID == deviceUid }
+    private func isAlreadyDelivered(in listing: GeoOffersListing, by scheduleId: Int) -> Bool {
+        let alreadyDelivered = listing.deliveredSchedules.contains { $0.scheduleID == scheduleId }
         guard !alreadyDelivered else { return true }
-        return offersCache.offers().contains { $0.scheduleID == scheduleId && $0.scheduleDeviceID == deviceUid }
+        return offersCache.offers().contains { $0.scheduleID == scheduleId }
     }
 
     private func findSchedule(in listing: GeoOffersListing, by scheduleId: Int, and campaignId: Int) -> GeoOffersSchedule? {
         return listing.schedules.first { $0.scheduleID == scheduleId && $0.campaignID == campaignId }
     }
 
-    private func findRegions(in listing: GeoOffersListing, by scheduleId: String, and deviceUid: String?) -> [GeoOffersGeoFence] {
+    private func findRegions(in listing: GeoOffersListing, by scheduleId: String) -> [GeoOffersGeoFence] {
         return listing.regions[scheduleId] ?? []
     }
 }

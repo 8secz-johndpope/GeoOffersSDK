@@ -29,7 +29,6 @@ private var isRunningTests: Bool {
 }
 
 public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
-    private let maxNumberOfRegionsThatCanBeMonitoredPerApp = 20
     private var configuration: GeoOffersSDKConfiguration
     private let notificationService: GeoOffersNotificationServiceProtocol
     fileprivate let locationService: GeoOffersLocationService
@@ -53,7 +52,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         let lastKnownLocation = GeoOffersSDKUserDefaults.shared.lastKnownLocation
         self.configuration = configuration as! GeoOffersSDKConfiguration
         notificationService = GeoOffersNotificationService(notificationCenter: userNotificationCenter)
-        locationService = GeoOffersLocationService(latestLocation: lastKnownLocation)
+        locationService = GeoOffersLocationService(latestLocation: lastKnownLocation, configuration: configuration)
         let cache = GeoOffersCache()
         let trackingCache = GeoOffersTrackingCache(cache: cache)
         fencesCache = GeoOffersGeoFencesCache(cache: cache)
@@ -151,26 +150,6 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         completionHandler?(.newData)
     }
 
-    private func registerPendingPushToken() {
-        guard
-            let token = configuration.pendingPushTokenRegistration,
-            let location = locationService.latestLocation,
-            let clientID = configuration.clientID
-        else { return }
-        let currentToken = configuration.pushToken
-        let completionHandler: GeoOffersNetworkResponse = { response in
-            guard case .success = response else { return }
-            self.configuration.pushToken = token
-            self.configuration.pendingPushTokenRegistration = nil
-        }
-
-        if let currentToken = currentToken {
-            apiService.update(pushToken: currentToken, with: token, completionHandler: completionHandler)
-        } else {
-            apiService.register(pushToken: token, latitude: location.latitude, longitude: location.longitude, clientID: clientID, completionHandler: completionHandler)
-        }
-    }
-
     public func requestLocationPermissions() {
         locationService.requestPermissions()
     }
@@ -214,6 +193,10 @@ extension GeoOffersSDKService {
         let regionsToBeMonitored = dataProcessor.processListing(at: location)
         locationService.monitor(regions: regionsToBeMonitored)
     }
+    
+    private func processListingData(for location: CLLocationCoordinate2D) {
+        _ = dataProcessor.processListing(at: location)
+    }
 }
 
 extension GeoOffersSDKService: GeoOffersLocationServiceDelegate {
@@ -221,6 +204,12 @@ extension GeoOffersSDKService: GeoOffersLocationServiceDelegate {
         GeoOffersSDKUserDefaults.shared.lastKnownLocation = locationService.latestLocation
         retrieveNearbyGeoFences()
         processListingData()
+    }
+    
+    func didUpdateLocations(_ locations: [CLLocation]) {
+        for location in locations {
+            processListingData(for: location.coordinate)
+        }
     }
 
     private func removeAnyExistingPendingNotification(_ identifier: String) {
@@ -268,6 +257,26 @@ extension GeoOffersSDKService: GeoOffersLocationServiceDelegate {
 }
 
 extension GeoOffersSDKService: GeoOffersFirebaseWrapperDelegate {
+    private func registerPendingPushToken() {
+        guard
+            let token = configuration.pendingPushTokenRegistration,
+            let location = locationService.latestLocation,
+            let clientID = configuration.clientID
+            else { return }
+        let currentToken = configuration.pushToken
+        let completionHandler: GeoOffersNetworkResponse = { response in
+            guard case .success = response else { return }
+            self.configuration.pushToken = token
+            self.configuration.pendingPushTokenRegistration = nil
+        }
+        
+        if let currentToken = currentToken {
+            apiService.update(pushToken: currentToken, with: token, completionHandler: completionHandler)
+        } else {
+            apiService.register(pushToken: token, latitude: location.latitude, longitude: location.longitude, clientID: clientID, completionHandler: completionHandler)
+        }
+    }
+
     func handleFirebaseNotification(notification: [String: AnyObject]) {
         _ = handleNotification(notification)
     }
@@ -291,7 +300,7 @@ extension GeoOffersSDKService: GeoOffersOffersCacheDelegate {
 
 extension GeoOffersSDKService: GeoOffersListingCacheDelegate {
     func listingUpdated() {
-        offersUpdatedDelegate?.offersUpdated()
+        //offersUpdatedDelegate?.offersUpdated()
     }
 }
 

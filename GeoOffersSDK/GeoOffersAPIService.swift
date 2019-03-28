@@ -187,11 +187,16 @@ class GeoOffersAPIService: NSObject, GeoOffersAPIServiceProtocol {
         track(events: [event])
     }
 
+    private var trackingRequestInProgress = false
     func track(events: [GeoOffersTrackingEvent]) {
+        guard !trackingRequestInProgress else {
+            trackingCache.add(events)
+            return
+        }
         guard let url = URL(string: configuration.apiURL)?
             .appendingPathComponent(EndPoints.tracking)
         else { return }
-
+        trackingRequestInProgress = true
         var request = generateRequest(url: url, method: HTTPMethod.post)
 
         let trackingWrapper = GeoOffersTrackingWrapper(deviceID: configuration.deviceID, timezone: configuration.timezone, events: events)
@@ -200,11 +205,12 @@ class GeoOffersAPIService: NSObject, GeoOffersAPIServiceProtocol {
 
         guard let dataTask = session?.dataTask(with: request) else { return }
         let task = GeoOffersNetworkTask(id: dataTask.taskIdentifier, task: dataTask, isDataTask: true) { response in
-            switch response {
-            case .failure:
-                self.trackingCache.add(events)
-            default:
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                self.trackingRequestInProgress = false
+                switch response {
+                case .failure:
+                    self.trackingCache.add(events)
+                default:
                     self.checkForPendingTrackingEvents()
                 }
             }

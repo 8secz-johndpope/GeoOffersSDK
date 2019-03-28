@@ -15,10 +15,10 @@ class GeoOffersDataParserTests: XCTestCase {
     private var configuration: GeoOffersConfiguration!
 
     override func setUp() {
-        locationService = GeoOffersLocationService(latestLocation: nil, locationManager: locationManager)
         let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
         configuration.clientID = nil
         self.configuration = configuration
+        locationService = GeoOffersLocationService(latestLocation: nil, locationManager: locationManager, configuration: configuration)
     }
 
     override func tearDown() {
