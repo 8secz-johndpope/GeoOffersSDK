@@ -7,7 +7,7 @@ class TestCacheHelper {
     let cache: GeoOffersCache
     let offersCache: MockGeoOffersOffersCache
     let notificationCache: MockGeoOffersNotificationCache
-    let fencesCache: MockGeoOffersGeoFencesCache
+    let regionCache: MockGeoOffersRegionCache
     let listingCache: MockGeoOffersListingCache
     let webViewCache: MockGeoOffersWebViewCache
     let trackingCache: MockGeoOffersTrackingCache
@@ -15,10 +15,10 @@ class TestCacheHelper {
     init() {
         cache = GeoOffersCache(shouldCacheToDisk: false)
         trackingCache = MockGeoOffersTrackingCache(cache: cache)
-        fencesCache = MockGeoOffersGeoFencesCache(cache: cache)
-        offersCache = MockGeoOffersOffersCache(cache: cache, fencesCache: fencesCache, trackingCache: trackingCache)
+        regionCache = MockGeoOffersRegionCache(cache: cache)
+        offersCache = MockGeoOffersOffersCache(cache: cache, trackingCache: trackingCache)
         notificationCache = MockGeoOffersNotificationCache(cache: cache)
-        listingCache = MockGeoOffersListingCache(cache: cache)
+        listingCache = MockGeoOffersListingCache(cache: cache, offersCache: offersCache)
         webViewCache = MockGeoOffersWebViewCache(cache: cache, listingCache: listingCache, offersCache: offersCache)
     }
 }
@@ -104,24 +104,30 @@ class MockGeoOffersTrackingCache: GeoOffersTrackingCache {
     }
 }
 
-class MockGeoOffersGeoFencesCache: GeoOffersGeoFencesCache {
-    var regionsCalled = false
-    var regionWithIdentifierCalled = false
-    var fencesNearCalled = false
+class MockGeoOffersRegionCache: GeoOffersRegionCache {
+    var addCalled = false
+    var removeCalled = false
+    var existsCalled = false
+    var allCalled = false
 
-    override func regions() -> [GeoOffersGeoFence] {
-        regionsCalled = true
-        return super.regions()
+    override func add(_ region: GeoOffersGeoFence) {
+        addCalled = true
+        super.add(region)
     }
-
-    override func region(with identifier: String) -> [GeoOffersGeoFence] {
-        regionWithIdentifierCalled = true
-        return super.region(with: identifier)
+    
+    override func remove(_ region: GeoOffersGeoFence) {
+        removeCalled = true
+        super.remove(region)
     }
-
-    override func fencesNear(latitude: Double, longitude: Double) -> [GeoOffersGeoFence] {
-        fencesNearCalled = true
-        return super.fencesNear(latitude: latitude, longitude: longitude)
+    
+    override func exists(_ region: GeoOffersGeoFence) -> GeoOffersRegionCacheItem? {
+        existsCalled = true
+        return super.exists(region)
+    }
+    
+    override func all() -> [GeoOffersRegionCacheItem] {
+        allCalled = true
+        return super.all()
     }
 }
 
@@ -134,11 +140,6 @@ class MockGeoOffersListingCache: GeoOffersListingCache {
     var replaceCacheCalled = false
     var schedulesForScheduleIDCalled = false
     var deliveredScheduleForScheduleIDCalled = false
-
-    override func deliveredSchedules() -> [GeoOffersDeliveredSchedule] {
-        deliveredSchedulesCalled = true
-        return super.deliveredSchedules()
-    }
 
     override func clearCache() {
         clearCacheCalled = true
@@ -155,24 +156,9 @@ class MockGeoOffersListingCache: GeoOffersListingCache {
         return super.listing()
     }
 
-    override func schedules() -> [GeoOffersSchedule] {
-        schedulesCalled = true
-        return super.schedules()
-    }
-
     override func replaceCache(_ geoFenceData: GeoOffersListing) {
         replaceCacheCalled = true
         super.replaceCache(geoFenceData)
-    }
-
-    override func schedules(for scheduleID: Int, scheduleDeviceID: String) -> [GeoOffersSchedule] {
-        schedulesForScheduleIDCalled = true
-        return super.schedules(for: scheduleID, scheduleDeviceID: scheduleDeviceID)
-    }
-
-    override func deliveredSchedule(for scheduleID: Int, scheduleDeviceID: String) -> Bool {
-        deliveredScheduleForScheduleIDCalled = true
-        return super.deliveredSchedule(for: scheduleID, scheduleDeviceID: scheduleDeviceID)
     }
 }
 
@@ -205,30 +191,5 @@ class MockGeoOffersOffersCache: GeoOffersOffersCache {
     override func removePendingOffer(identifier: String) {
         removePendingOfferCalled = true
         super.removePendingOffer(identifier: identifier)
-    }
-
-    override func hasPendingOffers() -> Bool {
-        hasPendingOffersCalled = true
-        return super.hasPendingOffers()
-    }
-
-    override func hasOffers() -> Bool {
-        hasOffersCalled = true
-        return super.hasOffers()
-    }
-
-    override func pendingOffer(_ identifier: String) -> GeoOffersPendingOffer? {
-        pendingOfferCalled = true
-        return super.pendingOffer(identifier)
-    }
-
-    override func clearPendingOffers() {
-        clearPendingOffersCalled = true
-        super.clearPendingOffers()
-    }
-
-    override func refreshPendingOffers() {
-        refreshPendingOffersCalled = true
-        super.refreshPendingOffers()
     }
 }

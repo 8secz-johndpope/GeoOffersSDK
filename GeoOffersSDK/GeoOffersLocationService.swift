@@ -19,10 +19,8 @@ protocol GeoOffersLocationManager: class {
     var maximumRegionMonitoringDistance: CLLocationDistance { get }
     var hasLocationPermission: Bool { get }
     var canMonitorForRegions: Bool { get }
-    var canDeferLocationUpdates: Bool { get }
     var allowsBackgroundLocationUpdates: Bool { get set }
     
-    func allowDeferredLocationUpdates(untilTraveled distance: CLLocationDistance, timeout: TimeInterval)
     func startUpdatingLocation()
     func requestAlwaysAuthorization()
     func startMonitoringSignificantLocationChanges()
@@ -37,10 +35,6 @@ extension CLLocationManager: GeoOffersLocationManager {
 
     var canMonitorForRegions: Bool {
         return CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self)
-    }
-    
-    var canDeferLocationUpdates: Bool {
-        return CLLocationManager.deferredLocationUpdatesAvailable()
     }
 }
 
@@ -74,17 +68,10 @@ class GeoOffersLocationService: NSObject {
     func startMonitoringSignificantLocationChanges() {
         guard locationManager.hasLocationPermission, locationManager.canMonitorForRegions else { return }
         locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.activityType = .fitness
-        if locationManager.canMonitorForRegions {
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.distanceFilter = kCLDistanceFilterNone
-            locationManager.startUpdatingLocation()
-            locationManager.allowDeferredLocationUpdates(untilTraveled: 50, timeout: 60)
-        } else {
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-            locationManager.startMonitoringSignificantLocationChanges()
-        }
+        locationManager.activityType = .other
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = configuration.minimumRefreshDistance
+        locationManager.startUpdatingLocation()
     }
 
     var monitoredRegions: Set<CLRegion> {
@@ -99,9 +86,9 @@ class GeoOffersLocationService: NSObject {
         let regionsToTrack = filterAndReduceCrossedRegions(regions)
 
         for region in regionsToTrack {
-            let key = GeoOffersPendingOffer.generateKey(scheduleID: region.scheduleID, scheduleDeviceID: region.scheduleDeviceID)
+            let key = region.key
             let ignoreIfInside = previouslyMonitoredRegions.contains(where: { $0.identifier == key })
-            monitor(center: region.coordinate, radiusMeters: Double(region.radiusKm * 1000), identifier: key, ignoreIfInside: ignoreIfInside)
+            monitor(center: region.coordinate, radiusMeters: Double(region.radiusMeters), identifier: key, ignoreIfInside: ignoreIfInside)
         }
     }
     
@@ -124,7 +111,7 @@ class GeoOffersLocationService: NSObject {
             
             var trackRegion = true
             for trackedRegion in regionsToTrack {
-                if CLCircularRegion(center: trackedRegion.coordinate, radius: trackedRegion.radiusKm * 1000, identifier: "dummy").contains(region.coordinate) {
+                if CLCircularRegion(center: trackedRegion.coordinate, radius: trackedRegion.radiusMeters, identifier: "dummy").contains(region.coordinate) {
                     trackRegion = false
                     break
                 }
@@ -170,11 +157,7 @@ extension GeoOffersLocationService: CLLocationManagerDelegate {
 
     func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let latestLocation = locations.first else { return }
-        let currentLocation = self.latestLocation
         self.latestLocation = latestLocation.coordinate
-        if let currentLocation = currentLocation {
-            guard !CLCircularRegion(center: currentLocation, radius: configuration.minimumRefreshDistance, identifier: "X").contains(latestLocation.coordinate) else { return }
-        }
         delegate?.userDidMoveSignificantDistance()
         delegate?.didUpdateLocations(locations)
     }

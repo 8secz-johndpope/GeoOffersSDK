@@ -76,7 +76,7 @@ public class GeoOffersConfiguration: GeoOffersConfigurationProtocol, GeoOffersIn
         testing: Bool = false,
         selectedCategoryTabBackgroundColor: String = "#FF0000",
         minimumRefreshWaitTime: Double = 30,
-        minimumDistance: Double = 20,
+        minimumDistance: Double = 50,
         mainAppUsesFirebase: Bool = false
     ) {
         self.registrationCode = registrationCode

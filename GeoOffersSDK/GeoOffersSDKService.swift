@@ -38,7 +38,6 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
     private var firebaseWrapper: GeoOffersFirebaseWrapperProtocol
     private let offersCache: GeoOffersOffersCache
     private let notificationCache: GeoOffersNotificationCache
-    private let fencesCache: GeoOffersGeoFencesCache
     private let listingCache: GeoOffersListingCache
     private let dataProcessor: GeoOffersDataProcessor
 
@@ -55,11 +54,11 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         locationService = GeoOffersLocationService(latestLocation: lastKnownLocation, configuration: configuration)
         let cache = GeoOffersCache()
         let trackingCache = GeoOffersTrackingCache(cache: cache)
-        fencesCache = GeoOffersGeoFencesCache(cache: cache)
+        let regionCache = GeoOffersRegionCache(cache: cache)
         notificationCache = GeoOffersNotificationCache(cache: cache)
-        listingCache = GeoOffersListingCache(cache: cache)
+        offersCache = GeoOffersOffersCache(cache: cache, trackingCache: trackingCache)
+        listingCache = GeoOffersListingCache(cache: cache, offersCache: offersCache)
         apiService = GeoOffersAPIService(configuration: self.configuration, trackingCache: trackingCache)
-        offersCache = GeoOffersOffersCache(cache: cache, fencesCache: fencesCache, trackingCache: trackingCache)
 
         dataParser = GeoOffersDataParser()
         presentationService = GeoOffersPresenter(configuration: self.configuration, locationService: locationService, cacheService: GeoOffersWebViewCache(cache: cache, listingCache: listingCache, offersCache: offersCache), dataParser: dataParser)
@@ -67,6 +66,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         dataProcessor = GeoOffersDataProcessor(
             offersCache: offersCache,
             listingCache: listingCache,
+            regionCache: regionCache,
             notificationService: notificationService,
             apiService: apiService
         )
@@ -86,7 +86,6 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         presentationService: GeoOffersPresenterProtocol,
         dataParser: GeoOffersDataParser,
         firebaseWrapper: GeoOffersFirebaseWrapperProtocol,
-        fencesCache: GeoOffersGeoFencesCache,
         offersCache: GeoOffersOffersCache,
         notificationCache: GeoOffersNotificationCache,
         listingCache: GeoOffersListingCache,
@@ -101,7 +100,6 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         self.firebaseWrapper = firebaseWrapper
         self.dataProcessor = dataProcessor
 
-        self.fencesCache = fencesCache
         self.offersCache = offersCache
         self.notificationCache = notificationCache
         self.listingCache = listingCache
@@ -158,8 +156,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         notificationService.applicationDidBecomeActive(application)
         locationService.startMonitoringSignificantLocationChanges()
         retrieveNearbyGeoFences()
-        refreshPendingOffersCache()
-        notifyOfAvailableOffers()
+        processListingData()
         registerPendingPushToken()
     }
 
@@ -174,15 +171,6 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
 }
 
 extension GeoOffersSDKService {
-    private func refreshPendingOffersCache() {
-        offersCache.refreshPendingOffers()
-    }
-    
-    private func notifyOfAvailableOffers() {
-        guard offersCache.hasOffers() else { return }
-        delegate?.hasAvailableOffers()
-    }
-    
     private func updateLastRefreshTime(location: CLLocationCoordinate2D) {
         GeoOffersSDKUserDefaults.shared.lastRefreshTimeInterval = Date().timeIntervalSince1970
         GeoOffersSDKUserDefaults.shared.lastRefreshLocation = location
@@ -190,12 +178,12 @@ extension GeoOffersSDKService {
     
     private func processListingData() {
         guard let location = locationService.latestLocation else { return }
-        let regionsToBeMonitored = dataProcessor.processListing(at: location)
+        let regionsToBeMonitored = dataProcessor.process(at: location)
         locationService.monitor(regions: regionsToBeMonitored)
     }
     
     private func processListingData(for location: CLLocationCoordinate2D) {
-        _ = dataProcessor.processListing(at: location)
+        _ = dataProcessor.process(at: location)
     }
 }
 
@@ -212,47 +200,14 @@ extension GeoOffersSDKService: GeoOffersLocationServiceDelegate {
         }
     }
 
-    private func removeAnyExistingPendingNotification(_ identifier: String) {
-        notificationService.removeNotification(with: identifier)
-        offersCache.removePendingOffer(identifier: identifier)
-    }
-    
-    private func findValidRegion(_ identifier: String) -> GeoOffersGeoFence? {
-        let regions = fencesCache.region(with: identifier)
-        guard !regions.isEmpty else {
-            return nil
-        }
-        
-        let date = Date()
-        for region in regions {
-            let schedules = listingCache.schedules(for: region.scheduleID, scheduleDeviceID: region.scheduleDeviceID)
-            guard !schedules.isEmpty else { continue }
-            
-            for schedule in schedules {
-                if schedule.isValid(for: date) {
-                    return region
-                }
-            }
-        }
-        
-        return nil
-    }
-
     func didEnterRegion(_ identifier: String) {
         retrieveNearbyGeoFences()
         processListingData()
-        guard let region = findValidRegion(identifier) else { return }
-        offersCache.addPendingOffer(scheduleID: region.scheduleID, scheduleDeviceID: region.scheduleDeviceID, latitude: region.latitude, longitude: region.longitude, notificationDwellDelayMs: region.notificationDwellDelayMs)
     }
 
     func didExitRegion(_ identifier: String) {
         retrieveNearbyGeoFences()
         processListingData()
-        if let pendingOffer = offersCache.pendingOffer(identifier) {
-            let event = GeoOffersTrackingEvent.event(with: .regionDwellTime, scheduleID: pendingOffer.scheduleID, scheduleDeviceID: pendingOffer.scheduleDeviceID, latitude: pendingOffer.latitude, longitude: pendingOffer.longitude)
-            apiService.track(event: event)
-        }
-        removeAnyExistingPendingNotification(identifier)
     }
 }
 

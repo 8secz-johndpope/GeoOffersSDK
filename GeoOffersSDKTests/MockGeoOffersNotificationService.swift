@@ -12,8 +12,8 @@ class MockGeoOffersNotificationService: GeoOffersNotificationService {
         super.removeNotification(with: identifier)
     }
 
-    override func sendNotification(title: String, subtitle: String, delayMs: Double, identifier: String, isSilent: Bool) {
+    override func sendNotification(title: String, subtitle: String, delaySeconds: Double, identifier: String, isSilent: Bool) {
         sendNotificationCalled = true
-        super.sendNotification(title: title, subtitle: subtitle, delayMs: delayMs, identifier: identifier, isSilent: isSilent)
+        super.sendNotification(title: title, subtitle: subtitle, delaySeconds: delaySeconds, identifier: identifier, isSilent: isSilent)
     }
 }

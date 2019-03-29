@@ -17,7 +17,7 @@ extension UNUserNotificationCenter: GeoOffersUserNotificationCenter {}
 protocol GeoOffersNotificationServiceProtocol {
     func requestNotificationPermissions()
     func applicationDidBecomeActive(_ application: UIApplication)
-    func sendNotification(title: String, subtitle: String, delayMs: Double, identifier: String, isSilent: Bool)
+    func sendNotification(title: String, subtitle: String, delaySeconds: Double, identifier: String, isSilent: Bool)
     func removeNotification(with identifier: String)
 }
 
@@ -48,26 +48,28 @@ class GeoOffersNotificationService: GeoOffersNotificationServiceProtocol {
     /*
      This method will schedule a location notification if the application is not active
      */
-    func sendNotification(title: String, subtitle: String, delayMs: Double, identifier: String, isSilent: Bool) {
+    func sendNotification(title: String, subtitle: String, delaySeconds: Double, identifier: String, isSilent: Bool) {
         guard !title.isEmpty else { return }
         #if targetEnvironment(simulator)
         #else
             guard Thread.isMainThread else {
                 DispatchQueue.main.async {
-                    self.sendNotification(title: title, subtitle: subtitle, delayMs: delayMs, identifier: identifier, isSilent: isSilent)
+                    self.sendNotification(title: title, subtitle: subtitle, delaySeconds: delaySeconds, identifier: identifier, isSilent: isSilent)
                 }
                 return
             }
+            
             guard UIApplication.shared.applicationState != .active else {
-                presentToast(title: title, subtitle: subtitle, delay: delayMs / 1000)
+                presentToast(title: title, subtitle: subtitle, delay: delaySeconds)
                 return
-        }
+            }
         #endif
+
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = title
         notificationContent.subtitle = subtitle
         notificationContent.sound = isSilent ? nil : UNNotificationSound.default
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(1, delayMs / 1000), repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(1, delaySeconds), repeats: false)
         let request = UNNotificationRequest(identifier: identifier, content: notificationContent, trigger: trigger)
         notificationCenter.add(request) { error in
             if let error = error {

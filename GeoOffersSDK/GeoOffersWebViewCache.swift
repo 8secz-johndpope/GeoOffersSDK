@@ -57,7 +57,7 @@ class GeoOffersWebViewCache {
     }
 
     func buildListingRequestJson() -> String {
-        let timestamp = Date().timeIntervalSince1970 * 1000
+        let timestamp = Date().unixTimeIntervalSince1970
         guard let listing = updateCampaignTimestamps(timestamp: timestamp) else { return "{}" }
 
         do {
@@ -86,7 +86,7 @@ class GeoOffersWebViewCache {
         var items = [String]()
         for id in scheduleIds {
             if let campaign = listingCache.campaign(by: id) {
-                let timestamp = campaign.offer.deliveredToAppTimestampSeconds ?? Date().timeIntervalSince1970 * 1000
+                let timestamp = campaign.offer.deliveredToAppTimestampSeconds ?? Date().unixTimeIntervalSince1970
                 items.append("\"\(id)\":\(timestamp)")
             }
         }
@@ -95,12 +95,8 @@ class GeoOffersWebViewCache {
     }
 
     private func deliveredScheduleIDs() -> Set<Int> {
-        let schedules = listingCache.deliveredSchedules()
         let offers = offersCache.offers()
         var scheduleIds: Set<Int> = []
-        for schedule in schedules {
-            scheduleIds.insert(schedule.scheduleID)
-        }
         for offer in offers {
             scheduleIds.insert(offer.scheduleID)
         }

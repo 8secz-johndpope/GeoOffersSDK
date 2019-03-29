@@ -34,18 +34,18 @@ class GeoOffersNotificationServiceTests: XCTestCase {
     }
 
     func test_send_notification() {
-        service.sendNotification(title: "This is a great message", subtitle: "A subtitle", delayMs: 0, identifier: "Testing", isSilent: true)
+        service.sendNotification(title: "This is a great message", subtitle: "A subtitle", delaySeconds: 0, identifier: "Testing", isSilent: true)
         XCTAssert(notificationCenter.addNotificationCalled, "Didn't call method")
     }
 
     func test_send_empty_notification() {
-        service.sendNotification(title: "", subtitle: "A subtitle", delayMs: 0, identifier: "Testing", isSilent: true)
+        service.sendNotification(title: "", subtitle: "A subtitle", delaySeconds: 0, identifier: "Testing", isSilent: true)
         XCTAssert(notificationCenter.addNotificationCalled == false, "Didn't call method")
     }
 
     func test_send_empty_notification_with_error() {
         notificationCenter.forcedError = TestErrors.sendNotificationFailed
-        service.sendNotification(title: "This is a great message", subtitle: "A subtitle", delayMs: 0, identifier: "Testing", isSilent: false)
+        service.sendNotification(title: "This is a great message", subtitle: "A subtitle", delaySeconds: 0, identifier: "Testing", isSilent: false)
         XCTAssert(notificationCenter.addNotificationCalled, "Didn't call method")
     }
 

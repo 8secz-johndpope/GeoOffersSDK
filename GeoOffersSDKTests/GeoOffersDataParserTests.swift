@@ -93,7 +93,7 @@ class GeoOffersDataParserTests: XCTestCase {
         XCTAssert(region1.logoImageUrl == "https://s3rewards-staging-ppe.s3.amazonaws.com/offers_img_small/14391.jpeg", "Wrong logoImageUrl in first region:\(region1.logoImageUrl)")
         XCTAssert(region1.latitude == 51.506012, "Wrong latitude in first region:\(region1.latitude)")
         XCTAssert(region1.longitude == -0.463213, "Wrong longitude in first region:\(region1.longitude)")
-        XCTAssert(region1.radiusKm == 0.1, "Wrong radiusKm in first region:\(region1.radiusKm)")
+        XCTAssert(region1.radiusMeters == 100, "Wrong radiusKm in first region:\(region1.radiusMeters)")
         XCTAssert(region1.notificationTitle == "Sainsbury's sale", "Wrong notificationTitle in first region:\(region1.notificationTitle)")
         XCTAssert(region1.notificationMessage == "Sainsbury's sale", "Wrong notificationMessage in first region:\(region1.notificationMessage)")
         XCTAssert(region1.notificationDeliveryDelayMs == 0, "Wrong notificationDeliveryDelayMs in first region:\(region1.notificationDeliveryDelayMs)")

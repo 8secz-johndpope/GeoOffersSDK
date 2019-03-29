@@ -8,6 +8,7 @@ class GeoOffersCacheData: Codable {
     var offers: [String: GeoOffersPendingOffer] = [:]
     var dataUpdateMessages: [GeoOffersPushData] = []
     var trackingEvents: [GeoOffersTrackingEvent] = []
+    var regionEntries: [String:GeoOffersRegionCacheItem] = [:]
 }
 
 private let geoOffersCacheSaveQueue = DispatchQueue(label: "GeoOffersCacheServiceDefault.Queue")
@@ -52,7 +53,7 @@ class GeoOffersCache {
     func cacheUpdated() {
         hasPendingChanges = true
     }
-
+    
     private func setupSaveTimer(savePeriodSeconds: TimeInterval) {
         guard shouldCacheToDisk else { return }
         let saveTimer = Timer.scheduledTimer(withTimeInterval: savePeriodSeconds, repeats: true) { _ in
