@@ -34,7 +34,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
     fileprivate let locationService: GeoOffersLocationService
     fileprivate var apiService: GeoOffersAPIServiceProtocol
     private let presentationService: GeoOffersPresenterProtocol
-    private let dataParser: GeoOffersDataParser
+    private let dataParser: GeoOffersPushNotificationProcessor
     private var firebaseWrapper: GeoOffersFirebaseWrapperProtocol
     private let offersCache: GeoOffersOffersCache
     private let notificationCache: GeoOffersNotificationCache
@@ -60,8 +60,8 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         listingCache = GeoOffersListingCache(cache: cache, offersCache: offersCache)
         apiService = GeoOffersAPIService(configuration: self.configuration, trackingCache: trackingCache)
 
-        dataParser = GeoOffersDataParser()
-        presentationService = GeoOffersPresenter(configuration: self.configuration, locationService: locationService, cacheService: GeoOffersWebViewCache(cache: cache, listingCache: listingCache, offersCache: offersCache), dataParser: dataParser)
+        dataParser = GeoOffersPushNotificationProcessor(notificationCache: notificationCache, listingCache: listingCache)
+        presentationService = GeoOffersPresenter(configuration: self.configuration, locationService: locationService, cacheService: GeoOffersWebViewCache(cache: cache, listingCache: listingCache, offersCache: offersCache))
         firebaseWrapper = isRunningTests ? GeoOffersFirebaseWrapperEmpty() : GeoOffersFirebaseWrapper(configuration: self.configuration)
         dataProcessor = GeoOffersDataProcessor(
             offersCache: offersCache,
@@ -71,6 +71,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
             apiService: apiService
         )
 
+        dataParser.delegate = self
         offersCache.delegate = self
         listingCache.delegate = self
         firebaseWrapper.delegate = self
@@ -84,7 +85,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         locationService: GeoOffersLocationService,
         apiService: GeoOffersAPIServiceProtocol,
         presentationService: GeoOffersPresenterProtocol,
-        dataParser: GeoOffersDataParser,
+        dataParser: GeoOffersPushNotificationProcessor,
         firebaseWrapper: GeoOffersFirebaseWrapperProtocol,
         offersCache: GeoOffersOffersCache,
         notificationCache: GeoOffersNotificationCache,
@@ -104,6 +105,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         self.notificationCache = notificationCache
         self.listingCache = listingCache
 
+        dataParser.delegate = self
         self.firebaseWrapper.delegate = self
         self.locationService.delegate = self
         self.presentationService.viewControllerDelegate = self
@@ -115,8 +117,8 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
             let notificationOptions = launchOptions?[.remoteNotification],
             let notification = notificationOptions as? [String: AnyObject],
             notification["aps"] != nil,
-            shouldProcessRemoteNotification(notification) else { return }
-        _ = handleNotification(notification)
+            dataParser.shouldProcessRemoteNotification(notification) else { return }
+        _ = dataParser.handleNotification(notification)
     }
 
     public func application(_: UIApplication, handleEventsForBackgroundURLSession _: String, completionHandler: @escaping () -> Void) {
@@ -129,11 +131,11 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
     
     public func application(_: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)?) {
         guard let notification = userInfo as? [String: AnyObject],
-            shouldProcessRemoteNotification(notification) else {
+            dataParser.shouldProcessRemoteNotification(notification) else {
             completionHandler?(.failed)
             return
         }
-        let success = handleNotification(notification)
+        let success = dataParser.handleNotification(notification)
         completionHandler?(success ? .newData : .failed)
     }
 
@@ -170,13 +172,13 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
     }
 }
 
-extension GeoOffersSDKService {
+extension GeoOffersSDKService: GeoOffersPushNotificationProcessorDelegate {
     private func updateLastRefreshTime(location: CLLocationCoordinate2D) {
         GeoOffersSDKUserDefaults.shared.lastRefreshTimeInterval = Date().timeIntervalSince1970
         GeoOffersSDKUserDefaults.shared.lastRefreshLocation = location
     }
     
-    private func processListingData() {
+    internal func processListingData() {
         guard let location = locationService.latestLocation else { return }
         let regionsToBeMonitored = dataProcessor.process(at: location)
         locationService.monitor(regions: regionsToBeMonitored)
@@ -233,7 +235,7 @@ extension GeoOffersSDKService: GeoOffersFirebaseWrapperDelegate {
     }
 
     func handleFirebaseNotification(notification: [String: AnyObject]) {
-        _ = handleNotification(notification)
+        _ = dataParser.handleNotification(notification)
     }
 
     func fcmTokenUpdated() {
@@ -256,64 +258,7 @@ extension GeoOffersSDKService: GeoOffersOffersCacheDelegate {
 extension GeoOffersSDKService: GeoOffersListingCacheDelegate {
     func listingUpdated() {
         //offersUpdatedDelegate?.offersUpdated()
-    }
-}
-
-// MARK:- Push notification processing
-extension GeoOffersSDKService {
-    private func shouldProcessRemoteNotification(_ notification: [String: AnyObject]) -> Bool {
-        let aps = notification["aps"] as? [String: AnyObject] ?? [:]
-        return aps["content-available"] as? String == "1"
-    }
-    
-    private func handleNotification(_ notification: [String: AnyObject]) -> Bool {
-        do {
-            let data = try JSONSerialization.data(withJSONObject: notification, options: .prettyPrinted)
-            guard let parsedData = self.dataParser.parsePushNotification(jsonData: data) else { return false }
-            return processPushNotificationData(pushData: parsedData)
-        } catch {
-            geoOffersLog("\(error)")
-        }
-        return false
-    }
-    
-    private func processPushNotificationData(pushData: GeoOffersPushData) -> Bool {
-        if pushData.totalParts == 1 {
-            guard let message = buildMessage(messages: [pushData]) else { return false }
-            return processPushNotificationMessage(message: message, messageID: pushData.messageID)
-        } else {
-            notificationCache.add(pushData)
-            let totalMessages = notificationCache.count(pushData.messageID)
-            guard totalMessages == pushData.totalParts else { return false }
-            let messages = notificationCache.messages(pushData.messageID)
-            guard let message = buildMessage(messages: messages) else { return false }
-            return processPushNotificationMessage(message: message, messageID: pushData.messageID)
-        }
-    }
-    
-    private func buildMessage(messages: [GeoOffersPushData]) -> GeoOffersPushNotificationDataUpdate? {
-        let sorted = messages.sorted { $0.messageIndex < $1.messageIndex }
-        var messageString = ""
-        for message in sorted {
-            messageString += message.message
-        }
-        guard let data = messageString.data(using: .utf8) else { return nil }
-        let decoder = JSONDecoder()
-        do {
-            let parsedData = try decoder.decode(GeoOffersPushNotificationDataUpdate.self, from: data)
-            return parsedData
-        } catch {
-            geoOffersLog("\(error)")
-        }
-        return nil
-    }
-    
-    private func processPushNotificationMessage(message: GeoOffersPushNotificationDataUpdate, messageID: String) -> Bool {
-        notificationCache.updateCache(pushData: message)
-        notificationCache.remove(messageID)
-        processListingData()
-        offersUpdatedDelegate?.offersUpdated()
-        return true
+        // updates too frequently
     }
 }
 

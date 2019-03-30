@@ -177,15 +177,10 @@ class MockGeoOffersOffersCache: GeoOffersOffersCache {
         return super.offers()
     }
 
-    override func addPendingOffer(
-        scheduleID: Int,
-        scheduleDeviceID: String,
-        latitude: Double,
-        longitude: Double,
-        notificationDwellDelayMs: Double
+    override func addPendingOffer(region: GeoOffersGeoFence
     ) {
         addPendingOfferCalled = true
-        super.addPendingOffer(scheduleID: scheduleID, scheduleDeviceID: scheduleDeviceID, latitude: latitude, longitude: longitude, notificationDwellDelayMs: notificationDwellDelayMs)
+        super.addPendingOffer(region: region)
     }
 
     override func removePendingOffer(identifier: String) {

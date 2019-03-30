@@ -45,8 +45,8 @@ class GeoOffersSDKServiceTests: XCTestCase {
         cache = TestCacheHelper()
         apiService = GeoOffersAPIService(configuration: configuration, session: session, trackingCache: cache.trackingCache)
         session.testDelegate = apiService as? URLSessionDelegate
-        let dataParser = GeoOffersDataParser()
-        presentationService = GeoOffersPresenter(configuration: configuration, locationService: locationService, cacheService: cache.webViewCache, dataParser: dataParser)
+        let dataParser = GeoOffersPushNotificationProcessor(notificationCache: cache.notificationCache, listingCache: cache.listingCache)
+        presentationService = GeoOffersPresenter(configuration: configuration, locationService: locationService, cacheService: cache.webViewCache)
 
         dataProcessor = GeoOffersDataProcessor(
             offersCache: cache.offersCache,
@@ -221,7 +221,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
             return
         }
 
-        let parser = GeoOffersDataParser()
+        let parser = GeoOffersPushNotificationProcessor(notificationCache: cache.notificationCache, listingCache: cache.listingCache)
         guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
             XCTFail("Where's my test data?")
             return

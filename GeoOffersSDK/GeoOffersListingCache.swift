@@ -31,6 +31,17 @@ class GeoOffersListingCache {
         guard let regions = cache.cacheData.listing?.regions else { return [] }
         return regions.reduce([]) { $0 + $1.value.compactMap { $0.cirularRegion.contains(location) ? nil : $0 } }
     }
+    
+    func redeemCoupon(campaignId: Int) {
+        let key = String(campaignId)
+        guard var listing = cache.cacheData.listing, var campaign = listing.campaigns[key]
+        else { return }
+        campaign.offer.isRedeemed = true
+        listing.campaigns[key] = campaign
+        cache.cacheData.listing = listing
+        cache.cacheUpdated()
+        delegate?.listingUpdated()
+    }
 
     func clearCache() {
         cache.clearCache()

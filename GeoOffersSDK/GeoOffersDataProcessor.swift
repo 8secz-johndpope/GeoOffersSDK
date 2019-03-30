@@ -24,15 +24,7 @@ class GeoOffersDataProcessor {
     }
     
     // Process listing at location
-    /*
-        Get any regions that contain the location
-        Send any enter and exit tracking
-        Filter to regions with valid schedule
-        Send notifications for regions with valid schedule
-        Find regions the user has been in for more than the dwell time
-        Send notifications and remove dwelt regions
-    */
-    func process(at currentLocation: CLLocationCoordinate2D) -> [GeoOffersGeoFence] {
+   func process(at currentLocation: CLLocationCoordinate2D) -> [GeoOffersGeoFence] {
         let regions = listingCache.regions(at: currentLocation)
         
         processEnterExitRegion(regions)
@@ -41,11 +33,15 @@ class GeoOffersDataProcessor {
         let regionsWithValidSchedule = regions.compactMap { listingCache.hasValidSchedule(by: $0.scheduleID, date: now) ? $0 : nil }
         
         let nonDeliveredRegions = offersCache.filterPendingOrOffered(from: regionsWithValidSchedule)
-        nonDeliveredRegions.forEach { sendNotification(region: $0) }
+        nonDeliveredRegions.forEach {
+            sendNotification(region: $0)
+            offersCache.addPendingOffer(region: $0)
+        }
         
         let dwelledRegions = regionCache.all().compactMap { abs($0.enterRegion.timeIntervalSinceNow) > $0.region.notificationDwellDelaySeconds ? $0 : nil }
         dwelledRegions.forEach {
             sendNotification(region: $0.region)
+            offersCache.addPendingOffer(region: $0.region)
             regionCache.remove($0.region)
         }
         
@@ -78,6 +74,7 @@ class GeoOffersDataProcessor {
                 if abs(pendingOffer.createdDate.timeIntervalSinceNow) > pendingOffer.notificationDwellDelay {
                     offersCache.promotePendingOffer(identifier: region.region.key)
                     sendNotification(region: region.region)
+                    offersCache.addPendingOffer(region: region.region)
                 }
             offersCache.removePendingOffer(identifier: region.region.key)
             }

@@ -34,28 +34,6 @@ class GeoOffersWebViewCache {
         }
     }
 
-    private func updateCampaignTimestamps(timestamp: Double) -> GeoOffersListing? {
-        guard var listing = cache.cacheData.listing else { return nil }
-        var hashes = [String]()
-        let campaigns = listing.campaigns
-        for campaign in campaigns.values {
-            if campaign.offer.countdownToExpiryStartedTimestampMsOrNull == nil {
-                var updatableCampaign = campaign
-                updatableCampaign.offer.countdownToExpiryStartedTimestampMsOrNull = timestamp
-                listing.campaigns[String(updatableCampaign.campaignId)] = updatableCampaign
-                if let hash = updatableCampaign.offer.clientCouponHash {
-                    hashes.append(hash)
-                }
-            }
-        }
-
-        if hashes.count > 0 {
-            cache.cacheData.listing = listing
-            cache.cacheUpdated()
-        }
-        return listing
-    }
-
     func buildListingRequestJson() -> String {
         let timestamp = Date().unixTimeIntervalSince1970
         guard let listing = updateCampaignTimestamps(timestamp: timestamp) else { return "{}" }
@@ -92,6 +70,30 @@ class GeoOffersWebViewCache {
         }
         let itemsString = items.joined(separator: ", ")
         return itemsString
+    }
+}
+
+extension GeoOffersWebViewCache {
+    private func updateCampaignTimestamps(timestamp: Double) -> GeoOffersListing? {
+        guard var listing = cache.cacheData.listing else { return nil }
+        var hashes = [String]()
+        let campaigns = listing.campaigns
+        for campaign in campaigns.values {
+            if campaign.offer.countdownToExpiryStartedTimestampMsOrNull == nil {
+                var updatableCampaign = campaign
+                updatableCampaign.offer.countdownToExpiryStartedTimestampMsOrNull = timestamp
+                listing.campaigns[String(updatableCampaign.campaignId)] = updatableCampaign
+                if let hash = updatableCampaign.offer.clientCouponHash {
+                    hashes.append(hash)
+                }
+            }
+        }
+        
+        if hashes.count > 0 {
+            cache.cacheData.listing = listing
+            cache.cacheUpdated()
+        }
+        return listing
     }
 
     private func deliveredScheduleIDs() -> Set<Int> {

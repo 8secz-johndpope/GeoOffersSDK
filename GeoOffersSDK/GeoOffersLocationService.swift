@@ -66,7 +66,7 @@ class GeoOffersLocationService: NSObject {
     }
 
     func startMonitoringSignificantLocationChanges() {
-        guard locationManager.hasLocationPermission, locationManager.canMonitorForRegions else { return }
+        guard locationManager.hasLocationPermission else { return }
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.activityType = .other
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters

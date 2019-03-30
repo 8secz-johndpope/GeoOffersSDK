@@ -7,7 +7,7 @@ import UserNotifications
 import XCTest
 
 class GeoOffersPushDataTests: XCTestCase {
-    private let parser = GeoOffersDataParser()
+    private var parser: GeoOffersPushNotificationProcessor!
     private let locationManager = MockLocationManager()
     private let testLocation = CLLocationCoordinate2D(latitude: 52.4, longitude: -0.25)
     private let testRadius: Double = 1000
@@ -46,12 +46,11 @@ class GeoOffersPushDataTests: XCTestCase {
         cache = TestCacheHelper()
         apiService = GeoOffersAPIService(configuration: configuration, session: session, trackingCache: cache.trackingCache)
         session.testDelegate = apiService as? URLSessionDelegate
-        let dataParser = GeoOffersDataParser()
+        parser = GeoOffersPushNotificationProcessor(notificationCache: cache.notificationCache, listingCache: cache.listingCache)
         presentationService = GeoOffersPresenter(
             configuration: configuration,
             locationService: locationService,
-            cacheService: cache.webViewCache,
-            dataParser: dataParser
+            cacheService: cache.webViewCache
         )
 
         dataProcessor = GeoOffersDataProcessor(
@@ -68,7 +67,7 @@ class GeoOffersPushDataTests: XCTestCase {
             locationService: locationService,
             apiService: apiService,
             presentationService: presentationService,
-            dataParser: dataParser,
+            dataParser: parser,
             firebaseWrapper: firebaseWrapper,
             offersCache: cache.offersCache,
             notificationCache: cache.notificationCache,

@@ -5,21 +5,22 @@ import CoreLocation
 import XCTest
 
 class GeoOffersCacheServiceTests: XCTestCase {
-    private let parser = GeoOffersDataParser()
-    let apiService = MockGeoOffersAPIService()
-    var cache: TestCacheHelper!
+    private var parser: GeoOffersPushNotificationProcessor!
+    private let apiService = MockGeoOffersAPIService()
+    private var cache: TestCacheHelper!
 
-    var regions: [GeoOffersGeoFence] = []
-    var schedules: [GeoOffersSchedule] = []
-    var fenceData: GeoOffersListing!
+    private var regions: [GeoOffersGeoFence] = []
+    private var schedules: [GeoOffersSchedule] = []
+    private var fenceData: GeoOffersListing!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         regions = FileLoader.loadTestRegions()
         schedules = regions.map { GeoOffersSchedule(scheduleID: $0.scheduleID, campaignID: 1234, startDate: Date(), endDate: Date().addingTimeInterval(3600), repeatingSchedule: nil) }
         let data = FileLoader.loadTestData(filename: "example-nearby-geofences")!
-        fenceData = parser.parseNearbyFences(jsonData: data)!
         cache = TestCacheHelper()
+        parser = GeoOffersPushNotificationProcessor(notificationCache: cache.notificationCache, listingCache: cache.listingCache)
+        fenceData = parser.parseNearbyFences(jsonData: data)!
     }
 
     override func tearDown() {
@@ -478,10 +479,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
         let registrationCode = "regcode12345"
         let authToken = "authtoken12345"
         cache.listingCache.replaceCache(fenceData)
-
-        for schedule in fenceData.deliveredSchedules {
-            cache.offersCache.addPendingOffer(scheduleID: schedule.scheduleID, scheduleDeviceID: schedule.scheduleDeviceID, latitude: 1, longitude: 1, notificationDwellDelayMs: 0)
-        }
+        cache.offersCache.appendDeliveredSchedules(fenceData.deliveredSchedules)
 
         let json = cache.webViewCache.buildListingRequestJson()
         XCTAssert(!json.contains(authToken))

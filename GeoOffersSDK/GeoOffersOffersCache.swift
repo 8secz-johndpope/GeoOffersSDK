@@ -56,17 +56,17 @@ class GeoOffersOffersCache {
         return offers
     }
 
-    func addPendingOffer(
-        scheduleID: Int,
-        scheduleDeviceID: String,
-        latitude: Double,
-        longitude: Double,
-        notificationDwellDelayMs: Double
-    ) {
-        let key = GeoOffersPendingOffer.generateKey(scheduleID: scheduleID, scheduleDeviceID: scheduleDeviceID)
+    func addPendingOffer(region: GeoOffersGeoFence) {
+        let key = region.key
         guard cache.cacheData.pendingOffers[key] == nil, cache.cacheData.offers[key] == nil else { return }
-        let offer = GeoOffersPendingOffer(scheduleID: scheduleID, scheduleDeviceID: scheduleDeviceID, latitude: latitude, longitude: longitude, notificationDwellDelay: notificationDwellDelayMs / 1000, createdDate: Date())
-        if notificationDwellDelayMs <= 0 {
+        let offer = GeoOffersPendingOffer(
+            scheduleID: region.scheduleID,
+            scheduleDeviceID: region.scheduleDeviceID,
+            latitude: region.latitude,
+            longitude: region.longitude,
+            notificationDwellDelay: region.notificationDwellDelaySeconds,
+            createdDate: Date())
+        if region.notificationDwellDelaySeconds <= 0 {
             cache.cacheData.offers[key] = offer
             if let event = buildOfferDeliveredEvent(offer) {
                 trackingCache.add([event])

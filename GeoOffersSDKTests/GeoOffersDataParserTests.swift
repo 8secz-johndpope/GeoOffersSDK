@@ -5,7 +5,8 @@ import CoreLocation
 import XCTest
 
 class GeoOffersDataParserTests: XCTestCase {
-    private let parser = GeoOffersDataParser()
+    private var parser: GeoOffersPresenter!
+    private var pushNotificationProcessor: GeoOffersPushNotificationProcessor!
     private var locationService: GeoOffersLocationService!
     private let locationManager: GeoOffersLocationManager = MockLocationManager()
     private let testLocation = CLLocationCoordinate2D(latitude: 52.4, longitude: -0.25)
@@ -13,12 +14,15 @@ class GeoOffersDataParserTests: XCTestCase {
     private let testAuthToken = UUID().uuidString
     private let testClientID = 100
     private var configuration: GeoOffersConfiguration!
+    private var cache = TestCacheHelper()
 
     override func setUp() {
         let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
         configuration.clientID = nil
         self.configuration = configuration
         locationService = GeoOffersLocationService(latestLocation: nil, locationManager: locationManager, configuration: configuration)
+        parser = GeoOffersPresenter(configuration: configuration, locationService: locationService, cacheService: cache.webViewCache)
+        pushNotificationProcessor = GeoOffersPushNotificationProcessor(notificationCache: cache.notificationCache, listingCache: cache.listingCache)
     }
 
     override func tearDown() {
@@ -31,7 +35,7 @@ class GeoOffersDataParserTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
+        guard let fenceData = pushNotificationProcessor.parseNearbyFences(jsonData: data) else {
             XCTFail("Where's my test data?")
             return
         }
@@ -52,7 +56,7 @@ class GeoOffersDataParserTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
+        guard let fenceData = pushNotificationProcessor.parseNearbyFences(jsonData: data) else {
             XCTFail("Where's my test data?")
             return
         }
@@ -73,7 +77,7 @@ class GeoOffersDataParserTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
+        guard let fenceData = pushNotificationProcessor.parseNearbyFences(jsonData: data) else {
             XCTFail("Where's my test data?")
             return
         }
@@ -107,7 +111,7 @@ class GeoOffersDataParserTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
+        guard let fenceData = pushNotificationProcessor.parseNearbyFences(jsonData: data) else {
             XCTFail("Where's my test data?")
             return
         }
@@ -119,7 +123,7 @@ class GeoOffersDataParserTests: XCTestCase {
 
     func test_parseNearbyFences_with_invalidData() {
         let data = Data()
-        let fenceData = parser.parseNearbyFences(jsonData: data)
+        let fenceData = pushNotificationProcessor.parseNearbyFences(jsonData: data)
         XCTAssertNil(fenceData)
     }
 
@@ -164,7 +168,7 @@ class GeoOffersDataParserTests: XCTestCase {
 
     func test_loadNearbyDataWithMissingProperties() {
         let data = FileLoader.loadTestData(filename: "example-nearby-geofences-missing-data")!
-        let fenceData = parser.parseNearbyFences(jsonData: data)!
+        let fenceData = pushNotificationProcessor.parseNearbyFences(jsonData: data)!
         XCTAssertEqual(fenceData.clientID, 40)
         XCTAssertEqual(fenceData.campaignID, 4354)
         XCTAssertEqual(fenceData.catchmentRadius, 1)

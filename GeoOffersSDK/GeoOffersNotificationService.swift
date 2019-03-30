@@ -23,9 +23,14 @@ protocol GeoOffersNotificationServiceProtocol {
 
 class GeoOffersNotificationService: GeoOffersNotificationServiceProtocol {
     private var notificationCenter: GeoOffersUserNotificationCenter
+    private let toastManager: GeoOffersNotificationToastManager
 
-    init(notificationCenter: GeoOffersUserNotificationCenter = UNUserNotificationCenter.current()) {
+    init(
+        notificationCenter: GeoOffersUserNotificationCenter = UNUserNotificationCenter.current(),
+         toastManager: GeoOffersNotificationToastManager = GeoOffersNotificationToastManager()
+    ) {
         self.notificationCenter = notificationCenter
+        self.toastManager = toastManager
     }
 
     func requestNotificationPermissions() {
@@ -58,9 +63,9 @@ class GeoOffersNotificationService: GeoOffersNotificationServiceProtocol {
                 }
                 return
             }
-            
+        
             guard UIApplication.shared.applicationState != .active else {
-                presentToast(title: title, subtitle: subtitle, delay: delaySeconds)
+                toastManager.presentToast(title: title, subtitle: subtitle, delay: delaySeconds)
                 return
             }
         #endif
@@ -84,15 +89,6 @@ class GeoOffersNotificationService: GeoOffersNotificationServiceProtocol {
 }
 
 extension GeoOffersNotificationService {
-    private func presentToast(title: String, subtitle: String, delay: TimeInterval) {
-        guard let window = UIApplication.shared.keyWindow else { return }
-
-        let view = GeoOffersNotificationToast()
-        view.xibSetup()
-        let viewData = GeoOffersNotificationToastViewData(title: title, message: subtitle)
-        view.configure(viewData: viewData)
-        view.present(in: window, delay: delay)
-    }
     private func registerForPushNotifications() {
         DispatchQueue.main.async {
             UIApplication.shared.registerForRemoteNotifications()
