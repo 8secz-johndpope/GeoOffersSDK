@@ -17,11 +17,6 @@ class GeoOffersListingCache {
         self.offersCache = offersCache
     }
 
-    func campaign(by scheduleID: ScheduleID) -> GeoOffersCampaign? {
-        guard let listing = cache.cacheData.listing else { return nil }
-        return listing.campaigns.first(where: { $1.offer.scheduleId == scheduleID })?.value
-    }
-    
     func regions(at location: CLLocationCoordinate2D) -> [GeoOffersGeoFence] {
         guard let regions = cache.cacheData.listing?.regions else { return [] }
         return regions.reduce([]) { $0 + $1.value.compactMap { $0.cirularRegion.contains(location) ? $0 : nil } }

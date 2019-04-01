@@ -9,7 +9,7 @@ class GeoOffersCacheData: Codable {
     var pushNotificationSplitMessages: [GeoOffersPushData] = []
     var trackingEvents: [GeoOffersTrackingEvent] = []
     var pendingOffers: [ScheduleID: GeoOffersCacheItem] = [:]
-    var offers: [ScheduleID: ScheduleID] = [:]
+    var offers: [ScheduleID: GeoOffersCachedOffer] = [:]
     var pendingNotifications: [ScheduleID: GeoOffersCacheItem] = [:]
     var enteredRegions: [ScheduleID: GeoOffersCacheItem] = [:]
 }

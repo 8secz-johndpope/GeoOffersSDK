@@ -6,6 +6,11 @@ public protocol GeoOffersOffersCacheDelegate: class {
     func offersUpdated()
 }
 
+struct GeoOffersCachedOffer: Codable {
+    let scheduleID: ScheduleID
+    let timestamp: Double
+}
+
 class GeoOffersOffersCache {
     private var cache: GeoOffersCache
 
@@ -18,7 +23,8 @@ class GeoOffersOffersCache {
     func appendDeliveredSchedules(_ deliveredSchedules: [GeoOffersDeliveredSchedule]) {
         deliveredSchedules.forEach {
             cache.cacheData.pendingOffers.removeValue(forKey: $0.scheduleID)
-            cache.cacheData.offers[$0.scheduleID] = $0.scheduleID
+            let timestamp = campaign(by: $0.scheduleID)?.offer.deliveredToAppTimestampSeconds ?? Date().unixTimeIntervalSince1970
+            cache.cacheData.offers[$0.scheduleID] = GeoOffersCachedOffer(scheduleID: $0.scheduleID, timestamp: timestamp)
         }
         cache.cacheUpdated()
         delegate?.offersUpdated()
@@ -40,12 +46,17 @@ class GeoOffersOffersCache {
     
     func addOffer(_ scheduleID: ScheduleID) {
         cache.cacheData.pendingOffers.removeValue(forKey: scheduleID)
-        cache.cacheData.offers[scheduleID] = scheduleID
+        cache.cacheData.offers[scheduleID] = GeoOffersCachedOffer(scheduleID: scheduleID, timestamp: Date().unixTimeIntervalSince1970)
         cache.cacheUpdated()
         delegate?.offersUpdated()
     }
     
-    func offers() -> [ScheduleID] {
-        return cache.cacheData.offers.reduce([]) { $0 + [$1.key] }
+    func offers() -> [GeoOffersCachedOffer] {
+        return cache.cacheData.offers.reduce([]) { $0 + [$1.value] }
+    }
+    
+    func campaign(by scheduleID: ScheduleID) -> GeoOffersCampaign? {
+        guard let listing = cache.cacheData.listing else { return nil }
+        return listing.campaigns.first(where: { $1.offer.scheduleId == scheduleID })?.value
     }
 }

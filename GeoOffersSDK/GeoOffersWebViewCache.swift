@@ -50,23 +50,20 @@ class GeoOffersWebViewCache {
     }
 
     func buildAlreadyDeliveredOfferJson() -> String {
-        let scheduleIds = deliveredScheduleIDs()
+        let offers = offersCache.offers()
         var items = [String]()
-        for id in scheduleIds {
-            items.append("\"\(id)\":true")
+        for offer in offers {
+            items.append("\"\(offer.scheduleID)\":true")
         }
         let itemsString = items.joined(separator: ", ")
         return itemsString
     }
 
     func buildAlreadyDeliveredOfferIdTimestampJson() -> String {
-        let scheduleIds = deliveredScheduleIDs()
+        let offers = offersCache.offers()
         var items = [String]()
-        for id in scheduleIds {
-            if let campaign = listingCache.campaign(by: id) {
-                let timestamp = campaign.offer.deliveredToAppTimestampSeconds ?? Date().unixTimeIntervalSince1970
-                items.append("\"\(id)\":\(timestamp)")
-            }
+        for offer in offers {
+            items.append("\"\(offer.scheduleID)\":\(offer.timestamp)")
         }
         let itemsString = items.joined(separator: ", ")
         return itemsString
@@ -94,9 +91,5 @@ extension GeoOffersWebViewCache {
             cache.cacheUpdated()
         }
         return listing
-    }
-
-    private func deliveredScheduleIDs() -> [ScheduleID] {
-        return offersCache.offers()
     }
 }
