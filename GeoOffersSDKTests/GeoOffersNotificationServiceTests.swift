@@ -29,7 +29,6 @@ class GeoOffersNotificationServiceTests: XCTestCase {
 
     func test_application_did_become_active() {
         service.applicationDidBecomeActive(UIApplication.shared)
-        XCTAssert(notificationCenter.removeAllPendingNotificationRequestsCalled, "Didn't call method")
         XCTAssert(notificationCenter.removeAllDeliveredNotificationsCalled, "Didn't call method")
     }
 
@@ -47,10 +46,5 @@ class GeoOffersNotificationServiceTests: XCTestCase {
         notificationCenter.forcedError = TestErrors.sendNotificationFailed
         service.sendNotification(title: "This is a great message", subtitle: "A subtitle", delaySeconds: 0, identifier: "Testing", isSilent: false)
         XCTAssert(notificationCenter.addNotificationCalled, "Didn't call method")
-    }
-
-    func test_removeNotification() {
-        service.removeNotification(with: "abc")
-        XCTAssert(notificationCenter.removePendingNotificationRequestsCalled, "Didn't call method")
     }
 }

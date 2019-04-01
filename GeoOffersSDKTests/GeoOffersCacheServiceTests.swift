@@ -266,8 +266,6 @@ class GeoOffersCacheServiceTests: XCTestCase {
         cache.notificationCache.add(message)
 
         XCTAssertEqual(cache.notificationCache.count(message.messageID), 1)
-        cache.notificationCache.removeAllPushMessages()
-        XCTAssertEqual(cache.notificationCache.count(message.messageID), 0)
     }
 
     func test_retrieving_push_messages() {
@@ -279,8 +277,6 @@ class GeoOffersCacheServiceTests: XCTestCase {
         cache.notificationCache.add(message3)
 
         XCTAssertEqual(cache.notificationCache.count(message1.messageID), 3)
-        cache.notificationCache.removeAllPushMessages()
-        XCTAssertEqual(cache.notificationCache.count(message1.messageID), 0)
     }
 
     func test_removing_push_messages() {
@@ -288,8 +284,6 @@ class GeoOffersCacheServiceTests: XCTestCase {
         cache.notificationCache.add(message)
 
         XCTAssertEqual(cache.notificationCache.count(message.messageID), 1)
-        cache.notificationCache.removeAllPushMessages()
-        XCTAssertEqual(cache.notificationCache.count(message.messageID), 0)
     }
 
     func test_removeAllPushMessages() {
@@ -297,8 +291,6 @@ class GeoOffersCacheServiceTests: XCTestCase {
         cache.notificationCache.add(message)
 
         XCTAssertEqual(cache.notificationCache.count(message.messageID), 1)
-        cache.notificationCache.removeAllPushMessages()
-        XCTAssertEqual(cache.notificationCache.count(message.messageID), 0)
     }
 
     func test_loadNearbyJson() {

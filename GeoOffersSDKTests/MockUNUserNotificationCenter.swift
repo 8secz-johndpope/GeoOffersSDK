@@ -15,7 +15,6 @@ class MockUNNotificationSettings: UNNotificationSettings {
 class MockUNUserNotificationCenter: GeoOffersUserNotificationCenter {
     var forcedError: Error?
     private(set) var requestAuthorizationCalled = false
-    private(set) var removeAllPendingNotificationRequestsCalled = false
     private(set) var removeAllDeliveredNotificationsCalled = false
     private(set) var addNotificationCalled = false
     private(set) var removePendingNotificationRequestsCalled = false
@@ -24,10 +23,6 @@ class MockUNUserNotificationCenter: GeoOffersUserNotificationCenter {
     func requestAuthorization(options _: UNAuthorizationOptions = [], completionHandler: @escaping (Bool, Error?) -> Void) {
         requestAuthorizationCalled = true
         completionHandler(true, forcedError)
-    }
-
-    func removeAllPendingNotificationRequests() {
-        removeAllPendingNotificationRequestsCalled = true
     }
 
     func removeAllDeliveredNotifications() {

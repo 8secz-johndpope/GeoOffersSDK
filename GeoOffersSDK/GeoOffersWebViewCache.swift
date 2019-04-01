@@ -13,7 +13,7 @@ class GeoOffersWebViewCache {
         self.offersCache = offersCache
     }
 
-    func buildCouponRequestJson(scheduleID: Int) -> String {
+    func buildCouponRequestJson(scheduleID: ScheduleID) -> String {
         guard let listing = cache.cacheData.listing else { return "{}" }
         var possibleOffer: GeoOffersOffer?
         for campaign in listing.campaigns.values {
@@ -96,12 +96,7 @@ extension GeoOffersWebViewCache {
         return listing
     }
 
-    private func deliveredScheduleIDs() -> Set<Int> {
-        let offers = offersCache.offers()
-        var scheduleIds: Set<Int> = []
-        for offer in offers {
-            scheduleIds.insert(offer.scheduleID)
-        }
-        return scheduleIds
+    private func deliveredScheduleIDs() -> [ScheduleID] {
+        return offersCache.offers()
     }
 }

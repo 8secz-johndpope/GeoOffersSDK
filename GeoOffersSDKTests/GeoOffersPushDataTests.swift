@@ -56,7 +56,8 @@ class GeoOffersPushDataTests: XCTestCase {
         dataProcessor = GeoOffersDataProcessor(
             offersCache: cache.offersCache,
             listingCache: cache.listingCache,
-            regionCache: cache.regionCache,
+            sendNotificationCache: cache.sendNotificationCache,
+            enteredRegionCache: cache.enteredRegionCache,
             notificationService: notificationService,
             apiService: apiService
         )
