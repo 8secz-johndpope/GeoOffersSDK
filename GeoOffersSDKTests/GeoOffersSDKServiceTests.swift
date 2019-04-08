@@ -155,7 +155,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
         service.applicationDidBecomeActive(UIApplication.shared)
         XCTAssert(notificationCenter.removeAllDeliveredNotificationsCalled, "Didn't call method")
     }
-    
+
     func test_presentOfferScreen() {
         let viewController = service.buildOfferListViewController()
         XCTAssertNotNil(viewController)

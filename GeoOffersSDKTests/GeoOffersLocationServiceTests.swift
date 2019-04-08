@@ -88,13 +88,13 @@ class GeoOffersLocationServiceTests: XCTestCase {
     }
 
     func test_monitor_without_location_permissions() {
-        service.monitor(center: testLocation, radiusMeters: testRadius, identifier: testIdentifier, ignoreIfInside: false)
+        service.monitor(center: testLocation, radiusMeters: testRadius, identifier: testIdentifier)
         XCTAssertFalse(locationManager.startMonitoringCalled)
     }
 
     func test_monitor_with_location_permissions() {
         configureServiceWithValidLocationPermissions()
-        service.monitor(center: testLocation, radiusMeters: testRadius, identifier: testIdentifier, ignoreIfInside: false)
+        service.monitor(center: testLocation, radiusMeters: testRadius, identifier: testIdentifier)
         XCTAssertTrue(locationManager.startMonitoringCalled)
     }
 
@@ -158,15 +158,15 @@ class GeoOffersLocationServiceTests: XCTestCase {
         locationManager.delegate?.locationManager?(CLLocationManager(), didEnterRegion: CLRegion())
         XCTAssertFalse(delegateDidEnterRegionCalled, "Should not call method")
     }
-
-    func test_locationManager_delegate_didEnterRegion_called_when_monitoring_region_already_in() {
-        service.delegate = self
-        locationManager.hasLocationPermission = true
-        locationManager.canMonitorForRegions = true
-        locationManager.delegate?.locationManager?(CLLocationManager(), didUpdateLocations: [CLLocation(latitude: testLocation.latitude, longitude: testLocation.longitude)])
-        service.monitor(center: testLocation, radiusMeters: testRadius, identifier: testIdentifier, ignoreIfInside: false)
-        XCTAssertTrue(delegateDidEnterRegionCalled, "Should call method")
-    }
+//
+//    func test_locationManager_delegate_didEnterRegion_called_when_monitoring_region_already_in() {
+//        service.delegate = self
+//        locationManager.hasLocationPermission = true
+//        locationManager.canMonitorForRegions = true
+//        locationManager.delegate?.locationManager?(CLLocationManager(), didUpdateLocations: [CLLocation(latitude: testLocation.latitude, longitude: testLocation.longitude)])
+//        service.monitor(center: testLocation, radiusMeters: testRadius, identifier: testIdentifier)
+//        XCTAssertTrue(delegateDidEnterRegionCalled, "Should call method")
+//    }
 
     func test_locationManager_delegate_didEnterRegion_with_circular_region() {
         service.delegate = self
@@ -182,10 +182,10 @@ class GeoOffersLocationServiceTests: XCTestCase {
 }
 
 extension GeoOffersLocationServiceTests: GeoOffersLocationServiceDelegate {
-    func didUpdateLocations(_ locations: [CLLocation]) {
+    func didUpdateLocations(_: [CLLocation]) {
         didUpdateLocationsCalled = true
     }
-    
+
     func userDidMoveSignificantDistance() {
         delegateUserDidMoveSignificantDistanceCalled = true
     }

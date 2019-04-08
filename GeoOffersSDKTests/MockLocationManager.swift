@@ -26,14 +26,14 @@ class MockLocationManager: GeoOffersLocationManager {
     var canMonitorForRegions = false
     var canDeferLocationUpdates = false
 
-    func allowDeferredLocationUpdates(untilTraveled distance: CLLocationDistance, timeout: TimeInterval) {
+    func allowDeferredLocationUpdates(untilTraveled _: CLLocationDistance, timeout _: TimeInterval) {
         allowDeferredLocationUpdatesCalled = true
     }
-    
+
     func startUpdatingLocation() {
         startUpdatingLocationCalled = true
     }
-    
+
     func requestAlwaysAuthorization() {
         requestAlwaysAuthorizationCalled = true
     }

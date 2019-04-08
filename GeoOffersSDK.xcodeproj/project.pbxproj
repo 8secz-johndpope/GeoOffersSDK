@@ -82,6 +82,7 @@
 		D5C8E1B6220196EB00CE8CF2 /* GeoOffersPushDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C8E1B5220196EB00CE8CF2 /* GeoOffersPushDataTests.swift */; };
 		D5C8E1B82201A4DA00CE8CF2 /* push_notification_final_message_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D5C8E1B72201A4DA00CE8CF2 /* push_notification_final_message_data.json */; };
 		D5C8E1BA2201A6AC00CE8CF2 /* single_message.json in Resources */ = {isa = PBXBuildFile; fileRef = D5C8E1B92201A6AC00CE8CF2 /* single_message.json */; };
+		D5CB265F225B5F7C00FC62AD /* GeoOffersDebugRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CB265E225B5F7C00FC62AD /* GeoOffersDebugRegion.swift */; };
 		D5CB8806223833180069BF47 /* sample-webpage-1.html in Resources */ = {isa = PBXBuildFile; fileRef = D5CB8805223833180069BF47 /* sample-webpage-1.html */; };
 		D5D6A58422460EE600A91720 /* GeoOffersPendingOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6A58322460EE600A91720 /* GeoOffersPendingOffer.swift */; };
 		D5D6A58622460F5E00A91720 /* GeoOffersCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6A58522460F5E00A91720 /* GeoOffersCache.swift */; };
@@ -92,6 +93,7 @@
 		D5D6A59222461C5D00A91720 /* GeoOffersListingCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6A59122461C5D00A91720 /* GeoOffersListingCache.swift */; };
 		D5D6A5942246250800A91720 /* MockCacheObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6A5932246250800A91720 /* MockCacheObjects.swift */; };
 		D5DDF35C2245433000B73023 /* example-nearby-geofences-large.json in Resources */ = {isa = PBXBuildFile; fileRef = D5DDF35B2245433000B73023 /* example-nearby-geofences-large.json */; };
+		D5EF4E0F225B7A91002E3A06 /* example-nearby-geofences5.json in Resources */ = {isa = PBXBuildFile; fileRef = D5EF4E0E225B7A91002E3A06 /* example-nearby-geofences5.json */; };
 		D5F38DCA21F71E5800531B7F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D5F38DC921F71E5800531B7F /* LICENSE */; };
 		D5F38DCC21F7232B00531B7F /* example-nearby-geofences-empty.json in Resources */ = {isa = PBXBuildFile; fileRef = D5F38DCB21F7232A00531B7F /* example-nearby-geofences-empty.json */; };
 		D5F38DCE21F744F800531B7F /* FileManagerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F38DCD21F744F800531B7F /* FileManagerExtensionTests.swift */; };
@@ -197,6 +199,7 @@
 		D5C8E1B5220196EB00CE8CF2 /* GeoOffersPushDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoOffersPushDataTests.swift; sourceTree = "<group>"; };
 		D5C8E1B72201A4DA00CE8CF2 /* push_notification_final_message_data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = push_notification_final_message_data.json; sourceTree = "<group>"; };
 		D5C8E1B92201A6AC00CE8CF2 /* single_message.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = single_message.json; sourceTree = "<group>"; };
+		D5CB265E225B5F7C00FC62AD /* GeoOffersDebugRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoOffersDebugRegion.swift; sourceTree = "<group>"; };
 		D5CB8805223833180069BF47 /* sample-webpage-1.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "sample-webpage-1.html"; sourceTree = "<group>"; };
 		D5D6A58322460EE600A91720 /* GeoOffersPendingOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoOffersPendingOffer.swift; sourceTree = "<group>"; };
 		D5D6A58522460F5E00A91720 /* GeoOffersCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoOffersCache.swift; sourceTree = "<group>"; };
@@ -207,6 +210,7 @@
 		D5D6A59122461C5D00A91720 /* GeoOffersListingCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoOffersListingCache.swift; sourceTree = "<group>"; };
 		D5D6A5932246250800A91720 /* MockCacheObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCacheObjects.swift; sourceTree = "<group>"; };
 		D5DDF35B2245433000B73023 /* example-nearby-geofences-large.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "example-nearby-geofences-large.json"; sourceTree = "<group>"; };
+		D5EF4E0E225B7A91002E3A06 /* example-nearby-geofences5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "example-nearby-geofences5.json"; sourceTree = "<group>"; };
 		D5F38DC921F71E5800531B7F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D5F38DCB21F7232A00531B7F /* example-nearby-geofences-empty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "example-nearby-geofences-empty.json"; sourceTree = "<group>"; };
 		D5F38DCD21F744F800531B7F /* FileManagerExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensionTests.swift; sourceTree = "<group>"; };
@@ -352,6 +356,7 @@
 				D532BC3221FF782100CF50F7 /* GeoOffersPushData.swift */,
 				D5C271B922169FF200104FCA /* GeoOffersOffer.swift */,
 				D5D6A58322460EE600A91720 /* GeoOffersPendingOffer.swift */,
+				D5CB265E225B5F7C00FC62AD /* GeoOffersDebugRegion.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				D5C8E1B72201A4DA00CE8CF2 /* push_notification_final_message_data.json */,
 				D5CB8805223833180069BF47 /* sample-webpage-1.html */,
 				D55B0016224F3A2000893D29 /* example-nearby-geofences4.json */,
+				D5EF4E0E225B7A91002E3A06 /* example-nearby-geofences5.json */,
 			);
 			name = "Test Data";
 			sourceTree = "<group>";
@@ -577,6 +583,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5EF4E0F225B7A91002E3A06 /* example-nearby-geofences5.json in Resources */,
 				D5B6997E21EE1C7900A0F737 /* example-geofences.json in Resources */,
 				D599623821FF77BB007FF788 /* part_1_of_split_message.json in Resources */,
 				D5C8E1BA2201A6AC00CE8CF2 /* single_message.json in Resources */,
@@ -703,6 +710,7 @@
 				D5B6996421EDCF1400A0F737 /* GeoOffersSDKService.swift in Sources */,
 				D5B6997421EDEBC300A0F737 /* GeoOffersTrackingEvent.swift in Sources */,
 				D5D6A58E22461A1A00A91720 /* GeoOffersWebViewCache.swift in Sources */,
+				D5CB265F225B5F7C00FC62AD /* GeoOffersDebugRegion.swift in Sources */,
 				D5D6A5882246101D00A91720 /* FileManager+Additions.swift in Sources */,
 				D55B0015224E10B900893D29 /* Date+UnixTime.swift in Sources */,
 				D5B6996A21EDCF1B00A0F737 /* GeoOffersConfiguration.swift in Sources */,
