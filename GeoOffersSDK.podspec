@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GeoOffersSDK"
-  s.version      = "0.2.5"
+  s.version      = "0.2.6"
   s.summary      = "The GeoOffersSDK connects to the GeoOffers API and allows your app to receive location based offers from the GeoOffers services."
 
   # This description is used to generate tags and improve search results.
@@ -79,8 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  # s.source       = { :git => "https://github.com/pjcook/GeoOffersSDK.git", :tag => "#{s.version}" }
-  s.source       = { :http => 'https://github.com/pjcook/GeoOffersSDK/raw/master/Releases/0.2.5.zip' }
+  s.source       = { :git => "https://github.com/pjcook/GeoOffersSDK.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -92,7 +91,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "GeoOffersSDK", "GeoOffersSDK/**/*.{h,m,swift}"
-  s.exclude_files = "Classes/Exclude"
+  # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
