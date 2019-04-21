@@ -70,7 +70,8 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
             sendNotificationCache: sendNotificationCache,
             enteredRegionCache: enteredRegionCache,
             notificationService: notificationService,
-            apiService: apiService
+            apiService: apiService,
+            trackingCache: trackingCache
         )
 
         dataParser.delegate = self

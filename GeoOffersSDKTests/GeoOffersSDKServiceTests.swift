@@ -54,7 +54,8 @@ class GeoOffersSDKServiceTests: XCTestCase {
             sendNotificationCache: cache.sendNotificationCache,
             enteredRegionCache: cache.enteredRegionCache,
             notificationService: notificationService,
-            apiService: mockAPIService
+            apiService: mockAPIService,
+            trackingCache: cache.trackingCache
         )
 
         service = GeoOffersSDKService(

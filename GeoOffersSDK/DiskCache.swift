@@ -9,11 +9,13 @@ class DiskCache<CacheData: Codable>: CacheStorage {
     private let savePath: String
     private let fileManager: FileManager
     private var saveTimer: Timer?
+    private(set) var hasPendingChanges = false
 
     init(filename: String, fileManager: FileManager = FileManager.default, savePeriodSeconds: TimeInterval = 30) {
         self.fileManager = fileManager
         savePath = try! fileManager.documentPath(for: filename)
-
+        load()
+        
         NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: nil) { _ in
             guard let cacheData = self.cacheData else { return }
             self.cacheData = nil
@@ -36,6 +38,10 @@ class DiskCache<CacheData: Codable>: CacheStorage {
             self.nonQueuedSave(cacheData)
         }
     }
+    
+    func cacheUpdated() {
+        hasPendingChanges = true
+    }
 }
 
 extension DiskCache {
@@ -46,16 +52,15 @@ extension DiskCache {
         self.saveTimer = saveTimer
     }
 
-    func load() -> CacheData? {
-        guard fileManager.fileExists(atPath: savePath) else { return nil }
+    private func load() {
+        guard fileManager.fileExists(atPath: savePath) else { return }
         do {
             let jsonData = try Data(contentsOf: URL(fileURLWithPath: savePath))
             let jsonDecoder = JSONDecoder()
             let cacheData = try jsonDecoder.decode(CacheData.self, from: jsonData)
-            return cacheData
+            self.cacheData = cacheData
         } catch {
             print("DiskCache.load().Failed to load \(savePath): \(error)")
-            return nil
         }
     }
 

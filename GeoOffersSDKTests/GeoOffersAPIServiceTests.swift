@@ -286,7 +286,8 @@ class GeoOffersAPIServiceTests: XCTestCase {
 
         let expectation = self.expectation(description: "Wait for response")
         session.testExpectation = expectation
-        service.track(event: trackingEvent)
+        cache.trackingCache.add([trackingEvent])
+        service.checkForPendingTrackingEvents()
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
@@ -299,7 +300,8 @@ class GeoOffersAPIServiceTests: XCTestCase {
     func test_tracking_invalid_url() {
         let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().unixTimeIntervalSince1970, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude)
 
-        serviceWithMockConfig.track(event: trackingEvent)
+        cache.trackingCache.add([trackingEvent])
+        serviceWithMockConfig.checkForPendingTrackingEvents()
         XCTAssertFalse(session.taskComplete)
         XCTAssertFalse(session.taskCompleteWithError) }
 
@@ -309,7 +311,8 @@ class GeoOffersAPIServiceTests: XCTestCase {
 
         let expectation = self.expectation(description: "Wait for response")
         session.testExpectation = expectation
-        service.track(event: trackingEvent)
+        cache.trackingCache.add([trackingEvent])
+        service.checkForPendingTrackingEvents()
         waitForExpectations(timeout: 1) { error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")

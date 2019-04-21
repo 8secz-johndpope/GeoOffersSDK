@@ -59,7 +59,8 @@ class GeoOffersPushDataTests: XCTestCase {
             sendNotificationCache: cache.sendNotificationCache,
             enteredRegionCache: cache.enteredRegionCache,
             notificationService: notificationService,
-            apiService: apiService
+            apiService: apiService,
+            trackingCache: cache.trackingCache
         )
 
         service = GeoOffersSDKService(

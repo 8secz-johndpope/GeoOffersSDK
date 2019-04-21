@@ -17,7 +17,7 @@ class GeoOffersCacheData: Codable {
 class GeoOffersCacheStorage: CacheStorage {
     var cacheData: GeoOffersCacheData?
     func save() {}
-    func load() -> GeoOffersCacheData? { return nil }
+    func cacheUpdated() {}
 }
 
 class GeoOffersDiskCacheStorage: GeoOffersCacheStorage {
@@ -25,18 +25,18 @@ class GeoOffersDiskCacheStorage: GeoOffersCacheStorage {
     override var cacheData: GeoOffersCacheData? {
         didSet {
             diskCache.cacheData = cacheData
+            diskCache.cacheUpdated()
         }
     }
     
     override init() {
         diskCache = DiskCache<GeoOffersCacheData>(filename: "GeoOffersCache.data")
+        super.init()
+        cacheData = diskCache.cacheData
     }
     
     override func save() {
         diskCache.save()
-    }
-    override func load() -> GeoOffersCacheData? {
-        return diskCache.load()
     }
 }
 
@@ -47,7 +47,7 @@ class GeoOffersCache: Cache {
     init(storage: GeoOffersCacheStorage) {
         self.storage = storage
         cacheData = GeoOffersCacheData()
-        guard let loadedData = storage.load() else { return }
+        guard let loadedData = storage.cacheData else { return }
         cacheData = loadedData
     }
 

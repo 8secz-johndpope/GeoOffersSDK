@@ -6,7 +6,7 @@ protocol CacheStorage {
     associatedtype CacheData: Codable
     var cacheData: CacheData? { get set }
     func save()
-    func load() -> CacheData?
+    func cacheUpdated()
 }
 
 protocol Cache {

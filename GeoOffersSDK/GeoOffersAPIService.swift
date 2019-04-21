@@ -8,8 +8,7 @@ protocol GeoOffersAPIServiceProtocol {
     func register(pushToken: String, latitude: Double, longitude: Double, clientID: Int, completionHandler: GeoOffersNetworkResponse?)
     func update(pushToken: String, with newToken: String, completionHandler: GeoOffersNetworkResponse?)
     func delete(scheduleID: ScheduleID)
-    func track(event: GeoOffersTrackingEvent)
-    func track(events: [GeoOffersTrackingEvent])
+    func checkForPendingTrackingEvents()
     func countdownsStarted(hashes: [String], completionHandler: GeoOffersNetworkResponse?)
 }
 
@@ -116,6 +115,7 @@ class GeoOffersAPIService: NSObject, GeoOffersAPIServiceProtocol {
 
         let request = generateRequest(url: url, method: HTTPMethod.get)
         guard let downloadTask = session?.downloadTask(with: request) else { return }
+        trackingCache.add([GeoOffersTrackingEvent(type: .polledForNearbyOffers, timestamp: Date().timeIntervalSince1970, scheduleDeviceID: "", scheduleID: 0, latitude: 0, longitude: 0)])
         let task = GeoOffersNetworkTask(id: downloadTask.taskIdentifier, task: downloadTask, isDataTask: true, taskType: .getOffersData, completionHandler: completionHandler)
         startTask(task: task)
     }
@@ -202,12 +202,8 @@ class GeoOffersAPIService: NSObject, GeoOffersAPIServiceProtocol {
         startTask(task: task)
     }
 
-    func track(event: GeoOffersTrackingEvent) {
-        track(events: [event])
-    }
-
     private var trackingRequestInProgress = false
-    func track(events: [GeoOffersTrackingEvent]) {
+    private func track(events: [GeoOffersTrackingEvent]) {
         guard !trackingRequestInProgress else {
             trackingCache.add(events)
             return
@@ -237,8 +233,8 @@ class GeoOffersAPIService: NSObject, GeoOffersAPIServiceProtocol {
         startTask(task: task)
     }
 
-    private func checkForPendingTrackingEvents() {
-        guard trackingCache.hasCachedEvents() else { return }
+    func checkForPendingTrackingEvents() {
+        guard !trackingRequestInProgress, trackingCache.hasCachedEvents() else { return }
         let pendingEvents = trackingCache.popCachedEvents()
         guard !pendingEvents.isEmpty else { return }
         track(events: pendingEvents)

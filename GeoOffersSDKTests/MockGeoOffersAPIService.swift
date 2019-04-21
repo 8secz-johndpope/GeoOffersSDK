@@ -50,12 +50,8 @@ class MockGeoOffersAPIService: GeoOffersAPIServiceProtocol {
     func delete(scheduleID _: Int) {
         deleteCalled = true
     }
-
-    func track(event _: GeoOffersTrackingEvent) {
+    
+    func checkForPendingTrackingEvents() {
         trackCalled = true
-    }
-
-    func track(events _: [GeoOffersTrackingEvent]) {
-        trackEventsCalled = true
     }
 }

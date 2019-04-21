@@ -11,6 +11,7 @@ class GeoOffersDataProcessor {
     private let enteredRegionCache: GeoOffersEnteredRegionCache
     private let notificationService: GeoOffersNotificationServiceProtocol
     private let apiService: GeoOffersAPIServiceProtocol
+    private let trackingCache: GeoOffersTrackingCache
 
     init(
         offersCache: GeoOffersOffersCache,
@@ -18,7 +19,8 @@ class GeoOffersDataProcessor {
         sendNotificationCache: GeoOffersSendNotificationCache,
         enteredRegionCache: GeoOffersEnteredRegionCache,
         notificationService: GeoOffersNotificationServiceProtocol,
-        apiService: GeoOffersAPIServiceProtocol
+        apiService: GeoOffersAPIServiceProtocol,
+        trackingCache: GeoOffersTrackingCache
     ) {
         self.offersCache = offersCache
         self.listingCache = listingCache
@@ -26,6 +28,7 @@ class GeoOffersDataProcessor {
         self.enteredRegionCache = enteredRegionCache
         self.notificationService = notificationService
         self.apiService = apiService
+        self.trackingCache = trackingCache
     }
 
     func process(at currentLocation: CLLocationCoordinate2D) {
@@ -49,7 +52,8 @@ class GeoOffersDataProcessor {
                 !enteredRegionCache.exists($0.scheduleID),
                 listingCache.hasValidSchedule(by: $0.scheduleID, date: now)
             else { return }
-            apiService.track(event: GeoOffersTrackingEvent.event(with: .geoFenceEntry, region: $0))
+            trackingCache.add([GeoOffersTrackingEvent.event(with: .geoFenceEntry, region: $0)])
+            apiService.checkForPendingTrackingEvents()
             enteredRegionCache.add($0)
             processRegionForDwellTime($0)
         }
@@ -70,7 +74,8 @@ class GeoOffersDataProcessor {
         enteredRegions.forEach {
             if !regionsIDs.contains($0.region.scheduleID) {
                 enteredRegionCache.remove($0.region.scheduleID)
-                apiService.track(event: GeoOffersTrackingEvent.event(with: .geoFenceExit, region: $0.region))
+                trackingCache.add([GeoOffersTrackingEvent.event(with: .geoFenceExit, region: $0.region)])
+                apiService.checkForPendingTrackingEvents()
             }
         }
     }
@@ -108,7 +113,7 @@ class GeoOffersDataProcessor {
         }
 
         offersCache.addOffer(region.scheduleID)
-
-        apiService.track(event: GeoOffersTrackingEvent.event(with: .offerDelivered, region: region))
+        trackingCache.add([GeoOffersTrackingEvent.event(with: .offerDelivered, region: region)])
+        apiService.checkForPendingTrackingEvents()
     }
 }
