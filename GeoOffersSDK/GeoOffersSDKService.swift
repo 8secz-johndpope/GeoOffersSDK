@@ -52,7 +52,7 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         self.configuration = configuration as! GeoOffersSDKConfiguration
         notificationService = GeoOffersNotificationService(notificationCenter: userNotificationCenter)
         locationService = GeoOffersLocationService(latestLocation: lastKnownLocation, configuration: configuration)
-        let cache = GeoOffersCache()
+        let cache = GeoOffersCache(storage: GeoOffersDiskCacheStorage())
         let trackingCache = GeoOffersTrackingCache(cache: cache)
         let sendNotificationCache = GeoOffersSendNotificationCache(cache: cache)
         let enteredRegionCache = GeoOffersEnteredRegionCache(cache: cache)

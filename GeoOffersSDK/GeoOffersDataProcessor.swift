@@ -70,7 +70,7 @@ class GeoOffersDataProcessor {
         enteredRegions.forEach {
             if !regionsIDs.contains($0.region.scheduleID) {
                 enteredRegionCache.remove($0.region.scheduleID)
-                apiService.track(event: GeoOffersTrackingEvent.event(with: .regionDwellTime, region: $0.region))
+                apiService.track(event: GeoOffersTrackingEvent.event(with: .geoFenceExit, region: $0.region))
             }
         }
     }

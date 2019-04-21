@@ -101,6 +101,8 @@
 		D5F38DD421F8607600531B7F /* GeoOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F38DD321F8607600531B7F /* GeoOffersViewController.swift */; };
 		D5F38DD621F86DF300531B7F /* GeoOffersViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F38DD521F86DF300531B7F /* GeoOffersViewControllerTests.swift */; };
 		D5F3ECB0222FC92000B62BD9 /* person2.json in Resources */ = {isa = PBXBuildFile; fileRef = D5F3ECAF222FC92000B62BD9 /* person2.json */; };
+		D5FF9B72226AF7C300020C55 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF9B70226AF7C200020C55 /* DiskCache.swift */; };
+		D5FF9B73226AF7C300020C55 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF9B71226AF7C200020C55 /* Cache.swift */; };
 		EF5AD4F4533766EDD3123CEE /* Pods_GeoOffersSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7418F965691382897E3165D0 /* Pods_GeoOffersSDKTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -218,6 +220,8 @@
 		D5F38DD321F8607600531B7F /* GeoOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoOffersViewController.swift; sourceTree = "<group>"; };
 		D5F38DD521F86DF300531B7F /* GeoOffersViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoOffersViewControllerTests.swift; sourceTree = "<group>"; };
 		D5F3ECAF222FC92000B62BD9 /* person2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = person2.json; sourceTree = "<group>"; };
+		D5FF9B70226AF7C200020C55 /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
+		D5FF9B71226AF7C200020C55 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		F1A4F09510D6C3153D4ED0D1 /* Pods-GeoOffersSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoOffersSDK.release.xcconfig"; path = "Target Support Files/Pods-GeoOffersSDK/Pods-GeoOffersSDK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -364,6 +368,8 @@
 		D5B6995A21ECEAB800A0F737 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D5FF9B71226AF7C200020C55 /* Cache.swift */,
+				D5FF9B70226AF7C200020C55 /* DiskCache.swift */,
 				D5B6996021EDCF1300A0F737 /* GeoOffersSDKService.swift */,
 				D5C401AA221D3803005DFEEE /* GeoOffersFirebaseWrapper.swift */,
 				D5B6996121EDCF1400A0F737 /* GeoOffersLocationService.swift */,
@@ -537,10 +543,11 @@
 				TargetAttributes = {
 					D5B6993C21ECEA6E00A0F737 = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					D5B6994521ECEA6E00A0F737 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -696,6 +703,8 @@
 				D5B6997821EDED5900A0F737 /* GeoOffersPresenter.swift in Sources */,
 				D5B6996B21EDCF1B00A0F737 /* GeoOffersGeoFence.swift in Sources */,
 				D5D6A58422460EE600A91720 /* GeoOffersPendingOffer.swift in Sources */,
+				D5FF9B73226AF7C300020C55 /* Cache.swift in Sources */,
+				D5FF9B72226AF7C300020C55 /* DiskCache.swift in Sources */,
 				D543B4E3224BB610005B727F /* GeoOffersNotificationToast.swift in Sources */,
 				D5B6996221EDCF1400A0F737 /* GeoOffersLogging.swift in Sources */,
 				D5B6997221EDE52400A0F737 /* GeoOffersAPIService.swift in Sources */,
@@ -915,7 +924,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -942,7 +951,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zappit.GeoOffersSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -962,7 +971,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zappit.GeoOffersSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -982,7 +991,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zappit.GeoOffersSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

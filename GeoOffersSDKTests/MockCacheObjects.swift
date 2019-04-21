@@ -14,7 +14,7 @@ class TestCacheHelper {
     let trackingCache: GeoOffersTrackingCache
 
     init() {
-        cache = GeoOffersCache(shouldCacheToDisk: false)
+        cache = GeoOffersCache(storage: GeoOffersCacheStorage())
         trackingCache = GeoOffersTrackingCache(cache: cache)
         enteredRegionCache = GeoOffersEnteredRegionCache(cache: cache)
         offersCache = GeoOffersOffersCache(cache: cache)

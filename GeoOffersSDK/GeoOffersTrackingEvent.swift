@@ -4,8 +4,17 @@ import Foundation
 
 enum GeoOffersTrackingEventType: String, Codable {
     case geoFenceEntry = "GeofenceEntry"
+    case geoFenceExit = "GeofenceExit"
     case offerDelivered = "Delivered"
     case regionDwellTime = "GeofenceDwell"
+    case polledForNearbyOffers = "PolledForNearbyOffers"
+    
+    var shouldSendToServer: Bool {
+        switch self {
+        case .geoFenceEntry, .offerDelivered: return true
+        default: return false
+        }
+    }
 }
 
 struct GeoOffersTrackingEvent: Codable {
