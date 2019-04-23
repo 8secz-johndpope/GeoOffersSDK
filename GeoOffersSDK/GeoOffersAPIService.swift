@@ -115,7 +115,7 @@ class GeoOffersAPIService: NSObject, GeoOffersAPIServiceProtocol {
 
         let request = generateRequest(url: url, method: HTTPMethod.get)
         guard let downloadTask = session?.downloadTask(with: request) else { return }
-        trackingCache.add([GeoOffersTrackingEvent(type: .polledForNearbyOffers, timestamp: Date().timeIntervalSince1970, scheduleDeviceID: "", scheduleID: 0, latitude: 0, longitude: 0)])
+        trackingCache.add(GeoOffersTrackingEvent(type: .polledForNearbyOffers, timestamp: Date().timeIntervalSince1970, scheduleDeviceID: "", scheduleID: 0, latitude: 0, longitude: 0))
         let task = GeoOffersNetworkTask(id: downloadTask.taskIdentifier, task: downloadTask, isDataTask: true, taskType: .getOffersData, completionHandler: completionHandler)
         startTask(task: task)
     }
@@ -204,11 +204,7 @@ class GeoOffersAPIService: NSObject, GeoOffersAPIServiceProtocol {
 
     private var trackingRequestInProgress = false
     private func track(events: [GeoOffersTrackingEvent]) {
-        guard !trackingRequestInProgress else {
-            trackingCache.add(events)
-            return
-        }
-        guard let url = URL(string: configuration.apiURL)?
+        guard !trackingRequestInProgress, let url = URL(string: configuration.apiURL)?
             .appendingPathComponent(EndPoints.tracking)
         else { return }
         trackingRequestInProgress = true

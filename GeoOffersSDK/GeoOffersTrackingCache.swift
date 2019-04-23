@@ -13,10 +13,16 @@ class GeoOffersTrackingCache {
         #endif
     }
 
+    func add(_ event: GeoOffersTrackingEvent) {
+        debugCache?.add([event])
+        guard event.type.shouldSendToServer else { return }
+        cache.cacheData.trackingEvents.append(event)
+        cache.cacheUpdated()
+    }
+    
     func add(_ events: [GeoOffersTrackingEvent]) {
         cache.cacheData.trackingEvents += events
         cache.cacheUpdated()
-        debugCache?.add(events)
     }
 
     func hasCachedEvents() -> Bool {
