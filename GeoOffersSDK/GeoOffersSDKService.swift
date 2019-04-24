@@ -190,7 +190,10 @@ extension GeoOffersSDKService: GeoOffersPushNotificationProcessorDelegate {
         guard let location = locationService.latestLocation else { return }
         dataProcessor.process(at: location)
 
-        guard let regionsToBeMonitored = dataProcessor.regionsToBeMonitored(at: location) else { return }
+        guard let regionsToBeMonitored = dataProcessor.regionsToBeMonitored(at: location) else {
+            locationService.stopMonitoringAllRegions()
+            return
+        }
         locationService.monitor(regions: regionsToBeMonitored)
     }
 

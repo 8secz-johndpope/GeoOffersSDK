@@ -52,11 +52,15 @@ class GeoOffersDataProcessor {
                 !enteredRegionCache.exists($0.scheduleID),
                 listingCache.hasValidSchedule(by: $0.scheduleID, date: now)
             else { return }
-            trackingCache.add(GeoOffersTrackingEvent.event(with: .geoFenceEntry, region: $0))
-            apiService.checkForPendingTrackingEvents()
+            track(GeoOffersTrackingEvent.event(with: .geoFenceEntry, region: $0))
             enteredRegionCache.add($0)
             processRegionForDwellTime($0)
         }
+    }
+    
+    private func track(_ event: GeoOffersTrackingEvent) {
+        trackingCache.add(event)
+        apiService.checkForPendingTrackingEvents()
     }
 
     private func processRegionForDwellTime(_ region: GeoOffersGeoFence) {
@@ -74,8 +78,7 @@ class GeoOffersDataProcessor {
         enteredRegions.forEach {
             if !regionsIDs.contains($0.region.scheduleID) {
                 enteredRegionCache.remove($0.region.scheduleID)
-                trackingCache.add(GeoOffersTrackingEvent.event(with: .geoFenceExit, region: $0.region))
-                apiService.checkForPendingTrackingEvents()
+                track(GeoOffersTrackingEvent.event(with: .geoFenceExit, region: $0.region))
             }
         }
     }
@@ -94,8 +97,7 @@ class GeoOffersDataProcessor {
         let pendingOffers = offersCache.pendingOffers()
         pendingOffers.forEach {
             if abs($0.createdDate.timeIntervalSinceNow) > $0.region.notificationDwellDelaySeconds {
-                trackingCache.add(GeoOffersTrackingEvent.event(with: .regionDwellTime, region: $0.region))
-                apiService.checkForPendingTrackingEvents()
+                track(GeoOffersTrackingEvent.event(with: .regionDwellTime, region: $0.region))
                 checkAndSendNotification($0.region)
             }
         }
@@ -115,7 +117,6 @@ class GeoOffersDataProcessor {
         }
 
         offersCache.addOffer(region.scheduleID)
-        trackingCache.add(GeoOffersTrackingEvent.event(with: .offerDelivered, region: region))
-        apiService.checkForPendingTrackingEvents()
+        track(GeoOffersTrackingEvent.event(with: .offerDelivered, region: region))
     }
 }

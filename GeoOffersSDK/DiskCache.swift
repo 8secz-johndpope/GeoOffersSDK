@@ -18,7 +18,6 @@ class DiskCache<CacheData: Codable>: CacheStorage {
         
         NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: nil) { _ in
             guard let cacheData = self.cacheData else { return }
-            self.cacheData = nil
             self.nonQueuedSave(cacheData)
         }
 
@@ -53,6 +52,7 @@ extension DiskCache {
     }
 
     private func load() {
+        geoOffersLog("DiskCache.load:\(savePath)")
         guard fileManager.fileExists(atPath: savePath) else { return }
         do {
             let jsonData = try Data(contentsOf: URL(fileURLWithPath: savePath))
