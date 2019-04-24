@@ -8,9 +8,9 @@ class GeoOffersTrackingCache {
 
     init(cache: GeoOffersCache) {
         self.cache = cache
-        #if DEBUG
-        self.debugCache = GeoOffersTrackingDebugCache(filename: "GeoOffersTrackingDebugCache.data")
-        #endif
+//        #if DEBUG
+        self.debugCache = GeoOffersTrackingDebugCache(filename: "GeoOffersTrackingDebugCache.data", emptyData: [GeoOffersTrackingEvent]())
+//        #endif
     }
 
     func add(_ event: GeoOffersTrackingEvent) {
@@ -48,17 +48,13 @@ class GeoOffersTrackingDebugCache: DiskCache<[GeoOffersTrackingEvent]> {
             limitCacheSize()
         }
         
-        guard var cacheData = cacheData else {
-            self.cacheData = events
-            return
-        }
         cacheData += events
         self.cacheData = cacheData
         cacheUpdated()
     }
     
     private func limitCacheSize() {
-        guard let cacheData = cacheData, cacheData.count > cacheLimit else { return }
+        guard cacheData.count > cacheLimit else { return }
         self.cacheData = Array(cacheData.reversed()[0..<cacheLimit]).reversed()
     }
 }

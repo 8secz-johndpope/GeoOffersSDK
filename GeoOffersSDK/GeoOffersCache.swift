@@ -24,13 +24,13 @@ class GeoOffersDiskCacheStorage: GeoOffersCacheStorage {
     private var diskCache: DiskCache<GeoOffersCacheData>
     override var cacheData: GeoOffersCacheData? {
         didSet {
-            diskCache.cacheData = cacheData
+            diskCache.cacheData = cacheData ?? GeoOffersCacheData()
             diskCache.cacheUpdated()
         }
     }
     
     override init() {
-        diskCache = DiskCache<GeoOffersCacheData>(filename: "GeoOffersCache.data")
+        diskCache = DiskCache<GeoOffersCacheData>(filename: "GeoOffersCache.data", emptyData: GeoOffersCacheData())
         super.init()
         cacheData = diskCache.cacheData
     }
