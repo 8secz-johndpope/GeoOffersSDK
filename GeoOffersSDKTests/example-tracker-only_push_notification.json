@@ -1,0 +1,9 @@
+{
+    "gcm.message_id": "0:1556102566206503%b64f433eb64f433e",
+    "geoRewardsPushMessageJson": "{\"type\":\"REWARD_REMOVED_ADDED_OR_EDITED\",\"scheduleId\":5249,\"campaignId\":4607,\"geofences\":[{\"lat\":51.1022279,\"lng\":-0.15919959999997,\"radiusKm\":50,\"deviceUid\":\"ClientCode-535987-OffersAppGooglePlaceIdEh03MyBMdWNhcyBDbCwgQ3Jhd2xleSBSSDEwLCBVSyIaEhgKFAoSCR-ZXV2M8XVIETyTUQObUJIHEEk\",\"scheduleId\":5249,\"loiteringDelayMs\":null,\"deliveryDelayMs\":null,\"doesNotNotify\":true,\"notifiesSilently\":false,\"logoImageUrl\":\"\",\"customEntryNotificationTitle\":null,\"customEntryNotificationMessage\":null}],\"offerRun\":{\"scheduleId\":5249,\"campaignId\":4607,\"startDate\":\"2019-04-24 11:40:00\",\"endDate\":\"2019-04-24 23:55:00\"},\"campaign\":{\"language\":\"ENGLISH\",\"campaignId\":4607,\"campaignSize\":0,\"experienceType\":\"OFFER\",\"files\":[],\"version\":\"0\",\"aspectRatio\":1.6,\"offer\":{\"headline\":null,\"subheadline\":null,\"promoExpiryBackgroundColor\":\"#\",\"isTermsAgreementRequired\":true,\"isTrackerOnly\":true,\"itemResultsPage\":{\"id\":1169,\"titleText\":\"Recommendations\",\"titleTextSize\":0.0453,\"subtitleTextSize\":0.0226,\"itemResultTitleTextSize\":0.02603,\"resultsGridConfig\":\"GRID_OF_3_LANDSCAPE\",\"dividerLineColor\":\"#CCCCCC\",\"itemsCarousel\":{\"showItemNameAboveDescription\":false,\"id\":139468,\"type\":\"ITEMS_CAROUSEL\",\"items\":[],\"itemsHeaderElements\":[]}},\"fontPaths\":[]}}}",
+    "aps": {
+        "content-available": "1"
+    },
+    "offerScheduleId": "5249",
+    "splitOrSingleMessageInitiatedTimestampMs": "1556102565171"
+}

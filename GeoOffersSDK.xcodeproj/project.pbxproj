@@ -15,6 +15,7 @@
 		D500B54922479797009B130E /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500B54822479797009B130E /* MockLocationManager.swift */; };
 		D500B54B224797D2009B130E /* MockConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500B54A224797D2009B130E /* MockConfiguration.swift */; };
 		D500B54D224797FA009B130E /* MockFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500B54C224797FA009B130E /* MockFileManager.swift */; };
+		D52AB8AA227075BC00763DCD /* example-tracker-only_push_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = D52AB8A9227075BC00763DCD /* example-tracker-only_push_notification.json */; };
 		D52BEBE721F9DE24003BABF2 /* example-nearby-geofences-multi-delivered.json in Resources */ = {isa = PBXBuildFile; fileRef = D52BEBE621F9DE24003BABF2 /* example-nearby-geofences-multi-delivered.json */; };
 		D532BC3321FF782100CF50F7 /* GeoOffersPushData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532BC3221FF782100CF50F7 /* GeoOffersPushData.swift */; };
 		D53FF96C223B9D080047742C /* example-nearby-geofences-missing-data.json in Resources */ = {isa = PBXBuildFile; fileRef = D53FF96B223B9D080047742C /* example-nearby-geofences-missing-data.json */; };
@@ -129,6 +130,7 @@
 		D500B54822479797009B130E /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		D500B54A224797D2009B130E /* MockConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConfiguration.swift; sourceTree = "<group>"; };
 		D500B54C224797FA009B130E /* MockFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFileManager.swift; sourceTree = "<group>"; };
+		D52AB8A9227075BC00763DCD /* example-tracker-only_push_notification.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "example-tracker-only_push_notification.json"; sourceTree = "<group>"; };
 		D52BEBE621F9DE24003BABF2 /* example-nearby-geofences-multi-delivered.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "example-nearby-geofences-multi-delivered.json"; sourceTree = "<group>"; };
 		D532BC3221FF782100CF50F7 /* GeoOffersPushData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoOffersPushData.swift; sourceTree = "<group>"; };
 		D53FF96B223B9D080047742C /* example-nearby-geofences-missing-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "example-nearby-geofences-missing-data.json"; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 				D5CB8805223833180069BF47 /* sample-webpage-1.html */,
 				D55B0016224F3A2000893D29 /* example-nearby-geofences4.json */,
 				D5EF4E0E225B7A91002E3A06 /* example-nearby-geofences5.json */,
+				D52AB8A9227075BC00763DCD /* example-tracker-only_push_notification.json */,
 			);
 			name = "Test Data";
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				D52BEBE721F9DE24003BABF2 /* example-nearby-geofences-multi-delivered.json in Resources */,
 				D5DDF35C2245433000B73023 /* example-nearby-geofences-large.json in Resources */,
 				D5C4019E221C0136005DFEEE /* example-nearby-geofences3.json in Resources */,
+				D52AB8AA227075BC00763DCD /* example-tracker-only_push_notification.json in Resources */,
 				D599623721FF77BB007FF788 /* part_2_of_split_message.json in Resources */,
 				D5B699A821F5F29000A0F737 /* example-nearby-geofences-with-repeating-schedule.json in Resources */,
 				D5B699A021F5EE5C00A0F737 /* example-repeatingschedule-weekly.json in Resources */,

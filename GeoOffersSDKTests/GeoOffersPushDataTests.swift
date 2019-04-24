@@ -253,6 +253,24 @@ class GeoOffersPushDataTests: XCTestCase {
             XCTAssertEqual(result, .newData)
         }
     }
+    
+    func test_tracker_push_noticication() {
+        guard let data = FileLoader.loadTestData(filename: "example-tracker-only_push_notification") else {
+            XCTFail("Where is the test data")
+            return
+        }
+        
+        var json: [String: AnyObject] = [:]
+        do {
+            json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: AnyObject]
+        } catch {
+            XCTFail("\(error)")
+        }
+        
+        service.application(UIApplication.shared, didReceiveRemoteNotification: json) { result in
+            XCTAssertEqual(result, .newData)
+        }
+    }
 
     func test_applicationDidReceiveRemoteNotification_corrupt_message_data() {
         guard let data = FileLoader.loadTestData(filename: "single_message_corrupt") else {
