@@ -1,6 +1,6 @@
 //  Copyright © 2019 Zappit. All rights reserved.
 
-import Foundation
+import CoreLocation
 
 enum GeoOffersTrackingEventType: String, Codable {
     case geoFenceEntry = "GeofenceEntry"
@@ -36,8 +36,8 @@ struct GeoOffersTrackingEvent: Codable {
 }
 
 extension GeoOffersTrackingEvent {
-    static func event(with type: GeoOffersTrackingEventType, region: GeoOffersGeoFence) -> GeoOffersTrackingEvent {
-        return event(with: type, scheduleID: region.scheduleID, scheduleDeviceID: region.scheduleDeviceID, latitude: region.latitude, longitude: region.longitude)
+    static func event(with type: GeoOffersTrackingEventType, region: GeoOffersGeoFence, location: CLLocationCoordinate2D?) -> GeoOffersTrackingEvent {
+        return event(with: type, scheduleID: region.scheduleID, scheduleDeviceID: region.scheduleDeviceID, latitude: location?.latitude ?? region.latitude, longitude: location?.longitude ?? region.longitude)
     }
 
     static func event(with type: GeoOffersTrackingEventType, scheduleID: ScheduleID, scheduleDeviceID: String, latitude: Double, longitude: Double) -> GeoOffersTrackingEvent {
