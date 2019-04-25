@@ -158,6 +158,7 @@ class GeoOffersLocationServiceTests: XCTestCase {
         locationManager.delegate?.locationManager?(CLLocationManager(), didEnterRegion: CLRegion())
         XCTAssertFalse(delegateDidEnterRegionCalled, "Should not call method")
     }
+
 //
 //    func test_locationManager_delegate_didEnterRegion_called_when_monitoring_region_already_in() {
 //        service.delegate = self

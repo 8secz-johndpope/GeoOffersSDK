@@ -44,7 +44,7 @@ class GeoOffersDataProcessor {
     func regionsToBeMonitored(at _: CLLocationCoordinate2D) -> [GeoOffersGeoFence]? {
         return listingCache.listing()?.regions.reduce([]) { $0 + $1.value }
     }
-    
+
     private func cleanUpEnteredRegions() {
         let enteredRegionScheduleIDs = enteredRegionCache.all().map { $0.region.scheduleID }
         let listingRegions: [GeoOffersGeoFence]? = listingCache.listing()?.regions.reduce([]) { $0 + $1.value }
@@ -71,7 +71,7 @@ class GeoOffersDataProcessor {
             processRegionForDwellTime($0, location: location)
         }
     }
-    
+
     private func track(_ event: GeoOffersTrackingEvent) {
         trackingCache.add(event)
         apiService.checkForPendingTrackingEvents()

@@ -91,7 +91,7 @@ class GeoOffersAPIService: NSObject, GeoOffersAPIServiceProtocol {
     private func taskFinished(task: GeoOffersNetworkTask) {
         activeTasks.removeValue(forKey: task.id)
     }
-    
+
     private func cancelTasks(of taskType: GeoOffersTaskType) {
         activeTasks.forEach {
             if $0.value.taskType == taskType {
