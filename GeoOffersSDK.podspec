@@ -120,7 +120,8 @@ Pod::Spec.new do |s|
   s.framework  = "UIKit", "CoreLocation", "UserNotifications", "WebKit", "AdSupport"
   # s.frameworks = "SomeFramework", "AnotherFramework"
 
-  # s.library   = "iconv"
+  s.vendored_frameworks   = "Resources/GeoOffersPrivateSDK.framework"
+  # s.library   = "GeoOffersPrivateSDK"
   # s.libraries = "iconv", "xml2"
 
 
