@@ -8,9 +8,9 @@ class GeoOffersTrackingCache {
 
     init(cache: GeoOffersCache) {
         self.cache = cache
-//        #if DEBUG
+        #if DEBUG
         debugCache = GeoOffersTrackingDebugCache(filename: "GeoOffersTrackingDebugCache.data", emptyData: [GeoOffersTrackingEvent]())
-//        #endif
+        #endif
     }
 
     func add(_ event: GeoOffersTrackingEvent) {

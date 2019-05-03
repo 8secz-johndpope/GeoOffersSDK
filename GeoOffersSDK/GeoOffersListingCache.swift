@@ -25,11 +25,6 @@ class GeoOffersListingCache {
         return regions.reduce([]) { $0 + $1.value.compactMap { $0.cirularRegion.contains(location) ? $0 : nil } }
     }
 
-    func regionsNot(at location: CLLocationCoordinate2D) -> [GeoOffersGeoFence] {
-        guard let regions = cache.cacheData.listing?.regions else { return [] }
-        return regions.reduce([]) { $0 + $1.value.compactMap { $0.cirularRegion.contains(location) ? nil : $0 } }
-    }
-
     func redeemCoupon(campaignId: Int) {
         let key = String(campaignId)
         guard var listing = cache.cacheData.listing, var campaign = listing.campaigns[key]
@@ -43,10 +38,6 @@ class GeoOffersListingCache {
 
     func clearCache() {
         cache.clearCache()
-    }
-
-    func forcePendingChanges() {
-        cache.cacheUpdated()
     }
 
     func listing() -> GeoOffersListing? {
