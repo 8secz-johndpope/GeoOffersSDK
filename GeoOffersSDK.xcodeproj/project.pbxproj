@@ -14,7 +14,6 @@
 		D500B54922479797009B130E /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500B54822479797009B130E /* MockLocationManager.swift */; };
 		D500B54B224797D2009B130E /* MockConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500B54A224797D2009B130E /* MockConfiguration.swift */; };
 		D500B54D224797FA009B130E /* MockFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500B54C224797FA009B130E /* MockFileManager.swift */; };
-		D517D409227C1F1F004CBA6D /* GeoOffersPrivateSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D517D408227C1F1F004CBA6D /* GeoOffersPrivateSDK.framework */; };
 		D517D448227C20E2004CBA6D /* GeoOffersFirebaseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517D447227C20E1004CBA6D /* GeoOffersFirebaseWrapper.swift */; };
 		D517D459227C2352004CBA6D /* GeoOffersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517D458227C2352004CBA6D /* GeoOffersPresenter.swift */; };
 		D517D45B227C238C004CBA6D /* GeoOffersNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517D45A227C238B004CBA6D /* GeoOffersNotificationService.swift */; };
@@ -29,6 +28,39 @@
 		D599623421FB359D007FF788 /* PushToken.data in Resources */ = {isa = PBXBuildFile; fileRef = D599623321FB359D007FF788 /* PushToken.data */; };
 		D599623721FF77BB007FF788 /* part_2_of_split_message.json in Resources */ = {isa = PBXBuildFile; fileRef = D599623521FF77BB007FF788 /* part_2_of_split_message.json */; };
 		D599623821FF77BB007FF788 /* part_1_of_split_message.json in Resources */ = {isa = PBXBuildFile; fileRef = D599623621FF77BB007FF788 /* part_1_of_split_message.json */; };
+		D5ADDBBC2293F13700D59F8A /* Date+UnixTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBB82293F13700D59F8A /* Date+UnixTime.swift */; };
+		D5ADDBBD2293F13700D59F8A /* String+URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBB92293F13700D59F8A /* String+URLEncoding.swift */; };
+		D5ADDBBE2293F13700D59F8A /* KeyedDecodingContainerProtocol+PHPJSONEncoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBBA2293F13700D59F8A /* KeyedDecodingContainerProtocol+PHPJSONEncoderHelper.swift */; };
+		D5ADDBD12293F15200D59F8A /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBC02293F15000D59F8A /* DiskCache.swift */; };
+		D5ADDBD22293F15200D59F8A /* GeoOffersAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBC12293F15000D59F8A /* GeoOffersAPIService.swift */; };
+		D5ADDBD32293F15200D59F8A /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBC22293F15000D59F8A /* Cache.swift */; };
+		D5ADDBD42293F15200D59F8A /* GeoOffersOffersCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBC32293F15000D59F8A /* GeoOffersOffersCache.swift */; };
+		D5ADDBD52293F15200D59F8A /* GeoOffersEnteredRegionCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBC42293F15100D59F8A /* GeoOffersEnteredRegionCache.swift */; };
+		D5ADDBD62293F15200D59F8A /* GeoOffersCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBC52293F15100D59F8A /* GeoOffersCache.swift */; };
+		D5ADDBD72293F15200D59F8A /* GeoOffersWebViewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBC62293F15100D59F8A /* GeoOffersWebViewCache.swift */; };
+		D5ADDBD82293F15200D59F8A /* GeoOffersTrackingCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBC72293F15100D59F8A /* GeoOffersTrackingCache.swift */; };
+		D5ADDBD92293F15200D59F8A /* GeoOffersPushNotificationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBC82293F15100D59F8A /* GeoOffersPushNotificationCache.swift */; };
+		D5ADDBDA2293F15200D59F8A /* GeoOffersListingCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBC92293F15100D59F8A /* GeoOffersListingCache.swift */; };
+		D5ADDBDB2293F15200D59F8A /* GeoOffersSendNotificationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBCA2293F15100D59F8A /* GeoOffersSendNotificationCache.swift */; };
+		D5ADDBDC2293F15200D59F8A /* GeoOffersDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBCB2293F15100D59F8A /* GeoOffersDataParser.swift */; };
+		D5ADDBDD2293F15200D59F8A /* GeoOffersLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBCC2293F15100D59F8A /* GeoOffersLogging.swift */; };
+		D5ADDBDE2293F15200D59F8A /* GeoOffersDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBCD2293F15200D59F8A /* GeoOffersDataProcessor.swift */; };
+		D5ADDBDF2293F15200D59F8A /* GeoOffersNotificationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBCE2293F15200D59F8A /* GeoOffersNotificationServiceProtocol.swift */; };
+		D5ADDBE02293F15200D59F8A /* GeoOffersSDKServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBCF2293F15200D59F8A /* GeoOffersSDKServiceProtocol.swift */; };
+		D5ADDBE12293F15200D59F8A /* GeoOffersLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBD02293F15200D59F8A /* GeoOffersLocationService.swift */; };
+		D5ADDBED2293F15F00D59F8A /* GeoOffersServiceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBE22293F15E00D59F8A /* GeoOffersServiceModels.swift */; };
+		D5ADDBEE2293F15F00D59F8A /* GeoOffersDebugRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBE32293F15E00D59F8A /* GeoOffersDebugRegion.swift */; };
+		D5ADDBEF2293F15F00D59F8A /* GeoOffersListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBE42293F15E00D59F8A /* GeoOffersListing.swift */; };
+		D5ADDBF02293F15F00D59F8A /* GeoOffersPendingOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBE52293F15F00D59F8A /* GeoOffersPendingOffer.swift */; };
+		D5ADDBF12293F15F00D59F8A /* GeoOffersGeoFence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBE62293F15F00D59F8A /* GeoOffersGeoFence.swift */; };
+		D5ADDBF22293F15F00D59F8A /* GeoOffersPushData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBE72293F15F00D59F8A /* GeoOffersPushData.swift */; };
+		D5ADDBF32293F15F00D59F8A /* GeoOffersDeliveredSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBE82293F15F00D59F8A /* GeoOffersDeliveredSchedule.swift */; };
+		D5ADDBF42293F15F00D59F8A /* GeoOffersSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBE92293F15F00D59F8A /* GeoOffersSchedule.swift */; };
+		D5ADDBF52293F15F00D59F8A /* GeoOffersOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBEA2293F15F00D59F8A /* GeoOffersOffer.swift */; };
+		D5ADDBF62293F15F00D59F8A /* GeoOffersTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBEB2293F15F00D59F8A /* GeoOffersTrackingEvent.swift */; };
+		D5ADDBF92293F31C00D59F8A /* GeoOffersInternalConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBF82293F31C00D59F8A /* GeoOffersInternalConfiguration.swift */; };
+		D5ADDC0022941A3F00D59F8A /* FileManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDBBB2293F13700D59F8A /* FileManager+Additions.swift */; };
+		D5ADDC0222941A6300D59F8A /* FileManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ADDC0122941A6200D59F8A /* FileManager+Additions.swift */; };
 		D5B215F4220F35BF00FD6852 /* coupon in Resources */ = {isa = PBXBuildFile; fileRef = D5B215F2220F35BF00FD6852 /* coupon */; };
 		D5B215F5220F35BF00FD6852 /* offerslist in Resources */ = {isa = PBXBuildFile; fileRef = D5B215F3220F35BF00FD6852 /* offerslist */; };
 		D5B6994721ECEA6E00A0F737 /* GeoOffersSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B6993D21ECEA6E00A0F737 /* GeoOffersSDK.framework */; };
@@ -116,6 +148,39 @@
 		D599623321FB359D007FF788 /* PushToken.data */ = {isa = PBXFileReference; lastKnownFileType = file; path = PushToken.data; sourceTree = "<group>"; };
 		D599623521FF77BB007FF788 /* part_2_of_split_message.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = part_2_of_split_message.json; sourceTree = "<group>"; };
 		D599623621FF77BB007FF788 /* part_1_of_split_message.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = part_1_of_split_message.json; sourceTree = "<group>"; };
+		D5ADDBB82293F13700D59F8A /* Date+UnixTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+UnixTime.swift"; sourceTree = "<group>"; };
+		D5ADDBB92293F13700D59F8A /* String+URLEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URLEncoding.swift"; sourceTree = "<group>"; };
+		D5ADDBBA2293F13700D59F8A /* KeyedDecodingContainerProtocol+PHPJSONEncoderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainerProtocol+PHPJSONEncoderHelper.swift"; sourceTree = "<group>"; };
+		D5ADDBBB2293F13700D59F8A /* FileManager+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FileManager+Additions.swift"; path = "../GeoOffersSDK/FileManager+Additions.swift"; sourceTree = "<group>"; };
+		D5ADDBC02293F15000D59F8A /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
+		D5ADDBC12293F15000D59F8A /* GeoOffersAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersAPIService.swift; sourceTree = "<group>"; };
+		D5ADDBC22293F15000D59F8A /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		D5ADDBC32293F15000D59F8A /* GeoOffersOffersCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersOffersCache.swift; sourceTree = "<group>"; };
+		D5ADDBC42293F15100D59F8A /* GeoOffersEnteredRegionCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersEnteredRegionCache.swift; sourceTree = "<group>"; };
+		D5ADDBC52293F15100D59F8A /* GeoOffersCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersCache.swift; sourceTree = "<group>"; };
+		D5ADDBC62293F15100D59F8A /* GeoOffersWebViewCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersWebViewCache.swift; sourceTree = "<group>"; };
+		D5ADDBC72293F15100D59F8A /* GeoOffersTrackingCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersTrackingCache.swift; sourceTree = "<group>"; };
+		D5ADDBC82293F15100D59F8A /* GeoOffersPushNotificationCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersPushNotificationCache.swift; sourceTree = "<group>"; };
+		D5ADDBC92293F15100D59F8A /* GeoOffersListingCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersListingCache.swift; sourceTree = "<group>"; };
+		D5ADDBCA2293F15100D59F8A /* GeoOffersSendNotificationCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersSendNotificationCache.swift; sourceTree = "<group>"; };
+		D5ADDBCB2293F15100D59F8A /* GeoOffersDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersDataParser.swift; sourceTree = "<group>"; };
+		D5ADDBCC2293F15100D59F8A /* GeoOffersLogging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersLogging.swift; sourceTree = "<group>"; };
+		D5ADDBCD2293F15200D59F8A /* GeoOffersDataProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersDataProcessor.swift; sourceTree = "<group>"; };
+		D5ADDBCE2293F15200D59F8A /* GeoOffersNotificationServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersNotificationServiceProtocol.swift; sourceTree = "<group>"; };
+		D5ADDBCF2293F15200D59F8A /* GeoOffersSDKServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersSDKServiceProtocol.swift; sourceTree = "<group>"; };
+		D5ADDBD02293F15200D59F8A /* GeoOffersLocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersLocationService.swift; sourceTree = "<group>"; };
+		D5ADDBE22293F15E00D59F8A /* GeoOffersServiceModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersServiceModels.swift; sourceTree = "<group>"; };
+		D5ADDBE32293F15E00D59F8A /* GeoOffersDebugRegion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersDebugRegion.swift; sourceTree = "<group>"; };
+		D5ADDBE42293F15E00D59F8A /* GeoOffersListing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersListing.swift; sourceTree = "<group>"; };
+		D5ADDBE52293F15F00D59F8A /* GeoOffersPendingOffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersPendingOffer.swift; sourceTree = "<group>"; };
+		D5ADDBE62293F15F00D59F8A /* GeoOffersGeoFence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersGeoFence.swift; sourceTree = "<group>"; };
+		D5ADDBE72293F15F00D59F8A /* GeoOffersPushData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersPushData.swift; sourceTree = "<group>"; };
+		D5ADDBE82293F15F00D59F8A /* GeoOffersDeliveredSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersDeliveredSchedule.swift; sourceTree = "<group>"; };
+		D5ADDBE92293F15F00D59F8A /* GeoOffersSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersSchedule.swift; sourceTree = "<group>"; };
+		D5ADDBEA2293F15F00D59F8A /* GeoOffersOffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersOffer.swift; sourceTree = "<group>"; };
+		D5ADDBEB2293F15F00D59F8A /* GeoOffersTrackingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersTrackingEvent.swift; sourceTree = "<group>"; };
+		D5ADDBF82293F31C00D59F8A /* GeoOffersInternalConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoOffersInternalConfiguration.swift; sourceTree = "<group>"; };
+		D5ADDC0122941A6200D59F8A /* FileManager+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+Additions.swift"; sourceTree = "<group>"; };
 		D5AE1A3421F9A6C2005F86CF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D5B215F2220F35BF00FD6852 /* coupon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = coupon; sourceTree = "<group>"; };
 		D5B215F3220F35BF00FD6852 /* offerslist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = offerslist; sourceTree = "<group>"; };
@@ -176,7 +241,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D517D409227C1F1F004CBA6D /* GeoOffersPrivateSDK.framework in Frameworks */,
 				07E7B5899E024FDCFA304B15 /* Pods_GeoOffersSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +361,18 @@
 		D5B6995921ECEAB300A0F737 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D5ADDBE42293F15E00D59F8A /* GeoOffersListing.swift */,
+				D5ADDBE62293F15F00D59F8A /* GeoOffersGeoFence.swift */,
+				D5ADDBE82293F15F00D59F8A /* GeoOffersDeliveredSchedule.swift */,
+				D5ADDBE92293F15F00D59F8A /* GeoOffersSchedule.swift */,
+				D5ADDBEB2293F15F00D59F8A /* GeoOffersTrackingEvent.swift */,
+				D5ADDBE22293F15E00D59F8A /* GeoOffersServiceModels.swift */,
+				D5ADDBE72293F15F00D59F8A /* GeoOffersPushData.swift */,
+				D5ADDBEA2293F15F00D59F8A /* GeoOffersOffer.swift */,
+				D5ADDBE52293F15F00D59F8A /* GeoOffersPendingOffer.swift */,
+				D5ADDBE32293F15E00D59F8A /* GeoOffersDebugRegion.swift */,
 				D5B6996621EDCF1B00A0F737 /* GeoOffersConfiguration.swift */,
+				D5ADDBF82293F31C00D59F8A /* GeoOffersInternalConfiguration.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -309,6 +384,23 @@
 				D517D447227C20E1004CBA6D /* GeoOffersFirebaseWrapper.swift */,
 				D517D458227C2352004CBA6D /* GeoOffersPresenter.swift */,
 				D517D45A227C238B004CBA6D /* GeoOffersNotificationService.swift */,
+				D5ADDBC22293F15000D59F8A /* Cache.swift */,
+				D5ADDBC02293F15000D59F8A /* DiskCache.swift */,
+				D5ADDBD02293F15200D59F8A /* GeoOffersLocationService.swift */,
+				D5ADDBCC2293F15100D59F8A /* GeoOffersLogging.swift */,
+				D5ADDBC12293F15000D59F8A /* GeoOffersAPIService.swift */,
+				D5ADDBCB2293F15100D59F8A /* GeoOffersDataParser.swift */,
+				D5ADDBCD2293F15200D59F8A /* GeoOffersDataProcessor.swift */,
+				D5ADDBC52293F15100D59F8A /* GeoOffersCache.swift */,
+				D5ADDBC32293F15000D59F8A /* GeoOffersOffersCache.swift */,
+				D5ADDBC42293F15100D59F8A /* GeoOffersEnteredRegionCache.swift */,
+				D5ADDBCA2293F15100D59F8A /* GeoOffersSendNotificationCache.swift */,
+				D5ADDBC82293F15100D59F8A /* GeoOffersPushNotificationCache.swift */,
+				D5ADDBC72293F15100D59F8A /* GeoOffersTrackingCache.swift */,
+				D5ADDBC62293F15100D59F8A /* GeoOffersWebViewCache.swift */,
+				D5ADDBC92293F15100D59F8A /* GeoOffersListingCache.swift */,
+				D5ADDBCF2293F15200D59F8A /* GeoOffersSDKServiceProtocol.swift */,
+				D5ADDBCE2293F15200D59F8A /* GeoOffersNotificationServiceProtocol.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -316,7 +408,11 @@
 		D5B6995B21ECEABC00A0F737 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D5ADDC0122941A6200D59F8A /* FileManager+Additions.swift */,
 				D517D45E227C3508004CBA6D /* UIView+NibLoading.swift */,
+				D5ADDBB92293F13700D59F8A /* String+URLEncoding.swift */,
+				D5ADDBBA2293F13700D59F8A /* KeyedDecodingContainerProtocol+PHPJSONEncoderHelper.swift */,
+				D5ADDBB82293F13700D59F8A /* Date+UnixTime.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -364,6 +460,7 @@
 		D5B6999421F23D1300A0F737 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D5ADDBBB2293F13700D59F8A /* FileManager+Additions.swift */,
 				D5B6999521F23D2200A0F737 /* TestErrors.swift */,
 				D5B6999721F23F5600A0F737 /* MockURLSession.swift */,
 				D5C401AE221D4C25005DFEEE /* MockGeoOffersFirebaseWrapper.swift */,
@@ -620,13 +717,45 @@
 			buildActionMask = 2147483647;
 			files = (
 				D543B4E3224BB610005B727F /* GeoOffersNotificationToast.swift in Sources */,
+				D5ADDBD52293F15200D59F8A /* GeoOffersEnteredRegionCache.swift in Sources */,
+				D5ADDBD82293F15200D59F8A /* GeoOffersTrackingCache.swift in Sources */,
+				D5ADDC0222941A6300D59F8A /* FileManager+Additions.swift in Sources */,
+				D5ADDBE12293F15200D59F8A /* GeoOffersLocationService.swift in Sources */,
+				D5ADDBDE2293F15200D59F8A /* GeoOffersDataProcessor.swift in Sources */,
+				D5ADDBD72293F15200D59F8A /* GeoOffersWebViewCache.swift in Sources */,
+				D5ADDBDF2293F15200D59F8A /* GeoOffersNotificationServiceProtocol.swift in Sources */,
+				D5ADDBD32293F15200D59F8A /* Cache.swift in Sources */,
+				D5ADDBD62293F15200D59F8A /* GeoOffersCache.swift in Sources */,
 				D517D45B227C238C004CBA6D /* GeoOffersNotificationService.swift in Sources */,
 				D517D459227C2352004CBA6D /* GeoOffersPresenter.swift in Sources */,
+				D5ADDBF22293F15F00D59F8A /* GeoOffersPushData.swift in Sources */,
+				D5ADDBEF2293F15F00D59F8A /* GeoOffersListing.swift in Sources */,
+				D5ADDBF52293F15F00D59F8A /* GeoOffersOffer.swift in Sources */,
+				D5ADDBDA2293F15200D59F8A /* GeoOffersListingCache.swift in Sources */,
+				D5ADDBBE2293F13700D59F8A /* KeyedDecodingContainerProtocol+PHPJSONEncoderHelper.swift in Sources */,
+				D5ADDBF02293F15F00D59F8A /* GeoOffersPendingOffer.swift in Sources */,
+				D5ADDBF92293F31C00D59F8A /* GeoOffersInternalConfiguration.swift in Sources */,
+				D5ADDBF32293F15F00D59F8A /* GeoOffersDeliveredSchedule.swift in Sources */,
+				D5ADDBBD2293F13700D59F8A /* String+URLEncoding.swift in Sources */,
+				D5ADDBED2293F15F00D59F8A /* GeoOffersServiceModels.swift in Sources */,
 				D517D448227C20E2004CBA6D /* GeoOffersFirebaseWrapper.swift in Sources */,
+				D5ADDBD92293F15200D59F8A /* GeoOffersPushNotificationCache.swift in Sources */,
+				D5ADDBF42293F15F00D59F8A /* GeoOffersSchedule.swift in Sources */,
 				D5F38DD421F8607600531B7F /* GeoOffersViewController.swift in Sources */,
+				D5ADDBD12293F15200D59F8A /* DiskCache.swift in Sources */,
 				D517D45F227C3508004CBA6D /* UIView+NibLoading.swift in Sources */,
+				D5ADDBD22293F15200D59F8A /* GeoOffersAPIService.swift in Sources */,
 				D5B6996421EDCF1400A0F737 /* GeoOffersSDKService.swift in Sources */,
+				D5ADDBBC2293F13700D59F8A /* Date+UnixTime.swift in Sources */,
+				D5ADDBDC2293F15200D59F8A /* GeoOffersDataParser.swift in Sources */,
+				D5ADDBF12293F15F00D59F8A /* GeoOffersGeoFence.swift in Sources */,
+				D5ADDBDB2293F15200D59F8A /* GeoOffersSendNotificationCache.swift in Sources */,
+				D5ADDBEE2293F15F00D59F8A /* GeoOffersDebugRegion.swift in Sources */,
+				D5ADDBE02293F15200D59F8A /* GeoOffersSDKServiceProtocol.swift in Sources */,
 				D5B6996A21EDCF1B00A0F737 /* GeoOffersConfiguration.swift in Sources */,
+				D5ADDBD42293F15200D59F8A /* GeoOffersOffersCache.swift in Sources */,
+				D5ADDBF62293F15F00D59F8A /* GeoOffersTrackingEvent.swift in Sources */,
+				D5ADDBDD2293F15200D59F8A /* GeoOffersLogging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +774,7 @@
 				D5F38DCE21F744F800531B7F /* FileManagerExtensionTests.swift in Sources */,
 				D5C8E1B6220196EB00CE8CF2 /* GeoOffersPushDataTests.swift in Sources */,
 				D500B5472247973B009B130E /* MockUNUserNotificationCenter.swift in Sources */,
+				D5ADDC0022941A3F00D59F8A /* FileManager+Additions.swift in Sources */,
 				D5B6999621F23D2200A0F737 /* TestErrors.swift in Sources */,
 				D5B6998021EE1C9B00A0F737 /* GeoOffersCacheServiceTests.swift in Sources */,
 				D5B6998221EE3F5000A0F737 /* GeoOffersConfigurationTests.swift in Sources */,

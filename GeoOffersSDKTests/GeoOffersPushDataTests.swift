@@ -19,7 +19,7 @@ class GeoOffersPushDataTests: XCTestCase {
 
     private var notificationCenter = MockUNUserNotificationCenter()
 
-    private var configuration: GeoOffersSDKConfiguration!
+    private var configuration: GeoOffersInternalConfiguration!
     private var notificationService: MockGeoOffersNotificationService!
     private var locationService: GeoOffersLocationService!
     private var apiService: GeoOffersAPIServiceProtocol!
@@ -35,7 +35,7 @@ class GeoOffersPushDataTests: XCTestCase {
     fileprivate var delegateHasAvailableOffersCalled = false
 
     override func setUp() {
-        configuration = GeoOffersConfiguration(registrationCode: "TestID", authToken: UUID().uuidString, testing: true)
+        configuration = defaultTestConfiguration
 
         locationManager.canMonitorForRegions = true
         locationManager.hasLocationPermission = true
@@ -64,7 +64,7 @@ class GeoOffersPushDataTests: XCTestCase {
         )
 
         service = GeoOffersSDKService(
-            configuration: configuration,
+            configuration: defaultAppConfig,
             notificationService: notificationService,
             locationService: locationService,
             apiService: apiService,
@@ -96,8 +96,8 @@ class GeoOffersPushDataTests: XCTestCase {
             let pushData = try decoder.decode(GeoOffersPushData.self, from: data)
             XCTAssertEqual(pushData.messageID, "5c4b5a4b12316")
             XCTAssertEqual(pushData.scheduleID, 5203)
-            XCTAssertEqual(pushData.totalParts, 2)
-            XCTAssertEqual(pushData.messageIndex, 0)
+            XCTAssertEqual(pushData.totalParts, 1)
+            XCTAssertEqual(pushData.messageIndex, 1)
             XCTAssertEqual(pushData.timestamp, 1_548_442_187_074)
             XCTAssertEqual(pushData.message, "{\"type\":\"REWARD_REMOVED_ADDED_OR_EDITED\",\"scheduleId\":5203,\"geofences\":[{\"lat\":51.69404744,\"lng\":-0.17806409,\"radiusKm\":0.1,\"deviceUid\":\"5c1b8c9b1533b\",\"scheduleId\":5203,\"loiteringDelayMs\":null,\"deliveryDelayMs\":null,\"doesNotNotify\":true,\"notifiesSilently\":false,\"logoImageUrl\":\"\",\"customEntryNotificationTitle\":null,\"customEntryNotificationMessage\":null},{\"lat\":51.69788192,\"lng\":-0.192471679,\"radiusKm\":0.1,\"deviceUid\":\"5c1b8d962068e\",\"scheduleId\":5203,\"loiteringDelayMs\":null,\"deliveryDelayMs\":null,\"doesNotNotify\":true,\"notifiesSilently\":false,\"logoImageUrl\":\"\",\"customEntryNotificationTitle\":null,\"customEntryNotificationMessage\":null},{\"lat\":51.69393897,\"lng\":-0.18139943,\"radiusKm\":0.1,\"deviceUid\":\"5c1b8ee9d49cc\",\"scheduleId\":5203,\"loiteringDelayMs\":null,\"deliveryDelayMs\":null,\"doesNotNotify\":true,\"notifiesSilently\":false,\"logoImageUrl\":\"\",\"customEntryNotificationTitle\":null,\"customEntryNotificationMessage\":null},{\"lat\":51.7034864,\"lng\":-0.19154809999998,\"radiusKm\":0.1,\"deviceUid\":\"ClientCode-535987-OffersAppGooglePlaceIdChIJQTC2xEo9dkgRHf5kgZdl9lc\",\"scheduleId\":5203,\"loiteringDelayMs\":null,\"deliveryDelayMs\":null,\"doesNotNotify\":true,\"notifiesSilently\":false,\"logoImageUrl\":\"\",\"customEntryNotificationTitle\":null,\"customEntryNotificationMessage\":null},{\"lat\":51.6972904,\"lng\":-0.19229129999997,\"radiusKm\":0.1,\"deviceUid\":\"ClientCode-535987-OffersAppGooglePlaceIdChIJ_1tSV0w9dkgRfA4FGrUvg1w\",\"scheduleId\":5203,\"loiteringDelayMs\":null,\"deliveryDelayMs\":null,\"doesNotNotify\":true,\"notifiesSilently\":false,\"logoImageUrl\":\"\",\"customEntryNotificationTitle\":null,\"customEntryNotificationMessage\":null},{\"lat\":51.7024081,\"lng\":-0.19033760000002,\"radiusKm\":0.1,\"deviceUid\":\"OffersAppGooglePlaceIdChIJ4Z0220o9dkgRUGCDnJM7OPA\",\"scheduleId\":5203,\"loiteringDelayMs\":null,\"deliveryDelayMs\":null,\"doesNotNotify\":true,\"notifiesSilently\":false,\"logoImageUrl\":\"\",\"customEntryNotificationTitle\":null,\"customEntryNotificationMessage\":null},{\"lat\":51.6939179,\"lng\":-0.18135410000002,\"radiusKm\":0.1,\"device")
         } catch {
@@ -176,12 +176,10 @@ class GeoOffersPushDataTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: listingData) else {
+        guard parser.parseNearbyFences(jsonData: listingData) != nil else {
             XCTFail("Where's my test data?")
             return
         }
-
-        cache.listingCache.replaceCache(fenceData)
 
         guard let data = FileLoader.loadTestData(filename: "push_notification_final_message_data") else {
             XCTFail("Where is the test data")

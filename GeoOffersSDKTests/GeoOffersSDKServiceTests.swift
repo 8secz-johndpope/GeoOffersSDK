@@ -18,7 +18,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
 
     private var notificationCenter = MockUNUserNotificationCenter()
 
-    private var configuration: GeoOffersSDKConfiguration!
+    private var configuration: GeoOffersInternalConfiguration!
     private var notificationService: MockGeoOffersNotificationService!
     private var locationService: GeoOffersLocationService!
     private var apiService: GeoOffersAPIServiceProtocol!
@@ -27,6 +27,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
     private var session = MockURLSession()
     private var cache: TestCacheHelper!
     private var dataProcessor: GeoOffersDataProcessor!
+    private var appConfig: GeoOffersConfiguration!
 
     private var service: GeoOffersSDKServiceProtocol!
     private var serviceWithMockAPI: GeoOffersSDKServiceProtocol!
@@ -35,7 +36,8 @@ class GeoOffersSDKServiceTests: XCTestCase {
     fileprivate var delegateHasAvailableOffersCalled = false
 
     override func setUp() {
-        configuration = GeoOffersConfiguration(registrationCode: "TestID", authToken: UUID().uuidString, testing: true, minimumRefreshWaitTime: 0, minimumDistance: 0)
+        appConfig = GeoOffersConfiguration(registrationCode: "TestID", authToken: UUID().uuidString, testing: true, minimumRefreshWaitTime: 0, minimumDistance: 0)
+        configuration = GeoOffersInternalConfiguration(configuration: appConfig)
 
         locationManager.canMonitorForRegions = true
         locationManager.hasLocationPermission = true
@@ -59,7 +61,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
         )
 
         service = GeoOffersSDKService(
-            configuration: configuration,
+            configuration: appConfig,
             notificationService: notificationService,
             locationService: locationService,
             apiService: apiService,
@@ -73,7 +75,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
         )
 
         serviceWithMockAPI = GeoOffersSDKService(
-            configuration: configuration,
+            configuration: appConfig,
             notificationService: notificationService,
             locationService: locationService,
             apiService: mockAPIService,
@@ -108,7 +110,7 @@ class GeoOffersSDKServiceTests: XCTestCase {
 
     func test_default_initialiser() {
         let notificationCenter = MockUNUserNotificationCenter()
-        let service = GeoOffersSDKService(configuration: configuration, userNotificationCenter: notificationCenter)
+        let service = GeoOffersSDKService(configuration: appConfig, userNotificationCenter: notificationCenter)
         XCTAssertNotNil(service)
     }
 
@@ -194,12 +196,10 @@ class GeoOffersSDKServiceTests: XCTestCase {
         }
 
         let parser = GeoOffersPushNotificationProcessor(notificationCache: cache.notificationCache, listingCache: cache.listingCache)
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
+        guard parser.parseNearbyFences(jsonData: data) != nil else {
             XCTFail("Where's my test data?")
             return
         }
-
-        cache.listingCache.replaceCache(fenceData)
     }
 
     func test_didRegisterForRemoteNotificationsWithDeviceToken_for_already_submitted_token() {

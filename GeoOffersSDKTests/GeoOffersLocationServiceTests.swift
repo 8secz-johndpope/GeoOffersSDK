@@ -20,10 +20,10 @@ class GeoOffersLocationServiceTests: XCTestCase {
     private var delegateUserDidMoveSignificantDistanceCalled = false
     private var delegateDidEnterRegionCalled = false
     private var delegateDidExitRegionCalled = false
-    private var configuration: GeoOffersConfiguration!
+    private var configuration: GeoOffersInternalConfiguration!
 
     override func setUp() {
-        configuration = GeoOffersConfiguration(registrationCode: "TestID", authToken: UUID().uuidString, testing: true, minimumRefreshWaitTime: 0, minimumDistance: 0)
+        configuration = GeoOffersInternalConfiguration(configuration: GeoOffersConfiguration(registrationCode: "TestID", authToken: UUID().uuidString, testing: true, minimumRefreshWaitTime: 0, minimumDistance: 0))
         service = GeoOffersLocationService(latestLocation: nil, locationManager: locationManager, configuration: configuration)
     }
 

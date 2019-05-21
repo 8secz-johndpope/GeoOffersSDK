@@ -20,7 +20,7 @@ class GeoOffersAPIServiceTests: XCTestCase {
 
     override func setUp() {
         cache = TestCacheHelper()
-        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = GeoOffersInternalConfiguration(configuration: GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true))
         service = GeoOffersAPIService(configuration: configuration, session: session, trackingCache: cache.trackingCache)
         session.testDelegate = service as? URLSessionDelegate
         serviceWithMockConfig = GeoOffersAPIService(configuration: mockConfig, session: session2, trackingCache: cache.trackingCache)

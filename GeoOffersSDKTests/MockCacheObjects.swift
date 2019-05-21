@@ -20,7 +20,13 @@ class TestCacheHelper {
         offersCache = GeoOffersOffersCache(cache: cache)
         sendNotificationCache = GeoOffersSendNotificationCache(cache: cache)
         notificationCache = GeoOffersPushNotificationCache(cache: cache)
-        listingCache = GeoOffersListingCache(cache: cache, offersCache: offersCache)
+        listingCache = MockGeoOffersListingCache(cache: cache, offersCache: offersCache)
         webViewCache = GeoOffersWebViewCache(cache: cache, listingCache: listingCache, offersCache: offersCache)
+    }
+}
+
+class MockGeoOffersListingCache: GeoOffersListingCache {
+    override var minimumMovementDistance: Double {
+        return 0
     }
 }

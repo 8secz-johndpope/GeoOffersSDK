@@ -3,20 +3,19 @@
 import Foundation
 @testable import GeoOffersSDK
 
-class MockConfiguration: GeoOffersSDKConfiguration {
-    func refresh() {}
+class MockConfiguration: GeoOffersInternalConfiguration {
+    override func refresh() {}
 
-    var mainAppUsesFirebase: Bool = false
-    let registrationCode: String = "123456"
-    let authToken: String = UUID().uuidString
-    let deviceID: String = GeoOffersSDKUserDefaults.shared.deviceID
-    var selectedCategoryTabBackgroundColor: String = "FF0000"
-    var timezone: String = TimeZone.current.identifier
-    var apiURL: String = ""
-    var offerDetailsURL: String = "https://localhost"
-    var clientID: Int?
-    var pushToken: String?
-    var pendingPushTokenRegistration: String?
-    public let minimumRefreshWaitTime: Double = 0
-    public let minimumRefreshDistance: Double = 0
+    override var apiURL: String { return "" }
+    
+    init() {
+        super.init(configuration: GeoOffersConfiguration(registrationCode: "123456", authToken: UUID().uuidString, testing: false))
+    }
 }
+
+let testRegistrationCode = "123456"
+let testAuthToken = UUID().uuidString
+let testClientID = 100
+
+let defaultAppConfig = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+let defaultTestConfiguration = GeoOffersInternalConfiguration(configuration: defaultAppConfig)

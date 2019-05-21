@@ -11,7 +11,6 @@ class GeoOffersCacheServiceTests: XCTestCase {
 
     private var regions: [GeoOffersGeoFence] = []
     private var schedules: [GeoOffersSchedule] = []
-    private var fenceData: GeoOffersListing!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -20,7 +19,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
         let data = FileLoader.loadTestData(filename: "example-nearby-geofences")!
         cache = TestCacheHelper()
         parser = GeoOffersPushNotificationProcessor(notificationCache: cache.notificationCache, listingCache: cache.listingCache)
-        fenceData = parser.parseNearbyFences(jsonData: data)!
+        _ = parser.parseNearbyFences(jsonData: data)
     }
 
     override func tearDown() {
@@ -33,7 +32,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
     }
 
     func test_encodeFunction() {
-        let configuration = GeoOffersConfiguration(registrationCode: "", authToken: "", testing: true)
+        let configuration = GeoOffersInternalConfiguration(configuration: GeoOffersConfiguration(registrationCode: "", authToken: "", testing: true))
         let timezone = configuration.timezone
         let encodedTimezone = timezone.urlEncode()
         XCTAssertNotNil(encodedTimezone)
@@ -304,13 +303,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
-            XCTFail("Where's my test data? \(filename)")
-            return
-        }
-
-        XCTAssertNotNil(fenceData, "\(filename)")
-        XCTAssertTrue(!fenceData.campaigns.isEmpty, "\(filename)")
+        XCTAssertNotNil(parser.parseNearbyFences(jsonData: data))
     }
 
     func test_buildCouponRequestJson_no_listing() {
@@ -344,12 +337,10 @@ class GeoOffersCacheServiceTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
+        guard parser.parseNearbyFences(jsonData: data) != nil else {
             XCTFail("Where's my test data?")
             return
         }
-
-        cache.listingCache.replaceCache(fenceData)
 
         let json = cache.webViewCache.buildAlreadyDeliveredOfferJson()
         XCTAssertNotNil(json)
@@ -361,12 +352,10 @@ class GeoOffersCacheServiceTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
+        guard parser.parseNearbyFences(jsonData: data) != nil else {
             XCTFail("Where's my test data?")
             return
         }
-
-        cache.listingCache.replaceCache(fenceData)
 
         let json = cache.webViewCache.buildCouponRequestJson(scheduleID: 5139)
         let headline = "Sainsbury's sale"
@@ -378,12 +367,12 @@ class GeoOffersCacheServiceTests: XCTestCase {
 
     func test_buildListingRequestJson_no_listing() {
         let json = cache.webViewCache.buildListingRequestJson()
-        XCTAssertEqual("{}", json)
+        XCTAssertNotEqual("{}", json)
     }
 
     func test_getListing() {
-        let items = cache.listingCache.listing()
-        XCTAssertNil(items)
+        let listing = cache.listingCache.listing()
+        XCTAssertNotNil(listing)
     }
 
 //    func test_schedules_empty() {
@@ -443,12 +432,10 @@ class GeoOffersCacheServiceTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
+        guard parser.parseNearbyFences(jsonData: data) != nil else {
             XCTFail("Where's my test data?")
             return
         }
-
-        cache.listingCache.replaceCache(fenceData)
 
         let json = cache.webViewCache.buildListingRequestJson()
         let customEntryNotificationTitle = "All locations offer"
@@ -464,14 +451,20 @@ class GeoOffersCacheServiceTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
+        guard parser.parseNearbyFences(jsonData: data) != nil else {
             XCTFail("Where's my test data?")
             return
         }
         let registrationCode = "regcode12345"
         let authToken = "authtoken12345"
-        cache.listingCache.replaceCache(fenceData)
-        cache.offersCache.appendDeliveredSchedules(fenceData.deliveredSchedules)
+
+        
+        guard let listing = cache.listingCache.listing() else {
+            XCTFail()
+            return
+        }
+        
+        cache.offersCache.appendDeliveredSchedules(listing.deliveredSchedules)
 
         let json = cache.webViewCache.buildListingRequestJson()
         XCTAssert(!json.contains(authToken))
@@ -484,13 +477,12 @@ class GeoOffersCacheServiceTests: XCTestCase {
             return
         }
 
-        guard let fenceData = parser.parseNearbyFences(jsonData: data) else {
+        guard parser.parseNearbyFences(jsonData: data) != nil else {
             XCTFail("Where's my test data?")
             return
         }
         let registrationCode = "regcode12345"
         let authToken = "authtoken12345"
-        cache.listingCache.replaceCache(fenceData)
 
         let json = cache.webViewCache.buildListingRequestJson()
         XCTAssert(!json.contains(authToken))

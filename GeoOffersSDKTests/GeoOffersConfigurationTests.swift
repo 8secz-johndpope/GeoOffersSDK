@@ -5,23 +5,19 @@ import CoreLocation
 import XCTest
 
 class GeoOffersConfigurationTests: XCTestCase {
-    private let testRegistrationCode = "123456"
-    private let testAuthToken = UUID().uuidString
-    private let testClientID = 100
-
     override func setUp() {
-        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = GeoOffersInternalConfiguration(configuration: GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true))
         configuration.clientID = nil
     }
 
     override func tearDown() {
-        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = defaultTestConfiguration
         configuration.pushToken = nil
         configuration.pendingPushTokenRegistration = nil
     }
 
     func test_basic_configuration() {
-        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = defaultTestConfiguration
         XCTAssert(configuration.registrationCode == testRegistrationCode, "Invalid registrationCode:\(configuration.registrationCode)")
         XCTAssert(configuration.authToken == testAuthToken, "Invalid authToken:\(configuration.authToken)")
         XCTAssert(!configuration.deviceID.isEmpty, "Invalid deviceID:\(configuration.deviceID)")
@@ -30,7 +26,7 @@ class GeoOffersConfigurationTests: XCTestCase {
     }
 
     func test_refresh() {
-        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = defaultTestConfiguration
         let newToken = UUID().uuidString
         GeoOffersSDKUserDefaults.shared.deviceID = newToken
         configuration.refresh()
@@ -43,18 +39,19 @@ class GeoOffersConfigurationTests: XCTestCase {
     }
 
     func test_generate_new_deviceid() {
-        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = defaultTestConfiguration
         let deviceID = configuration.deviceID
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "GeoOffers_DeviceID")
         defaults.synchronize()
-        let configuration2 = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        configuration.refresh()
+        let configuration2 = defaultTestConfiguration
         let deviceID2 = configuration2.deviceID
         XCTAssert(deviceID != deviceID2, "Device ID's should be different")
     }
 
     func test_clientID() {
-        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = defaultTestConfiguration
         XCTAssertNil(configuration.clientID)
         configuration.clientID = testClientID
         XCTAssertEqual(configuration.clientID, testClientID)
@@ -62,7 +59,7 @@ class GeoOffersConfigurationTests: XCTestCase {
     }
 
     func test_pushToken() {
-        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = defaultTestConfiguration
         let testPushToken = "Token12345"
         XCTAssertNil(configuration.pushToken)
         configuration.pushToken = testPushToken
@@ -70,7 +67,7 @@ class GeoOffersConfigurationTests: XCTestCase {
     }
 
     func test_pendingPushToken() {
-        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
+        let configuration = defaultTestConfiguration
         let testPendingPushTokenRegistration = "Token12345"
         XCTAssertNil(configuration.pendingPushTokenRegistration)
         configuration.pendingPushTokenRegistration = testPendingPushTokenRegistration
@@ -79,8 +76,8 @@ class GeoOffersConfigurationTests: XCTestCase {
     }
 
     func test_deviceID_should_persist() {
-        let configuration = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken, testing: true)
-        let configuration2 = GeoOffersConfiguration(registrationCode: testRegistrationCode, authToken: testAuthToken)
+        let configuration = defaultTestConfiguration
+        let configuration2 = defaultTestConfiguration
         let deviceID = configuration.deviceID
         let deviceID2 = configuration2.deviceID
         XCTAssert(deviceID == deviceID2, "Device ID's should match")

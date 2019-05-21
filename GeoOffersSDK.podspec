@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GeoOffersSDK"
-  s.version      = "0.3.5"
+  s.version      = "0.3.6"
   s.summary      = "The GeoOffersSDK connects to the GeoOffers API and allows your app to receive location based offers from the GeoOffers services."
 
   # This description is used to generate tags and improve search results.
@@ -120,7 +120,7 @@ Pod::Spec.new do |s|
   s.framework  = "UIKit", "CoreLocation", "UserNotifications", "WebKit", "AdSupport"
   # s.frameworks = "SomeFramework", "AnotherFramework"
 
-  s.vendored_frameworks   = "Resources/GeoOffersPrivateSDK.framework"
+  # s.vendored_frameworks   = "Resources/GeoOffersPrivateSDK.framework"
   # s.library   = "GeoOffersPrivateSDK"
   # s.libraries = "iconv", "xml2"
 
