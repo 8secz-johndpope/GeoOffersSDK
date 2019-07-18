@@ -282,7 +282,7 @@ class GeoOffersAPIServiceTests: XCTestCase {
     }
 
     func test_tracking() {
-        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().unixTimeIntervalSince1970, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude)
+        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().unixTimeIntervalSince1970, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude, clientCouponHash: nil)
 
         let expectation = self.expectation(description: "Wait for response")
         session.testExpectation = expectation
@@ -298,7 +298,7 @@ class GeoOffersAPIServiceTests: XCTestCase {
     }
 
     func test_tracking_invalid_url() {
-        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().unixTimeIntervalSince1970, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude)
+        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().unixTimeIntervalSince1970, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude, clientCouponHash: nil)
 
         cache.trackingCache.add([trackingEvent])
         serviceWithMockConfig.checkForPendingTrackingEvents()
@@ -307,7 +307,7 @@ class GeoOffersAPIServiceTests: XCTestCase {
 
     func test_tracking_with_error() {
         session.responseError = TestErrors.trackEventFailed
-        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().unixTimeIntervalSince1970, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude)
+        let trackingEvent = GeoOffersTrackingEvent(type: .geoFenceEntry, timestamp: Date().unixTimeIntervalSince1970, scheduleDeviceID: "ABC123", scheduleID: 123, latitude: latitude, longitude: longitude, clientCouponHash: nil)
 
         let expectation = self.expectation(description: "Wait for response")
         session.testExpectation = expectation

@@ -18,7 +18,7 @@ class GeoOffersDataParserTests: XCTestCase {
         configuration.clientID = nil
         self.configuration = configuration
         locationService = GeoOffersLocationService(latestLocation: nil, locationManager: locationManager, configuration: configuration)
-        parser = GeoOffersPresenter(configuration: configuration, locationService: locationService, cacheService: cache.webViewCache)
+        parser = GeoOffersPresenter(configuration: configuration, locationService: locationService, cacheService: cache.webViewCache, trackingCache: cache.trackingCache, apiService: MockGeoOffersAPIService())
         pushNotificationProcessor = GeoOffersPushNotificationProcessor(notificationCache: cache.notificationCache, listingCache: cache.listingCache)
     }
 

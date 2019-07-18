@@ -50,7 +50,9 @@ class GeoOffersPushDataTests: XCTestCase {
         presentationService = GeoOffersPresenter(
             configuration: configuration,
             locationService: locationService,
-            cacheService: cache.webViewCache
+            cacheService: cache.webViewCache,
+            trackingCache: cache.trackingCache,
+            apiService: mockAPIService
         )
 
         dataProcessor = GeoOffersDataProcessor(

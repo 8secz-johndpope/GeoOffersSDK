@@ -308,7 +308,7 @@ class GeoOffersCacheServiceTests: XCTestCase {
 
     func test_buildCouponRequestJson_no_listing() {
         cache.listingCache.clearCache()
-        let json = cache.webViewCache.buildCouponRequestJson(scheduleID: 5139)
+        let json = cache.webViewCache.buildCouponRequestJson(offer: nil)
         XCTAssertEqual("{}", json)
     }
 
@@ -357,7 +357,8 @@ class GeoOffersCacheServiceTests: XCTestCase {
             return
         }
 
-        let json = cache.webViewCache.buildCouponRequestJson(scheduleID: 5139)
+        let offer = cache.webViewCache.offer(scheduleID: 5139)
+        let json = cache.webViewCache.buildCouponRequestJson(offer: offer)
         let headline = "Sainsbury's sale"
         let scheduleEndDateString = "22nd February 2019 @ 23:55"
 
