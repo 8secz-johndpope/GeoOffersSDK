@@ -7,13 +7,11 @@ target 'GeoOffersSDK' do
   use_modular_headers!
 
   # Pods for GeoOffersSDK
-  pod 'Firebase/Core'
   pod 'Firebase/Messaging'
 
   target 'GeoOffersSDKTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'Firebase/Core'
     pod 'Firebase/Messaging'
   end
   
