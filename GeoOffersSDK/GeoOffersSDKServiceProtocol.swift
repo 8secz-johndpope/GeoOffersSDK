@@ -12,6 +12,7 @@ public protocol GeoOffersSDKServiceProtocol {
     func requestLocationPermissions()
     func applicationDidBecomeActive(_ application: UIApplication)
     func buildOfferListViewController() -> UIViewController
+    func deeplinkToCoupon(_ viewController: UIViewController, notificationIdentifier: String)
     func requestPushNotificationPermissions()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)

@@ -150,6 +150,14 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
     public func buildOfferListViewController() -> UIViewController {
         return presentationService.buildOfferListViewController(service: self)
     }
+    
+    public func deeplinkToCoupon(_ viewController: UIViewController, notificationIdentifier: String) {
+        guard
+            let vc = viewController as? GeoOffersViewController,
+            let scheduleID = ScheduleID(notificationIdentifier)
+        else { return }
+        vc.openCoupon(scheduleID: scheduleID)
+    }
 
     public func refreshOfferListViewController(_ viewController: UIViewController) {
         guard let vc = viewController as? GeoOffersViewController else { return }
