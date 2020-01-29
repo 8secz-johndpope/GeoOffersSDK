@@ -137,7 +137,6 @@ Pod::Spec.new do |s|
   # s.dependency "JSONKit", "~> 1.4"
 
   s.static_framework = true
-  s.dependency 'Firebase/Core'
   s.dependency 'Firebase/Messaging'
 
   s.swift_version = "5"
