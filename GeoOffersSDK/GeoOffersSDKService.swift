@@ -50,7 +50,8 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
         apiService = GeoOffersAPIService(configuration: self.configuration, trackingCache: trackingCache)
 
         dataParser = GeoOffersPushNotificationProcessor(notificationCache: notificationCache, listingCache: listingCache)
-        presentationService = GeoOffersPresenter(configuration: self.configuration, locationService: locationService, cacheService: GeoOffersWebViewCache(cache: cache, listingCache: listingCache, offersCache: offersCache), trackingCache: trackingCache, apiService: apiService)
+        let webViewCache = GeoOffersWebViewCache(cache: cache, listingCache: listingCache, offersCache: offersCache)
+        presentationService = GeoOffersPresenter(configuration: self.configuration, locationService: locationService, cacheService: webViewCache, trackingCache: trackingCache, apiService: apiService)
         firebaseWrapper = isRunningTests ? GeoOffersFirebaseWrapperEmpty() : GeoOffersFirebaseWrapper(configuration: self.configuration)
         dataProcessor = GeoOffersDataProcessor(
             offersCache: offersCache,
@@ -61,12 +62,25 @@ public class GeoOffersSDKService: GeoOffersSDKServiceProtocol {
             apiService: apiService,
             trackingCache: trackingCache
         )
-
+        
         offersCache.delegate = self
         listingCache.delegate = self
         firebaseWrapper.delegate = self
         locationService.delegate = self
         presentationService.viewControllerDelegate = self
+        
+        webViewCache.startCountdowns = { hashes in
+            self.apiService.countdownsStarted(hashes: hashes) { result in
+                switch result {
+                case .failure(let error):
+                    geoOffersLog("\(error)")
+                    
+                default:
+                    break
+                    
+                }
+            }
+        }
     }
 
     init(
