@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1FDC2612BA07DEDEE712607A /* Pods_GeoOffersSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA4D3D590DD8CC3258498C5E /* Pods_GeoOffersSDK.framework */; };
-		C0891DC3A5FD5763E49A1B5E /* Pods_GeoOffersSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED5DDAF9B0FA39828F72886 /* Pods_GeoOffersSDKTests.framework */; };
+		95569980C42A4FC357DC1985 /* Pods_GeoOffersSDK_GeoOffersSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19E6341BBE3A43419E9999C /* Pods_GeoOffersSDK_GeoOffersSDKTests.framework */; };
 		D500B543224796D2009B130E /* MockGeoOffersNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500B542224796D2009B130E /* MockGeoOffersNotificationService.swift */; };
 		D500B545224796E9009B130E /* MockGeoOffersAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500B544224796E9009B130E /* MockGeoOffersAPIService.swift */; };
 		D500B5472247973B009B130E /* MockUNUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500B5462247973B009B130E /* MockUNUserNotificationCenter.swift */; };
@@ -110,6 +109,7 @@
 		D5F38DD421F8607600531B7F /* GeoOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F38DD321F8607600531B7F /* GeoOffersViewController.swift */; };
 		D5F38DD621F86DF300531B7F /* GeoOffersViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F38DD521F86DF300531B7F /* GeoOffersViewControllerTests.swift */; };
 		D5F3ECB0222FC92000B62BD9 /* person2.json in Resources */ = {isa = PBXBuildFile; fileRef = D5F3ECAF222FC92000B62BD9 /* person2.json */; };
+		D638669014CB0484D900FDD3 /* Pods_GeoOffersSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B49679629A6D5B6217AE524 /* Pods_GeoOffersSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,8 +123,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		947CC1590043EDC3D9DFDE32 /* Pods-GeoOffersSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoOffersSDK.release.xcconfig"; path = "Target Support Files/Pods-GeoOffersSDK/Pods-GeoOffersSDK.release.xcconfig"; sourceTree = "<group>"; };
-		C64410A1A70FAA02057A4543 /* Pods-GeoOffersSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoOffersSDKTests.debug.xcconfig"; path = "Target Support Files/Pods-GeoOffersSDKTests/Pods-GeoOffersSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		75ABA06E6F0D288F9422D2BF /* Pods-GeoOffersSDK-GeoOffersSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoOffersSDK-GeoOffersSDKTests.debug.xcconfig"; path = "Target Support Files/Pods-GeoOffersSDK-GeoOffersSDKTests/Pods-GeoOffersSDK-GeoOffersSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		77B3670F0E1B2318D44FB7FC /* Pods-GeoOffersSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoOffersSDK.release.xcconfig"; path = "Target Support Files/Pods-GeoOffersSDK/Pods-GeoOffersSDK.release.xcconfig"; sourceTree = "<group>"; };
+		7A43ADA94D310FA0E801C638 /* Pods-GeoOffersSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoOffersSDK.debug.xcconfig"; path = "Target Support Files/Pods-GeoOffersSDK/Pods-GeoOffersSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		8B49679629A6D5B6217AE524 /* Pods_GeoOffersSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoOffersSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98DCA3DE6C41517B1C802350 /* Pods-GeoOffersSDK-GeoOffersSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoOffersSDK-GeoOffersSDKTests.release.xcconfig"; path = "Target Support Files/Pods-GeoOffersSDK-GeoOffersSDKTests/Pods-GeoOffersSDK-GeoOffersSDKTests.release.xcconfig"; sourceTree = "<group>"; };
+		D19E6341BBE3A43419E9999C /* Pods_GeoOffersSDK_GeoOffersSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoOffersSDK_GeoOffersSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D500B542224796D2009B130E /* MockGeoOffersNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeoOffersNotificationService.swift; sourceTree = "<group>"; };
 		D500B544224796E9009B130E /* MockGeoOffersAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeoOffersAPIService.swift; sourceTree = "<group>"; };
 		D500B5462247973B009B130E /* MockUNUserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUNUserNotificationCenter.swift; sourceTree = "<group>"; };
@@ -232,10 +236,6 @@
 		D5F38DD321F8607600531B7F /* GeoOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoOffersViewController.swift; sourceTree = "<group>"; };
 		D5F38DD521F86DF300531B7F /* GeoOffersViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoOffersViewControllerTests.swift; sourceTree = "<group>"; };
 		D5F3ECAF222FC92000B62BD9 /* person2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = person2.json; sourceTree = "<group>"; };
-		DA4D3D590DD8CC3258498C5E /* Pods_GeoOffersSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoOffersSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4B72BAE5BA5973A51AF177E /* Pods-GeoOffersSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoOffersSDK.debug.xcconfig"; path = "Target Support Files/Pods-GeoOffersSDK/Pods-GeoOffersSDK.debug.xcconfig"; sourceTree = "<group>"; };
-		E592AEEDA44E761C3DAF4F00 /* Pods-GeoOffersSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoOffersSDKTests.release.xcconfig"; path = "Target Support Files/Pods-GeoOffersSDKTests/Pods-GeoOffersSDKTests.release.xcconfig"; sourceTree = "<group>"; };
-		FED5DDAF9B0FA39828F72886 /* Pods_GeoOffersSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoOffersSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,7 +243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FDC2612BA07DEDEE712607A /* Pods_GeoOffersSDK.framework in Frameworks */,
+				D638669014CB0484D900FDD3 /* Pods_GeoOffersSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B6994721ECEA6E00A0F737 /* GeoOffersSDK.framework in Frameworks */,
-				C0891DC3A5FD5763E49A1B5E /* Pods_GeoOffersSDKTests.framework in Frameworks */,
+				95569980C42A4FC357DC1985 /* Pods_GeoOffersSDK_GeoOffersSDKTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,10 +262,10 @@
 		3BAD1979B1F367FF77058698 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E4B72BAE5BA5973A51AF177E /* Pods-GeoOffersSDK.debug.xcconfig */,
-				947CC1590043EDC3D9DFDE32 /* Pods-GeoOffersSDK.release.xcconfig */,
-				C64410A1A70FAA02057A4543 /* Pods-GeoOffersSDKTests.debug.xcconfig */,
-				E592AEEDA44E761C3DAF4F00 /* Pods-GeoOffersSDKTests.release.xcconfig */,
+				7A43ADA94D310FA0E801C638 /* Pods-GeoOffersSDK.debug.xcconfig */,
+				77B3670F0E1B2318D44FB7FC /* Pods-GeoOffersSDK.release.xcconfig */,
+				75ABA06E6F0D288F9422D2BF /* Pods-GeoOffersSDK-GeoOffersSDKTests.debug.xcconfig */,
+				98DCA3DE6C41517B1C802350 /* Pods-GeoOffersSDK-GeoOffersSDKTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -492,8 +492,8 @@
 			isa = PBXGroup;
 			children = (
 				D517D408227C1F1F004CBA6D /* GeoOffersPrivateSDK.framework */,
-				DA4D3D590DD8CC3258498C5E /* Pods_GeoOffersSDK.framework */,
-				FED5DDAF9B0FA39828F72886 /* Pods_GeoOffersSDKTests.framework */,
+				8B49679629A6D5B6217AE524 /* Pods_GeoOffersSDK.framework */,
+				D19E6341BBE3A43419E9999C /* Pods_GeoOffersSDK_GeoOffersSDKTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -516,7 +516,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5B6995121ECEA6E00A0F737 /* Build configuration list for PBXNativeTarget "GeoOffersSDK" */;
 			buildPhases = (
-				7656E43D5CF9D870B189F3B5 /* [CP] Check Pods Manifest.lock */,
+				6BEB32C2AA0BB37B51AFF23D /* [CP] Check Pods Manifest.lock */,
 				D5B6993821ECEA6E00A0F737 /* Headers */,
 				D5B6993921ECEA6E00A0F737 /* Sources */,
 				D5B6993A21ECEA6E00A0F737 /* Frameworks */,
@@ -535,11 +535,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5B6995421ECEA6E00A0F737 /* Build configuration list for PBXNativeTarget "GeoOffersSDKTests" */;
 			buildPhases = (
-				64CF9867BBB78CD97A2BD06C /* [CP] Check Pods Manifest.lock */,
+				FF29D53471BD2FEA96D3C586 /* [CP] Check Pods Manifest.lock */,
 				D5B6994221ECEA6E00A0F737 /* Sources */,
 				D5B6994321ECEA6E00A0F737 /* Frameworks */,
 				D5B6994421ECEA6E00A0F737 /* Resources */,
-				A6EC16578D4E03D408AF7BA1 /* [CP] Embed Pods Frameworks */,
+				2D5A56EF1E837C3F827FA5B6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -643,29 +643,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		64CF9867BBB78CD97A2BD06C /* [CP] Check Pods Manifest.lock */ = {
+		2D5A56EF1E837C3F827FA5B6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GeoOffersSDK-GeoOffersSDKTests/Pods-GeoOffersSDK-GeoOffersSDKTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GeoOffersSDKTests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-GeoOffersSDK-GeoOffersSDKTests/Pods-GeoOffersSDK-GeoOffersSDKTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GeoOffersSDK-GeoOffersSDKTests/Pods-GeoOffersSDK-GeoOffersSDKTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7656E43D5CF9D870B189F3B5 /* [CP] Check Pods Manifest.lock */ = {
+		6BEB32C2AA0BB37B51AFF23D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -687,21 +682,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A6EC16578D4E03D408AF7BA1 /* [CP] Embed Pods Frameworks */ = {
+		FF29D53471BD2FEA96D3C586 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GeoOffersSDKTests/Pods-GeoOffersSDKTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GeoOffersSDKTests/Pods-GeoOffersSDKTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeoOffersSDK-GeoOffersSDKTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GeoOffersSDKTests/Pods-GeoOffersSDKTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -920,7 +920,7 @@
 		};
 		D5B6995221ECEA6E00A0F737 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4B72BAE5BA5973A51AF177E /* Pods-GeoOffersSDK.debug.xcconfig */;
+			baseConfigurationReference = 7A43ADA94D310FA0E801C638 /* Pods-GeoOffersSDK.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -936,6 +936,43 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"FirebaseMessaging\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleDataTransportCCTSupport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"nanopb\"",
+					"-framework",
+					"\"protobuf\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zappit.GeoOffersSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -948,7 +985,7 @@
 		};
 		D5B6995321ECEA6E00A0F737 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 947CC1590043EDC3D9DFDE32 /* Pods-GeoOffersSDK.release.xcconfig */;
+			baseConfigurationReference = 77B3670F0E1B2318D44FB7FC /* Pods-GeoOffersSDK.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -965,6 +1002,43 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"FirebaseMessaging\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleDataTransportCCTSupport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"nanopb\"",
+					"-framework",
+					"\"protobuf\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zappit.GeoOffersSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -975,7 +1049,7 @@
 		};
 		D5B6995521ECEA6E00A0F737 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C64410A1A70FAA02057A4543 /* Pods-GeoOffersSDKTests.debug.xcconfig */;
+			baseConfigurationReference = 75ABA06E6F0D288F9422D2BF /* Pods-GeoOffersSDK-GeoOffersSDKTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -995,7 +1069,7 @@
 		};
 		D5B6995621ECEA6E00A0F737 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E592AEEDA44E761C3DAF4F00 /* Pods-GeoOffersSDKTests.release.xcconfig */;
+			baseConfigurationReference = 98DCA3DE6C41517B1C802350 /* Pods-GeoOffersSDK-GeoOffersSDKTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

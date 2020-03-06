@@ -1,0 +1,6 @@
+framework module Pods_GeoOffersSDK_GeoOffersSDKTests {
+  umbrella header "Pods-GeoOffersSDK-GeoOffersSDKTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
